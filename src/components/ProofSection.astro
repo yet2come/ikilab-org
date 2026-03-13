@@ -1,0 +1,43 @@
+---
+interface Stat {
+  num: string;
+  unit: string;
+  label: string;
+}
+
+interface Case {
+  tag: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  stats: Stat[];
+  cases: Case[];
+}
+
+const { stats, cases } = Astro.props;
+---
+<div class="proof-stats reveal">
+  {stats.map(stat => (
+    <div class="proof-stat">
+      <div class="proof-stat-num">
+        {stat.num}{stat.unit && <span class="proof-stat-unit">{stat.unit}</span>}
+      </div>
+      <div class="proof-stat-label">{stat.label}</div>
+    </div>
+  ))}
+</div>
+<div class="proof-cases reveal">
+  {cases.map(c => (
+    <div class="case-row">
+      <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
+      <div class="case-content">
+        <div class="case-tag">{c.tag}</div>
+        <h4>{c.title}</h4>
+        <p>{c.body}</p>
+      </div>
+      <div class="case-arrow">→</div>
+    </div>
+  ))}
+</div>

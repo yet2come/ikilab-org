@@ -1,0 +1,145 @@
+export const patternA = {
+  brand: "IKILAB",
+  brandFull: "IKILAB MUSHŌZU",
+  brandDesc: "A laboratory connecting\nislands to the world.",
+  copyright: "© 2025 IKILAB. All rights reserved.",
+  navItems: [
+    { label: "Concept", href: "/pattern-a/concept" },
+    { label: "Experiments", href: "/pattern-a/experiments" },
+    { label: "Connect", href: "/pattern-a/connect" },
+    { label: "Facility", href: "/pattern-a/facility" },
+    { label: "Column", href: "/pattern-a/column" },
+    { label: "EN", href: "/pattern-a/en" },
+  ],
+  contactHref: "/pattern-a/contact",
+  hero: {
+    tag: "IKI ISLAND — 33.7487°N, 129.6918°E",
+    titleHtml: "離島という<br>制約環境を、<br>可能性に変える。",
+    en: "Turning constraints into possibility.",
+    bodyHtml:
+      'IKILABは、<strong>島内外を接続する実験装置</strong>です。人口25,000人の壱岐島を舞台に、地域の課題を構造的に解き、新しい接続を生み出します。',
+    actions: [
+      { label: "実験に参加する →", href: "/pattern-a/connect", style: "fill" },
+      { label: "相談する", href: "/pattern-a/contact", style: "ghost" },
+    ],
+    date: "EST. 2022",
+    coord: "NAGASAKI, JAPAN",
+    imagePlaceholder: "HERO IMAGE\n壱岐島の風景写真\nor 施設の記録写真",
+  },
+  why: {
+    num: "02",
+    title: "Why Iki Island — なぜ離島で実験するのか",
+    link: { label: "Read Full →", href: "/pattern-a/concept" },
+    items: [
+      {
+        idx: "1",
+        titleHtml: "制約が多いからこそ、<br>構造が見える",
+        body: "人口25,000人、面積139km²。都市では隠れる社会構造が、離島では裸の状態で現れる。課題の本質が可視化される環境。",
+      },
+      {
+        idx: "2",
+        titleHtml: "小さな島は<br>実装スピードが速い",
+        body: "意思決定者までの距離が近い。試作から実装までのサイクルが極めて短く、仮説検証を高速で回せる。",
+      },
+      {
+        idx: "3",
+        titleHtml: "顔の見える関係性が<br>実証を加速する",
+        body: "フィードバックが直接返ってくる。匿名のユーザーテストでは得られない密度の検証が、日常の中で起きる。",
+      },
+    ],
+  },
+  experiments: {
+    num: "03",
+    title: "Experiments — 進行中の実験",
+    link: { label: "View All →", href: "/pattern-a/experiments" },
+    items: [
+      { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の集約と配信基盤。分散していた告知を一箇所に集める。" },
+      { status: "active", title: "離島型モビリティ実証", body: "電動トゥクトゥク・レンタカーによる二次交通モデルの実験。" },
+      { status: "active", title: "ワーケーション受入設計", body: "テレワーク拠点としての離島滞在モデル。働くと暮らすの境界を溶かす。" },
+      { status: "active", title: "地域コンテンツ制作", body: "ZINE・イベントを通じた文化発信。島の日常をコンテンツに変換する。" },
+      { status: "planned", title: "離島型ジョブマッチング", body: "島内事業者と島外人材の接続。スキルと需要のミスマッチを構造的に解消。" },
+      { status: "planned", title: "観光DX支援", body: "デジタル技術による観光体験の再設計。持続可能な観光モデルの構築。" },
+    ],
+  },
+  proof: {
+    num: "04",
+    title: "Proof — 実装事例",
+    link: { label: "View All →", href: "/pattern-a/cases" },
+    stats: [
+      { num: "1,200", unit: "+", label: "Annual Visitors" },
+      { num: "15", unit: "", label: "Partners" },
+      { num: "24", unit: "", label: "Projects" },
+      { num: "8", unit: "", label: "Migrations" },
+    ],
+    cases: [
+      { tag: "Event / Community", title: "IKI ZINE FES — 離島初のZINEイベント", body: "島内外のクリエイターが集結。自主制作冊子を通じた文化発信。好評につき追加開催。" },
+      { tag: "Mobility / Tourism", title: "電動トゥクトゥク観光実証", body: "eMoBiとの連携による離島二次交通実証。観光客の島内回遊を促進。" },
+      { tag: "Education / Community", title: "しまチャレ2024 協賛", body: "長崎県主催の島しょ地域ビジネスチャレンジにIKILAB特別賞を提供。" },
+    ],
+  },
+  connect: {
+    num: "05",
+    title: "Connect — 接続する",
+    cards: [
+      { sym: "A", title: "離島で実証実験をしたい", body: "壱岐島をフィールドに、新サービス・技術の小規模実証を行いたい企業の方へ。", cta: "For Company" },
+      { sym: "B", title: "地域で挑戦したい", body: "自分のスキルや経験を離島の課題解決に活かしたい個人の方へ。", cta: "For Individual" },
+      { sym: "C", title: "壱岐で働いてみたい", body: "ワーケーションや短期滞在で離島での働き方を体験したい方へ。", cta: "For Workation" },
+      { sym: "D", title: "施設を利用したい", body: "コワーキング、会議室、イベントホールの利用をご検討の方へ。", cta: "For Visitor" },
+    ],
+  },
+  infra: {
+    num: "06",
+    title: "Infrastructure — 実験装置の物理的実体",
+    link: { label: "Detail →", href: "/pattern-a/facility" },
+    name: "IKILAB武生水",
+    nameEn: "IKILAB Mushōzu",
+    photoPlaceholder: "施設外観写真\nFACILITY EXTERIOR",
+    table: [
+      { label: "Address", value: "〒811-5135\n長崎県壱岐市郷ノ浦町郷ノ浦 122-8" },
+      { label: "Hours", value: "毎日 9:00〜18:00（年中無休）" },
+      { label: "Access", value: "郷ノ浦港から徒歩12分\n博多港から高速船で約1時間" },
+      { label: "Tel", value: "050-5211-5434" },
+      { label: "Mail", value: "info@ikilab.org" },
+    ],
+    detailHref: "/pattern-a/facility",
+  },
+  footerColumns: [
+    {
+      title: "Thinking",
+      links: [
+        { label: "Concept", href: "/pattern-a/concept" },
+        { label: "Experiments", href: "/pattern-a/experiments" },
+        { label: "Cases", href: "/pattern-a/cases" },
+        { label: "Column", href: "/pattern-a/column" },
+      ],
+    },
+    {
+      title: "Connect",
+      links: [
+        { label: "企業の方", href: "/pattern-a/connect" },
+        { label: "個人の方", href: "/pattern-a/connect" },
+        { label: "ワーケーション", href: "/pattern-a/connect" },
+        { label: "施設利用", href: "/pattern-a/connect" },
+      ],
+    },
+    {
+      title: "Facility",
+      links: [
+        { label: "施設紹介", href: "/pattern-a/facility" },
+        { label: "料金表", href: "/pattern-a/facility" },
+        { label: "モビリティ", href: "/pattern-a/facility" },
+        { label: "イベント", href: "/pattern-a/facility" },
+      ],
+    },
+  ],
+  subpages: [
+    { slug: "concept", title: "Concept", titleJa: "コンセプト", description: "IKILABの考え方と、離島から始める理由。" },
+    { slug: "experiments", title: "Experiments", titleJa: "実験一覧", description: "現在進行中の実験プロジェクト。" },
+    { slug: "connect", title: "Connect", titleJa: "接続する", description: "IKILABとつながる方法。" },
+    { slug: "facility", title: "Facility", titleJa: "施設紹介", description: "IKILAB武生水の施設情報。" },
+    { slug: "column", title: "Column", titleJa: "コラム", description: "島からのレポートとコラム。" },
+    { slug: "en", title: "English", titleJa: "English", description: "IKILAB in English." },
+    { slug: "contact", title: "Contact", titleJa: "お問い合わせ", description: "IKILABへのお問い合わせ。" },
+    { slug: "cases", title: "Cases", titleJa: "事例", description: "これまでの実装事例。" },
+  ],
+};

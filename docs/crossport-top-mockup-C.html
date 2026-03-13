@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CROSSPORT — 島内外を接続する実験装置</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --dark: #1a1a1a;
+    --gray-900: #2a2a2a;
+    --gray-700: #555555;
+    --gray-500: #888888;
+    --gray-300: #bbbbbb;
+    --gray-100: #e5e5e5;
+    --white: #fafafa;
+    --paper: #f2f0ec;
+    --red: #d42b1e;
+    --red-dim: rgba(212, 43, 30, 0.08);
+    --blue: #1a56db;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-jp: 'Zen Kaku Gothic New', sans-serif;
+    --font-body: 'Noto Sans JP', sans-serif;
+    --border: 2px solid var(--black);
+    --border-thin: 1px solid var(--gray-100);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ============ HEADER ============ */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: var(--border);
+    display: flex;
+    height: 56px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    text-decoration: none;
+    border-right: var(--border);
+    white-space: nowrap;
+  }
+
+  .nav-items {
+    display: flex;
+    flex: 1;
+  }
+
+  .nav-items a {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-700);
+    text-decoration: none;
+    border-right: 1px solid var(--gray-100);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-items a:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .nav-spacer { flex: 1; }
+
+  .nav-contact {
+    background: var(--red) !important;
+    color: var(--white) !important;
+    border-right: none !important;
+    border-left: var(--border) !important;
+    font-weight: 500 !important;
+  }
+
+  .nav-contact:hover {
+    background: var(--black) !important;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    border-left: var(--border);
+    padding: 0 20px;
+    cursor: pointer;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--black);
+    margin: 4px 0;
+  }
+
+  @media (max-width: 1000px) {
+    .nav-items { display: none; }
+    .mobile-menu-btn { display: flex; align-items: center; margin-left: auto; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    margin-top: 56px;
+    min-height: calc(100vh - 56px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--border);
+  }
+
+  .hero-left {
+    padding: clamp(48px, 6vw, 100px) clamp(32px, 5vw, 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: var(--border);
+    position: relative;
+  }
+
+  .hero-tag {
+    position: absolute;
+    top: 24px;
+    left: clamp(32px, 5vw, 72px);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    opacity: 0;
+    animation: appear 0.6s 0.1s forwards;
+  }
+
+  .hero h1 {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: appear 0.6s 0.2s forwards;
+  }
+
+  .hero-en {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 36px);
+    color: var(--gray-500);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: appear 0.6s 0.3s forwards;
+  }
+
+  .hero-body {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--gray-700);
+    max-width: 480px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: appear 0.6s 0.4s forwards;
+  }
+
+  .hero-body strong {
+    color: var(--black);
+    font-weight: 700;
+    background: linear-gradient(to top, var(--red-dim) 40%, transparent 40%);
+    padding: 0 2px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0;
+    opacity: 0;
+    animation: appear 0.6s 0.5s forwards;
+  }
+
+  .btn-brutal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border: var(--border);
+    transition: all 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .btn-brutal:not(:first-child) { border-left: none; }
+
+  .btn-fill {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn-fill:hover {
+    background: var(--red);
+  }
+
+  .btn-ghost {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .btn-ghost:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: appear 0.8s 0.3s forwards;
+  }
+
+  .hero-right-text {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-500);
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 2.5;
+  }
+
+  .hero-coord {
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--gray-300);
+    letter-spacing: 0.08em;
+  }
+
+  .hero-date {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--gray-300);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { border-right: none; border-bottom: var(--border); }
+    .hero-right { min-height: 40vh; }
+  }
+
+  /* ============ SECTION COMMON ============ */
+  .section-bar {
+    display: flex;
+    border-bottom: var(--border);
+    background: var(--white);
+  }
+
+  .section-bar-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-right: var(--border);
+    min-width: 56px;
+    text-align: center;
+  }
+
+  .section-bar-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    flex: 1;
+  }
+
+  .section-bar-link {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 12px 24px;
+    border-left: 1px solid var(--gray-100);
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .section-bar-link:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* ============ WHY ============ */
+  .why {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: var(--border);
+  }
+
+  .why-item {
+    padding: clamp(32px, 4vw, 56px);
+    border-right: var(--border);
+  }
+
+  .why-item:last-child { border-right: none; }
+
+  .why-item-idx {
+    font-family: var(--font-serif);
+    font-size: 72px;
+    color: var(--gray-100);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .why-item h3 {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .why-item p {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--gray-700);
+  }
+
+  @media (max-width: 768px) {
+    .why { grid-template-columns: 1fr; }
+    .why-item { border-right: none; border-bottom: var(--border); }
+    .why-item:last-child { border-bottom: none; }
+  }
+
+  /* ============ EXPERIMENTS ============ */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: var(--border);
+  }
+
+  .exp-card {
+    padding: clamp(24px, 3vw, 40px);
+    border-right: var(--border);
+    border-bottom: var(--border);
+    transition: all 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .exp-card:nth-child(3n) { border-right: none; }
+  .exp-card:nth-child(n+4) { border-bottom: none; }
+
+  .exp-card:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .exp-card:hover .exp-status { border-color: var(--white); color: var(--white); }
+  .exp-card:hover .exp-status.status-active { background: var(--red); border-color: var(--red); }
+  .exp-card:hover p { color: var(--gray-300); }
+  .exp-card:hover .exp-arrow { color: var(--white); }
+
+  .exp-status {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--gray-300);
+    color: var(--gray-700);
+    transition: all 0.2s;
+  }
+
+  .status-active {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  .status-planned {
+    border-color: var(--gray-300);
+    color: var(--gray-500);
+  }
+
+  .exp-card h3 {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: clamp(16px, 1.3vw, 19px);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .exp-card p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--gray-700);
+    transition: color 0.2s;
+  }
+
+  .exp-arrow {
+    position: absolute;
+    bottom: clamp(24px, 3vw, 40px);
+    right: clamp(24px, 3vw, 40px);
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--gray-300);
+    transition: all 0.2s;
+  }
+
+  @media (max-width: 900px) {
+    .exp-grid { grid-template-columns: 1fr 1fr; }
+    .exp-card:nth-child(3n) { border-right: var(--border); }
+    .exp-card:nth-child(2n) { border-right: none; }
+    .exp-card { border-bottom: var(--border) !important; }
+  }
+
+  @media (max-width: 560px) {
+    .exp-grid { grid-template-columns: 1fr; }
+    .exp-card { border-right: none !important; }
+  }
+
+  /* ============ PROOF ============ */
+  .proof-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: var(--border);
+  }
+
+  .proof-stat {
+    padding: clamp(28px, 3vw, 48px) clamp(20px, 2vw, 36px);
+    border-right: var(--border);
+    text-align: center;
+  }
+
+  .proof-stat:last-child { border-right: none; }
+
+  .proof-stat-num {
+    font-family: var(--font-serif);
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .proof-stat-unit {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+
+  .proof-stat-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-top: 8px;
+  }
+
+  .proof-cases {
+    border-bottom: var(--border);
+  }
+
+  .case-row {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    border-bottom: 1px solid var(--gray-100);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .case-row:last-child { border-bottom: none; }
+
+  .case-row:hover {
+    background: var(--paper);
+  }
+
+  .case-img {
+    background: var(--paper);
+    border-right: 1px solid var(--gray-100);
+    min-height: 120px;
+    position: relative;
+  }
+
+  .case-img-ph {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: var(--gray-300);
+    letter-spacing: 0.1em;
+  }
+
+  .case-content {
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .case-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+
+  .case-content h4 {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  .case-content p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--gray-700);
+  }
+
+  .case-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--gray-300);
+    border-left: 1px solid var(--gray-100);
+    transition: all 0.2s;
+  }
+
+  .case-row:hover .case-arrow { color: var(--black); }
+
+  @media (max-width: 768px) {
+    .proof-stats { grid-template-columns: 1fr 1fr; }
+    .proof-stat:nth-child(2) { border-right: none; }
+    .proof-stat:nth-child(2) { border-bottom: var(--border); }
+    .proof-stat:nth-child(1) { border-bottom: var(--border); }
+    .case-row { grid-template-columns: 1fr auto; }
+    .case-img { display: none; }
+  }
+
+  /* ============ CONNECT ============ */
+  .connect-section {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .connect-section .section-bar {
+    background: var(--black);
+    border-color: var(--white);
+  }
+
+  .connect-section .section-bar-num {
+    border-color: var(--white);
+    color: var(--white);
+  }
+
+  .connect-section .section-bar-title { color: var(--white); }
+
+  .connect-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 2px solid var(--white);
+  }
+
+  .connect-card {
+    padding: clamp(28px, 3vw, 44px);
+    border-right: 2px solid var(--white);
+    transition: all 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .connect-card:last-child { border-right: none; }
+
+  .connect-card:hover { background: var(--gray-900); }
+
+  .connect-card-sym {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    color: var(--red);
+    margin-bottom: 20px;
+    display: block;
+    line-height: 1;
+  }
+
+  .connect-card h3 {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .connect-card p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--gray-500);
+    margin-bottom: 20px;
+  }
+
+  .connect-card-cta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .connect-card:hover .connect-card-cta { gap: 12px; }
+
+  @media (max-width: 900px) { .connect-grid { grid-template-columns: 1fr 1fr; }
+    .connect-card:nth-child(2) { border-right: none; }
+    .connect-card { border-bottom: 2px solid var(--white); }
+  }
+  @media (max-width: 560px) { .connect-grid { grid-template-columns: 1fr; }
+    .connect-card { border-right: none !important; }
+  }
+
+  /* ============ INFRA ============ */
+  .infra-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--border);
+  }
+
+  .infra-photo {
+    background: var(--paper);
+    min-height: 400px;
+    border-right: var(--border);
+    position: relative;
+  }
+
+  .infra-photo-ph {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-300);
+    text-align: center;
+    line-height: 2.5;
+    letter-spacing: 0.1em;
+  }
+
+  .infra-details {
+    padding: clamp(36px, 4vw, 64px);
+  }
+
+  .infra-name {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: clamp(22px, 2.4vw, 32px);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .infra-name-en {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gray-500);
+    margin-bottom: 32px;
+  }
+
+  .infra-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 36px;
+  }
+
+  .infra-table tr { border-bottom: 1px solid var(--gray-100); }
+
+  .infra-table td {
+    padding: 14px 0;
+    font-size: 14px;
+    vertical-align: top;
+  }
+
+  .infra-table td:first-child {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    width: 80px;
+    padding-top: 17px;
+  }
+
+  .infra-table td:last-child {
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .infra-layout { grid-template-columns: 1fr; }
+    .infra-photo { border-right: none; border-bottom: var(--border); min-height: 240px; }
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--white);
+    border-top: var(--border);
+    padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 72px) 24px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+    margin-bottom: 48px;
+  }
+
+  .footer-brand {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .footer-brand-desc {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gray-500);
+    line-height: 1.6;
+  }
+
+  .footer-col h4 {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: var(--border);
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: var(--gray-700);
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--red); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: var(--border);
+  }
+
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--gray-500);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 0;
+  }
+
+  .footer-social a {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-700);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--gray-100);
+    border-left: none;
+    transition: all 0.2s;
+  }
+
+  .footer-social a:first-child { border-left: 1px solid var(--gray-100); }
+
+  .footer-social a:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes appear {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/" class="logo">CROSSPORT</a>
+  <div class="nav-items">
+    <a href="/concept">Concept</a>
+    <a href="/experiments">Experiments</a>
+    <a href="/connect">Connect</a>
+    <a href="/facility">Facility</a>
+    <a href="/column">Column</a>
+    <a href="/en">EN</a>
+    <div class="nav-spacer"></div>
+    <a href="/contact" class="nav-contact">Contact</a>
+  </div>
+  <button class="mobile-menu-btn" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ① HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">IKI ISLAND — 33.7487°N, 129.6918°E</div>
+    <h1>離島という<br>制約環境を、<br>可能性に変える。</h1>
+    <div class="hero-en">Turning constraints into possibility.</div>
+    <p class="hero-body">
+      クロスポートは、<strong>島内外を接続する実験装置</strong>です。人口25,000人の壱岐島を舞台に、地域の課題を構造的に解き、新しい接続を生み出します。
+    </p>
+    <div class="hero-actions">
+      <a href="/connect" class="btn-brutal btn-fill">実験に参加する →</a>
+      <a href="/contact" class="btn-brutal btn-ghost">相談する</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-text">
+      HERO IMAGE<br>
+      壱岐島の風景写真<br>
+      or 施設の記録写真
+    </div>
+    <div class="hero-date">EST. 2022</div>
+    <div class="hero-coord">NAGASAKI, JAPAN</div>
+  </div>
+</section>
+
+<!-- ② WHY -->
+<div class="section-bar">
+  <div class="section-bar-num">02</div>
+  <div class="section-bar-title">Why Iki Island — なぜ離島で実験するのか</div>
+  <a href="/concept" class="section-bar-link">Read Full →</a>
+</div>
+<div class="why reveal">
+  <div class="why-item">
+    <div class="why-item-idx">1</div>
+    <h3>制約が多いからこそ、<br>構造が見える</h3>
+    <p>人口25,000人、面積139km²。都市では隠れる社会構造が、離島では裸の状態で現れる。課題の本質が可視化される環境。</p>
+  </div>
+  <div class="why-item">
+    <div class="why-item-idx">2</div>
+    <h3>小さな島は<br>実装スピードが速い</h3>
+    <p>意思決定者までの距離が近い。試作から実装までのサイクルが極めて短く、仮説検証を高速で回せる。</p>
+  </div>
+  <div class="why-item">
+    <div class="why-item-idx">3</div>
+    <h3>顔の見える関係性が<br>実証を加速する</h3>
+    <p>フィードバックが直接返ってくる。匿名のユーザーテストでは得られない密度の検証が、日常の中で起きる。</p>
+  </div>
+</div>
+
+<!-- ③ EXPERIMENTS -->
+<div class="section-bar">
+  <div class="section-bar-num">03</div>
+  <div class="section-bar-title">Experiments — 進行中の実験</div>
+  <a href="/experiments" class="section-bar-link">View All →</a>
+</div>
+<div class="exp-grid reveal">
+  <div class="exp-card">
+    <span class="exp-status status-active">Active</span>
+    <h3>壱岐カレンダー</h3>
+    <p>島内イベント情報の集約と配信基盤。分散していた告知を一箇所に集める。</p>
+    <span class="exp-arrow">→</span>
+  </div>
+  <div class="exp-card">
+    <span class="exp-status status-active">Active</span>
+    <h3>離島型モビリティ実証</h3>
+    <p>電動トゥクトゥク・レンタカーによる二次交通モデルの実験。</p>
+    <span class="exp-arrow">→</span>
+  </div>
+  <div class="exp-card">
+    <span class="exp-status status-active">Active</span>
+    <h3>ワーケーション受入設計</h3>
+    <p>テレワーク拠点としての離島滞在モデル。働くと暮らすの境界を溶かす。</p>
+    <span class="exp-arrow">→</span>
+  </div>
+  <div class="exp-card">
+    <span class="exp-status status-active">Active</span>
+    <h3>地域コンテンツ制作</h3>
+    <p>ZINE・イベントを通じた文化発信。島の日常をコンテンツに変換する。</p>
+    <span class="exp-arrow">→</span>
+  </div>
+  <div class="exp-card">
+    <span class="exp-status status-planned">Planned</span>
+    <h3>離島型ジョブマッチング</h3>
+    <p>島内事業者と島外人材の接続。スキルと需要のミスマッチを構造的に解消。</p>
+    <span class="exp-arrow">→</span>
+  </div>
+  <div class="exp-card">
+    <span class="exp-status status-planned">Planned</span>
+    <h3>観光DX支援</h3>
+    <p>デジタル技術による観光体験の再設計。持続可能な観光モデルの構築。</p>
+    <span class="exp-arrow">→</span>
+  </div>
+</div>
+
+<!-- ④ PROOF -->
+<div class="section-bar">
+  <div class="section-bar-num">04</div>
+  <div class="section-bar-title">Proof — 実装事例</div>
+  <a href="/cases" class="section-bar-link">View All →</a>
+</div>
+<div class="proof-stats reveal">
+  <div class="proof-stat">
+    <div class="proof-stat-num">1,200<span class="proof-stat-unit">+</span></div>
+    <div class="proof-stat-label">Annual Visitors</div>
+  </div>
+  <div class="proof-stat">
+    <div class="proof-stat-num">15</div>
+    <div class="proof-stat-label">Partners</div>
+  </div>
+  <div class="proof-stat">
+    <div class="proof-stat-num">24</div>
+    <div class="proof-stat-label">Projects</div>
+  </div>
+  <div class="proof-stat">
+    <div class="proof-stat-num">8</div>
+    <div class="proof-stat-label">Migrations</div>
+  </div>
+</div>
+<div class="proof-cases reveal">
+  <div class="case-row">
+    <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
+    <div class="case-content">
+      <div class="case-tag">Event / Community</div>
+      <h4>IKI ZINE FES — 離島初のZINEイベント</h4>
+      <p>島内外のクリエイターが集結。自主制作冊子を通じた文化発信。好評につき追加開催。</p>
+    </div>
+    <div class="case-arrow">→</div>
+  </div>
+  <div class="case-row">
+    <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
+    <div class="case-content">
+      <div class="case-tag">Mobility / Tourism</div>
+      <h4>電動トゥクトゥク観光実証</h4>
+      <p>eMoBiとの連携による離島二次交通実証。観光客の島内回遊を促進。</p>
+    </div>
+    <div class="case-arrow">→</div>
+  </div>
+  <div class="case-row">
+    <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
+    <div class="case-content">
+      <div class="case-tag">Education / Community</div>
+      <h4>しまチャレ2024 協賛</h4>
+      <p>長崎県主催の島しょ地域ビジネスチャレンジにクロスポート特別賞を提供。</p>
+    </div>
+    <div class="case-arrow">→</div>
+  </div>
+</div>
+
+<!-- ⑤ CONNECT -->
+<div class="connect-section">
+  <div class="section-bar">
+    <div class="section-bar-num" style="color:var(--white)">05</div>
+    <div class="section-bar-title">Connect — 接続する</div>
+  </div>
+  <div class="connect-grid">
+    <div class="connect-card">
+      <span class="connect-card-sym">A</span>
+      <h3>離島で実証実験をしたい</h3>
+      <p>壱岐島をフィールドに、新サービス・技術の小規模実証を行いたい企業の方へ。</p>
+      <span class="connect-card-cta">For Company <span>→</span></span>
+    </div>
+    <div class="connect-card">
+      <span class="connect-card-sym">B</span>
+      <h3>地域で挑戦したい</h3>
+      <p>自分のスキルや経験を離島の課題解決に活かしたい個人の方へ。</p>
+      <span class="connect-card-cta">For Individual <span>→</span></span>
+    </div>
+    <div class="connect-card">
+      <span class="connect-card-sym">C</span>
+      <h3>壱岐で働いてみたい</h3>
+      <p>ワーケーションや短期滞在で離島での働き方を体験したい方へ。</p>
+      <span class="connect-card-cta">For Workation <span>→</span></span>
+    </div>
+    <div class="connect-card">
+      <span class="connect-card-sym">D</span>
+      <h3>施設を利用したい</h3>
+      <p>コワーキング、会議室、イベントホールの利用をご検討の方へ。</p>
+      <span class="connect-card-cta">For Visitor <span>→</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ⑥ INFRASTRUCTURE -->
+<div class="section-bar">
+  <div class="section-bar-num">06</div>
+  <div class="section-bar-title">Infrastructure — 実験装置の物理的実体</div>
+  <a href="/facility" class="section-bar-link">Detail →</a>
+</div>
+<div class="infra-layout reveal">
+  <div class="infra-photo">
+    <div class="infra-photo-ph">施設外観写真<br>FACILITY EXTERIOR</div>
+  </div>
+  <div class="infra-details">
+    <div class="infra-name">クロスポート武生水</div>
+    <div class="infra-name-en">Crossport Mushōzu</div>
+    <table class="infra-table">
+      <tr><td>Address</td><td>〒811-5135<br>長崎県壱岐市郷ノ浦町郷ノ浦 122-8</td></tr>
+      <tr><td>Hours</td><td>毎日 9:00〜18:00（年中無休）</td></tr>
+      <tr><td>Access</td><td>郷ノ浦港から徒歩12分<br>博多港から高速船で約1時間</td></tr>
+      <tr><td>Tel</td><td>050-5211-5434</td></tr>
+      <tr><td>Mail</td><td>crossport@xmo.jp</td></tr>
+    </table>
+    <a href="/facility" class="btn-brutal btn-fill" style="display:inline-flex">施設の詳細 →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">CROSSPORT MUSHŌZU</div>
+      <p class="footer-brand-desc">A laboratory connecting<br>islands to the world.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Thinking</h4>
+      <a href="/concept">Concept</a>
+      <a href="/experiments">Experiments</a>
+      <a href="/cases">Cases</a>
+      <a href="/column">Column</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="/connect/for-company">企業の方</a>
+      <a href="/connect/for-individual">個人の方</a>
+      <a href="/connect/for-workation">ワーケーション</a>
+      <a href="/connect/for-visit">施設利用</a>
+    </div>
+    <div class="footer-col">
+      <h4>Facility</h4>
+      <a href="/facility">施設紹介</a>
+      <a href="/pricing">料金表</a>
+      <a href="/mobility">モビリティ</a>
+      <a href="/events">イベント</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Crossmobile KK. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="#">FB</a>
+      <a href="#">IG</a>
+      <a href="#">LINE</a>
+      <a href="#">YT</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

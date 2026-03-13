@@ -1,0 +1,34 @@
+---
+interface TableRow {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  name: string;
+  nameEn: string;
+  photoPlaceholder: string;
+  table: TableRow[];
+  detailHref: string;
+}
+
+const { name, nameEn, photoPlaceholder, table, detailHref } = Astro.props;
+---
+<div class="infra-layout reveal">
+  <div class="infra-photo">
+    <div class="infra-photo-ph" set:html={photoPlaceholder.replace(/\n/g, '<br>')} />
+  </div>
+  <div class="infra-details">
+    <div class="infra-name">{name}</div>
+    <div class="infra-name-en">{nameEn}</div>
+    <table class="infra-table">
+      {table.map(row => (
+        <tr>
+          <td>{row.label}</td>
+          <td set:html={row.value.replace(/\n/g, '<br>')} />
+        </tr>
+      ))}
+    </table>
+    <a href={detailHref} class="btn-brutal btn-fill" style="display:inline-flex">施設の詳細 →</a>
+  </div>
+</div>

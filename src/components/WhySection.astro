@@ -1,0 +1,22 @@
+---
+interface WhyItem {
+  idx: string;
+  titleHtml: string;
+  body: string;
+}
+
+interface Props {
+  items: WhyItem[];
+}
+
+const { items } = Astro.props;
+---
+<div class="why reveal">
+  {items.map(item => (
+    <div class="why-item">
+      <div class="why-item-idx">{item.idx}</div>
+      <h3 set:html={item.titleHtml} />
+      <p>{item.body}</p>
+    </div>
+  ))}
+</div>

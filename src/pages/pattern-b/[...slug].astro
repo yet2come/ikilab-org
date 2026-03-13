@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { patternB as data } from '../../data/pattern-b';
+import '../../styles/global.css';
+
+export function getStaticPaths() {
+  return data.subpages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+<Base title={`${page.titleJa} — IKILAB`} description={page.description}>
+  <Header brand={data.brand} brandHref="/pattern-b/" navItems={data.navItems} contactHref={data.contactHref} />
+
+  <div class="subpage-hero">
+    <h1>{page.titleJa}</h1>
+    <div class="hero-en">{page.title}</div>
+    <p>{page.description}</p>
+  </div>
+
+  <div class="subpage-content">
+    <h2>Coming Soon</h2>
+    <p>このページは現在準備中です。トップページに戻って他のセクションをご覧ください。</p>
+    <a href="/pattern-b/" class="btn-brutal btn-fill" style="display:inline-flex">トップに戻る →</a>
+  </div>
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+</Base>

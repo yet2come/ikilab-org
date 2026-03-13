@@ -1,0 +1,40 @@
+---
+interface FooterColumn {
+  title: string;
+  links: { label: string; href: string }[];
+}
+
+interface Props {
+  brandFull: string;
+  brandDesc: string;
+  copyright: string;
+  columns: FooterColumn[];
+}
+
+const { brandFull, brandDesc, copyright, columns } = Astro.props;
+---
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">{brandFull}</div>
+      <p class="footer-brand-desc" set:html={brandDesc.replace(/\n/g, '<br>')} />
+    </div>
+    {columns.map(col => (
+      <div class="footer-col">
+        <h4>{col.title}</h4>
+        {col.links.map(link => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </div>
+    ))}
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">{copyright}</span>
+    <div class="footer-social">
+      <a href="#">FB</a>
+      <a href="#">IG</a>
+      <a href="#">LINE</a>
+      <a href="#">YT</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+<Base title="IKILAB — パターン比較">
+  <Header
+    brand="IKILAB"
+    navItems={[
+      { label: "Pattern A", href: "/pattern-a/" },
+      { label: "Pattern B", href: "/pattern-b/" },
+      { label: "Pattern C", href: "/pattern-c/" },
+    ]}
+    contactHref="/pattern-a/contact"
+  />
+
+  <div class="hub-hero">
+    <h1>IKILAB.ORG</h1>
+    <div class="hero-en">Design Pattern Comparison</div>
+    <p>3つのデザインパターンを比較し、IKILAB.ORGの最終デザインを選定するためのプレビューサイトです。</p>
+  </div>
+
+  <div class="hub-grid">
+    <div class="hub-card">
+      <div class="hub-card-label">Pattern A</div>
+      <h2>名称のみ差し替え</h2>
+      <p>CROSSPORT → IKILAB に名称を差し替え。デザイン・構成・コンテンツはモックのままです。元のモックに最も近いバージョン。</p>
+      <a href="/pattern-a/" class="btn-brutal btn-fill">Pattern A を見る →</a>
+    </div>
+    <div class="hub-card">
+      <div class="hub-card-label">Pattern B</div>
+      <h2>名称＋コンテンツ変更</h2>
+      <p>名称変更に加え、説明文・セクション内容をIKILABの文脈に合わせて書き換え。「島の実験室」としてのトーンに統一。</p>
+      <a href="/pattern-b/" class="btn-brutal btn-fill">Pattern B を見る →</a>
+    </div>
+    <div class="hub-card">
+      <div class="hub-card-label">Pattern C</div>
+      <h2>名称＋コンテンツ＋ナビ再設計</h2>
+      <p>名称・コンテンツに加え、ナビゲーション・ページ構成もIKILABとして再設計。About / Lab / Projects / Space / Journal 構成。</p>
+      <a href="/pattern-c/" class="btn-brutal btn-fill">Pattern C を見る →</a>
+    </div>
+  </div>
+
+  <Footer
+    brandFull="IKILAB"
+    brandDesc="An island laboratory where\nconstraints spark invention."
+    copyright="© 2025 IKILAB. All rights reserved."
+    columns={[
+      {
+        title: "Patterns",
+        links: [
+          { label: "Pattern A", href: "/pattern-a/" },
+          { label: "Pattern B", href: "/pattern-b/" },
+          { label: "Pattern C", href: "/pattern-c/" },
+        ],
+      },
+    ]}
+  />
+</Base>

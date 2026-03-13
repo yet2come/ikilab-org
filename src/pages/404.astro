@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+<Base title="404 — IKILAB">
+  <Header
+    brand="IKILAB"
+    navItems={[
+      { label: "Pattern A", href: "/pattern-a/" },
+      { label: "Pattern B", href: "/pattern-b/" },
+      { label: "Pattern C", href: "/pattern-c/" },
+    ]}
+    contactHref="/pattern-a/contact"
+  />
+
+  <div class="subpage-hero" style="text-align:center; min-height:calc(100vh - 56px); display:flex; flex-direction:column; justify-content:center;">
+    <h1>404</h1>
+    <div class="hero-en">Page Not Found</div>
+    <p style="margin:0 auto;">お探しのページは見つかりませんでした。</p>
+    <div style="margin-top:32px;">
+      <a href="/" class="btn-brutal btn-fill" style="display:inline-flex">トップに戻る →</a>
+    </div>
+  </div>
+</Base>

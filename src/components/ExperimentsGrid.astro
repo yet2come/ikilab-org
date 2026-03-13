@@ -1,0 +1,25 @@
+---
+interface Experiment {
+  status: "active" | "planned";
+  title: string;
+  body: string;
+}
+
+interface Props {
+  items: Experiment[];
+}
+
+const { items } = Astro.props;
+---
+<div class="exp-grid reveal">
+  {items.map(item => (
+    <div class="exp-card">
+      <span class={`exp-status status-${item.status}`}>
+        {item.status === "active" ? "Active" : "Planned"}
+      </span>
+      <h3>{item.title}</h3>
+      <p>{item.body}</p>
+      <span class="exp-arrow">→</span>
+    </div>
+  ))}
+</div>

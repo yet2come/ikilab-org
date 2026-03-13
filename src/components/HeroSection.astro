@@ -1,0 +1,38 @@
+---
+interface HeroAction {
+  label: string;
+  href: string;
+  style: "fill" | "ghost";
+}
+
+interface Props {
+  tag: string;
+  titleHtml: string;
+  en: string;
+  bodyHtml: string;
+  actions: HeroAction[];
+  date: string;
+  coord: string;
+  imagePlaceholder: string;
+}
+
+const { tag, titleHtml, en, bodyHtml, actions, date, coord, imagePlaceholder } = Astro.props;
+---
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">{tag}</div>
+    <h1 set:html={titleHtml} />
+    <div class="hero-en">{en}</div>
+    <p class="hero-body" set:html={bodyHtml} />
+    <div class="hero-actions">
+      {actions.map(action => (
+        <a href={action.href} class={`btn-brutal btn-${action.style}`}>{action.label}</a>
+      ))}
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-text" set:html={imagePlaceholder.replace(/\n/g, '<br>')} />
+    <div class="hero-date">{date}</div>
+    <div class="hero-coord">{coord}</div>
+  </div>
+</section>

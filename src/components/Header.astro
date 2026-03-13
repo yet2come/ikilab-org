@@ -1,0 +1,23 @@
+---
+interface Props {
+  brand: string;
+  brandHref?: string;
+  navItems: { label: string; href: string }[];
+  contactHref: string;
+}
+
+const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
+---
+<header>
+  <a href={brandHref} class="logo">{brand}</a>
+  <div class="nav-items">
+    {navItems.map(item => (
+      <a href={item.href}>{item.label}</a>
+    ))}
+    <div class="nav-spacer"></div>
+    <a href={contactHref} class="nav-contact">Contact</a>
+  </div>
+  <button class="mobile-menu-btn" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  num: string;
+  title: string;
+  link?: { label: string; href: string };
+  dark?: boolean;
+}
+
+const { num, title, link, dark = false } = Astro.props;
+---
+<div class="section-bar">
+  <div class="section-bar-num" style={dark ? "color:var(--white)" : ""}>{num}</div>
+  <div class="section-bar-title">{title}</div>
+  {link && <a href={link.href} class="section-bar-link">{link.label}</a>}
+</div>
