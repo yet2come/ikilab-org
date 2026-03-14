@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionBar from '../../components/SectionBar.astro';
+import { patternA as data } from '../../data/pattern-a';
+import '../../styles/global.css';
+---
+<Base title="お問い合わせ — IKILAB" description="IKILABへのお問い合わせ。">
+  <Header brand={data.brand} brandHref="/pattern-a/" navItems={data.navItems} contactHref={data.contactHref} />
+
+  <div class="subpage-hero">
+    <h1>お問い合わせ</h1>
+    <div class="hero-en">Contact</div>
+    <p>IKILABへのご相談・お問い合わせはこちらから。実証実験、施設利用、ワーケーション、取材等、お気軽にご連絡ください。</p>
+  </div>
+
+  <SectionBar num="01" title="Contact Form — お問い合わせフォーム" />
+  <div class="subpage-content">
+    <form class="contact-form" action="#" method="POST">
+      <div class="form-group">
+        <label for="name">お名前 <span class="form-required">*</span></label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="company">会社名・団体名</label>
+        <input type="text" id="company" name="company">
+      </div>
+      <div class="form-group">
+        <label for="email">メールアドレス <span class="form-required">*</span></label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="category">お問い合わせ種別</label>
+        <select id="category" name="category">
+          <option value="">選択してください</option>
+          <option value="experiment">実証実験のご相談</option>
+          <option value="facility">施設利用のご予約</option>
+          <option value="workation">ワーケーションのご相談</option>
+          <option value="individual">個人での参加について</option>
+          <option value="media">取材・メディア関連</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">お問い合わせ内容 <span class="form-required">*</span></label>
+        <textarea id="message" name="message" rows="8" required></textarea>
+      </div>
+      <button type="submit" class="btn-brutal btn-fill">送信する →</button>
+    </form>
+  </div>
+
+  <SectionBar num="02" title="Direct Contact — 直接のご連絡" />
+  <div class="subpage-content">
+    <table class="infra-table">
+      <tr><td>Mail</td><td>info@ikilab.org</td></tr>
+      <tr><td>Tel</td><td>050-5211-5434</td></tr>
+      <tr><td>Address</td><td>〒811-5135 長崎県壱岐市郷ノ浦町郷ノ浦 122-8</td></tr>
+      <tr><td>Hours</td><td>毎日 9:00〜18:00（年中無休）</td></tr>
+    </table>
+  </div>
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+</Base>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+  }
+
+  .form-required {
+    color: var(--red);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 12px 16px;
+    border: var(--border);
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--red);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+  }
+</style>

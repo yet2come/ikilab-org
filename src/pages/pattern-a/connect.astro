@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionBar from '../../components/SectionBar.astro';
+import ConnectSection from '../../components/ConnectSection.astro';
+import { patternA as data } from '../../data/pattern-a';
+import '../../styles/global.css';
+---
+<Base title="接続する — IKILAB" description="IKILABとつながる方法。企業・個人・ワーケーション・施設利用。">
+  <Header brand={data.brand} brandHref="/pattern-a/" navItems={data.navItems} contactHref={data.contactHref} />
+
+  <div class="subpage-hero">
+    <h1>IKILABと接続する</h1>
+    <div class="hero-en">Connect</div>
+    <p>あなたの目的に合わせた接続の方法をお選びください。IKILABは、島内外をつなぐ結節点です。</p>
+  </div>
+
+  <div class="connect-section">
+    <SectionBar num="01" title="Connect — あなたに合った接続方法" dark={true} />
+    <ConnectSection cards={data.connect.cards} />
+  </div>
+
+  <SectionBar num="02" title="For Company — 企業の方へ" />
+  <div class="subpage-content">
+    <h2>離島で実証実験をしませんか</h2>
+    <p>
+      壱岐島は、人口25,000人の閉じた環境でありながら、多様な社会課題が凝縮されたフィールドです。新サービス・新技術の小規模実証に最適な環境を提供します。
+    </p>
+    <p>
+      IKILABが提供するもの：地域ネットワークへのアクセス、実証フィールドの調整、行政との橋渡し、滞在・ワークスペースの手配。
+    </p>
+  </div>
+
+  <SectionBar num="03" title="For Individual — 個人の方へ" />
+  <div class="subpage-content">
+    <h2>あなたのスキルを島で活かす</h2>
+    <p>
+      デザイン、エンジニアリング、ライティング、マーケティング——あなたの専門性が、離島の課題を解く力になるかもしれません。短期のプロボノから長期の関わりまで、柔軟な参加形態を用意しています。
+    </p>
+  </div>
+
+  <SectionBar num="04" title="For Workation — ワーケーション" />
+  <div class="subpage-content">
+    <h2>島で働く、島で暮らす</h2>
+    <p>
+      IKILABのコワーキングスペースを拠点に、リモートワークをしながら島の暮らしを体験できます。高速Wi-Fi、電源、会議室完備。海まで徒歩5分のワークスペースで、新しい働き方を見つけてください。
+    </p>
+  </div>
+
+  <SectionBar num="05" title="For Visitor — 施設利用" />
+  <div class="subpage-content">
+    <h2>施設を使う</h2>
+    <p>
+      コワーキングスペース、会議室、イベントホール。日単位・時間単位でご利用いただけます。詳しくは施設紹介ページをご覧ください。
+    </p>
+    <a href="/pattern-a/facility" class="btn-brutal btn-fill" style="display:inline-flex">施設の詳細 →</a>
+  </div>
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+</Base>
