@@ -6,9 +6,10 @@ import { patternA as data } from '../../data/pattern-a';
 import '../../styles/global.css';
 
 export function getStaticPaths() {
-  return [
-    { params: { slug: 'en' }, props: { page: { title: 'English', titleJa: 'English', description: 'IKILAB in English.' } } },
-  ];
+  return data.subpages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
 }
 
 const { page } = Astro.props;
@@ -24,8 +25,8 @@ const { page } = Astro.props;
 
   <div class="subpage-content">
     <h2>Coming Soon</h2>
-    <p>This page is under construction. Please visit the top page.</p>
-    <a href="/pattern-a/" class="btn-brutal btn-fill" style="display:inline-flex">Back to Top →</a>
+    <p>このページは現在準備中です。トップページに戻って他のセクションをご覧ください。</p>
+    <a href="/pattern-a/" class="btn-brutal btn-fill" style="display:inline-flex">トップに戻る →</a>
   </div>
 
   <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
