@@ -1,6 +1,6 @@
 export const patternA = {
   brand: "IKILAB",
-  brandFull: "IKILAB MUSHŌZU",
+  brandFull: "IKILAB",
   brandDesc: "A laboratory connecting\nislands to the world.",
   copyright: "© 2025 IKILAB. All rights reserved.",
   navItems: [
@@ -91,8 +91,8 @@ export const patternA = {
     num: "06",
     title: "Infrastructure — 実験装置の物理的実体",
     link: { label: "Detail →", href: "/pattern-a/facility" },
-    name: "IKILAB武生水",
-    nameEn: "IKILAB Mushōzu",
+    name: "IKILAB",
+    nameEn: "IKILAB",
     photoPlaceholder: "施設外観写真\nFACILITY EXTERIOR",
     table: [
       { label: "Address", value: "〒811-5135\n長崎県壱岐市郷ノ浦町郷ノ浦 122-8" },
@@ -136,7 +136,7 @@ export const patternA = {
     { slug: "concept", title: "Concept", titleJa: "コンセプト", description: "IKILABの考え方と、離島から始める理由。" },
     { slug: "experiments", title: "Experiments", titleJa: "実験一覧", description: "現在進行中の実験プロジェクト。" },
     { slug: "connect", title: "Connect", titleJa: "接続する", description: "IKILABとつながる方法。" },
-    { slug: "facility", title: "Facility", titleJa: "施設紹介", description: "IKILAB武生水の施設情報。" },
+    { slug: "facility", title: "Facility", titleJa: "施設紹介", description: "IKILABの施設情報。" },
     { slug: "column", title: "Column", titleJa: "コラム", description: "島からのレポートとコラム。" },
     { slug: "en", title: "English", titleJa: "English", description: "IKILAB in English." },
     { slug: "contact", title: "Contact", titleJa: "お問い合わせ", description: "IKILABへのお問い合わせ。" },
