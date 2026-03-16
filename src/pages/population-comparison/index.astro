@@ -1,0 +1,712 @@
+---
+import Base from '../../layouts/Base.astro';
+import '../../styles/global.css';
+---
+<Base title="人口カウンター比較 — IKILAB" description="壱岐島の人口減少を可視化する3つの表現案">
+
+<!-- Simple header -->
+<header>
+  <a class="logo" href="/">IKILAB</a>
+  <div class="nav-items">
+    <a href="/">← Back to Top</a>
+    <div class="nav-spacer"></div>
+  </div>
+</header>
+
+<!-- Page hero -->
+<div class="subpage-hero">
+  <h1>人口カウンター — 3案比較</h1>
+  <div class="hero-en">Population Counter — 3 Proposals</div>
+  <p>壱岐島の人口減少を「体感」させるための表現手法を3案並べて比較します。</p>
+</div>
+
+<!-- ========== PROPOSAL A: Countdown Odometer ========== -->
+<div class="section-bar">
+  <div class="section-bar-num">A</div>
+  <div class="section-bar-title">Countdown Odometer — カウントダウン式オドメーター</div>
+</div>
+<section class="demo-section">
+  <div class="demo-description">
+    <p>ページ表示時に、数字が機械式メーターのように回転しながら減少していきます。<br>
+    2020年の人口から2025年の推計値まで、約3秒かけてカウントダウン。</p>
+  </div>
+  <div class="odometer-container" id="odometer-a">
+    <div class="odometer-label">壱岐市 推計人口</div>
+    <div class="odometer-display">
+      <div class="odometer-slot" data-target="">
+        <div class="odometer-strip">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        </div>
+      </div>
+      <div class="odometer-slot" data-target="">
+        <div class="odometer-strip">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        </div>
+      </div>
+      <div class="odometer-comma">,</div>
+      <div class="odometer-slot" data-target="">
+        <div class="odometer-strip">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        </div>
+      </div>
+      <div class="odometer-slot" data-target="">
+        <div class="odometer-strip">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        </div>
+      </div>
+      <div class="odometer-slot" data-target="">
+        <div class="odometer-strip">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        </div>
+      </div>
+    </div>
+    <div class="odometer-unit">人</div>
+    <div class="odometer-year-display">
+      <span class="odometer-year-from">2020</span>
+      <span class="odometer-year-arrow">→</span>
+      <span class="odometer-year-to">2025</span>
+    </div>
+    <div class="odometer-diff" id="odometer-diff">−2,879 人（5年間）</div>
+  </div>
+</section>
+
+<!-- ========== PROPOSAL B: Realtime Decline Counter ========== -->
+<div class="section-bar">
+  <div class="section-bar-num">B</div>
+  <div class="section-bar-title">Realtime Decline — リアルタイム風減少カウンター</div>
+</div>
+<section class="demo-section">
+  <div class="demo-description">
+    <p>実際の年間減少率に基づき、ページを見ている間ずっとカウンターが減り続けます。<br>
+    「見ている間にも減っている」という緊迫感を演出。</p>
+  </div>
+  <div class="realtime-container" id="counter-b">
+    <div class="realtime-header">
+      <span class="realtime-live-dot"></span>
+      <span class="realtime-live-label">LIVE</span>
+    </div>
+    <div class="realtime-display">
+      <span class="realtime-number" id="realtime-integer">25,892</span>
+      <span class="realtime-decimal" id="realtime-decimal">.00</span>
+    </div>
+    <div class="realtime-unit">人</div>
+    <div class="realtime-meta">
+      <div class="realtime-meta-item">
+        <span class="realtime-meta-label">年間減少数</span>
+        <span class="realtime-meta-value">約 −576 人/年</span>
+      </div>
+      <div class="realtime-meta-item">
+        <span class="realtime-meta-label">減少速度</span>
+        <span class="realtime-meta-value" id="realtime-speed">−1人 / 15.2時間</span>
+      </div>
+      <div class="realtime-meta-item">
+        <span class="realtime-meta-label">このページを開いてから</span>
+        <span class="realtime-meta-value realtime-lost" id="realtime-lost">−0.000 人</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROPOSAL C: Scroll Timeline ========== -->
+<div class="section-bar">
+  <div class="section-bar-num">C</div>
+  <div class="section-bar-title">Scroll Timeline — スクロール連動タイムライン</div>
+</div>
+<section class="demo-section demo-section-timeline">
+  <div class="demo-description">
+    <p>スクロールに連動して年次が進み、人口が減っていく様子を体感できます。<br>
+    下にスクロールして未来へ進んでください。</p>
+  </div>
+  <div class="timeline-wrapper" id="timeline-c">
+    <div class="timeline-sticky">
+      <div class="timeline-counter">
+        <div class="timeline-year" id="timeline-year">2000</div>
+        <div class="timeline-pop-display">
+          <span class="timeline-pop-number" id="timeline-pop">34,417</span>
+          <span class="timeline-pop-unit">人</span>
+        </div>
+        <div class="timeline-bar-wrapper">
+          <div class="timeline-bar" id="timeline-bar"></div>
+        </div>
+        <div class="timeline-delta" id="timeline-delta"></div>
+      </div>
+    </div>
+    <div class="timeline-track">
+      <!-- year markers rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 IKILAB. Population Comparison Page.</div>
+  </div>
+</footer>
+
+<style>
+  /* ============ DEMO COMMON ============ */
+  .demo-section {
+    padding: clamp(40px, 5vw, 80px) clamp(24px, 5vw, 72px);
+    border-bottom: var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .demo-description {
+    max-width: 640px;
+    text-align: center;
+  }
+
+  .demo-description p {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--gray-700);
+  }
+
+  /* ============ A: ODOMETER ============ */
+  .odometer-container {
+    text-align: center;
+  }
+
+  .odometer-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 20px;
+  }
+
+  .odometer-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: var(--black);
+    padding: 12px 8px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+  }
+
+  .odometer-slot {
+    width: 64px;
+    height: 96px;
+    overflow: hidden;
+    position: relative;
+    background: var(--dark);
+    margin: 0 2px;
+    border-radius: 4px;
+    border: 1px solid #333;
+  }
+
+  .odometer-strip {
+    display: flex;
+    flex-direction: column;
+    transition: transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .odometer-strip span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 96px;
+    font-family: var(--font-mono);
+    font-size: 56px;
+    font-weight: 700;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
+  }
+
+  /* Horizontal line across the middle */
+  .odometer-slot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    pointer-events: none;
+  }
+
+  /* Top/bottom shadow */
+  .odometer-slot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .odometer-comma {
+    font-family: var(--font-mono);
+    font-size: 48px;
+    font-weight: 700;
+    color: #666;
+    margin: 0 2px;
+    align-self: flex-end;
+    padding-bottom: 8px;
+  }
+
+  .odometer-unit {
+    font-family: var(--font-jp);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    margin-top: 16px;
+  }
+
+  .odometer-year-display {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .odometer-year-arrow {
+    margin: 0 8px;
+    color: var(--red);
+  }
+
+  .odometer-diff {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--red);
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transition: opacity 0.8s 2.5s;
+  }
+
+  .odometer-diff.visible {
+    opacity: 1;
+  }
+
+  @media (max-width: 560px) {
+    .odometer-slot { width: 44px; height: 66px; }
+    .odometer-strip span { width: 44px; height: 66px; font-size: 36px; }
+    .odometer-comma { font-size: 32px; }
+  }
+
+  /* ============ B: REALTIME ============ */
+  .realtime-container {
+    background: var(--black);
+    color: var(--white);
+    padding: 48px clamp(32px, 5vw, 64px);
+    width: 100%;
+    max-width: 560px;
+    border: var(--border);
+  }
+
+  .realtime-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .realtime-live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .realtime-live-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--red);
+  }
+
+  .realtime-display {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .realtime-number {
+    font-family: var(--font-mono);
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .realtime-decimal {
+    font-family: var(--font-mono);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 400;
+    color: var(--gray-500);
+  }
+
+  .realtime-unit {
+    font-family: var(--font-jp);
+    font-size: 16px;
+    color: var(--gray-500);
+    margin-bottom: 32px;
+  }
+
+  .realtime-meta {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .realtime-meta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .realtime-meta-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--gray-500);
+  }
+
+  .realtime-meta-value {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--gray-300);
+  }
+
+  .realtime-lost {
+    color: var(--red) !important;
+    font-weight: 700;
+  }
+
+  /* ============ C: SCROLL TIMELINE ============ */
+  .demo-section-timeline {
+    padding-bottom: 0;
+  }
+
+  .timeline-wrapper {
+    width: 100%;
+    max-width: 720px;
+    height: 3200px;
+    position: relative;
+  }
+
+  .timeline-sticky {
+    position: sticky;
+    top: 80px;
+    z-index: 10;
+    padding: 40px 0;
+  }
+
+  .timeline-counter {
+    background: var(--white);
+    border: var(--border);
+    padding: 40px clamp(24px, 4vw, 48px);
+    text-align: center;
+  }
+
+  .timeline-year {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+
+  .timeline-pop-display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .timeline-pop-number {
+    font-family: var(--font-mono);
+    font-size: clamp(40px, 7vw, 64px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-pop-unit {
+    font-family: var(--font-jp);
+    font-size: 18px;
+    color: var(--gray-500);
+  }
+
+  .timeline-bar-wrapper {
+    width: 100%;
+    height: 8px;
+    background: var(--gray-100);
+    margin-bottom: 12px;
+  }
+
+  .timeline-bar {
+    height: 100%;
+    background: var(--black);
+    transition: width 0.15s ease-out;
+    width: 100%;
+  }
+
+  .timeline-bar.danger {
+    background: var(--red);
+  }
+
+  .timeline-delta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--red);
+    letter-spacing: 0.02em;
+    min-height: 1.5em;
+  }
+
+  .timeline-track {
+    position: absolute;
+    top: 0;
+    right: -60px;
+    width: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 0;
+  }
+
+  .timeline-track .year-tick {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--gray-300);
+    text-align: right;
+    position: relative;
+  }
+
+  .timeline-track .year-tick::before {
+    content: '';
+    position: absolute;
+    right: calc(100% + 8px);
+    top: 50%;
+    width: 12px;
+    height: 1px;
+    background: var(--gray-300);
+  }
+
+  .timeline-track .year-tick.active {
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .timeline-track .year-tick.active::before {
+    background: var(--red);
+    height: 2px;
+  }
+
+  @media (max-width: 560px) {
+    .timeline-track { display: none; }
+  }
+</style>
+
+<script>
+  // ============ DATA ============
+  // 壱岐市の人口データ（国勢調査 + 推計）
+  const populationData = [
+    { year: 2000, pop: 34417 },
+    { year: 2005, pop: 31354 },
+    { year: 2010, pop: 29377 },
+    { year: 2015, pop: 27104 },
+    { year: 2020, pop: 25892 },
+    { year: 2025, pop: 23013 },
+    { year: 2030, pop: 20800 },
+    { year: 2035, pop: 18500 },
+    { year: 2040, pop: 16200 },
+    { year: 2045, pop: 14000 },
+    { year: 2050, pop: 12000 },
+  ];
+
+  // ============ A: COUNTDOWN ODOMETER ============
+  function initOdometer() {
+    const container = document.getElementById('odometer-a');
+    if (!container) return;
+
+    const startNum = 25892;
+    const endNum = 23013;
+    const digits = String(endNum).padStart(5, '0').split('').map(Number);
+    const slots = container.querySelectorAll('.odometer-slot');
+
+    // Set initial position (startNum)
+    const startDigits = String(startNum).padStart(5, '0').split('').map(Number);
+    slots.forEach((slot, i) => {
+      const strip = slot.querySelector('.odometer-strip') as HTMLElement;
+      strip.style.transition = 'none';
+      strip.style.transform = `translateY(-${startDigits[i] * 96}px)`;
+    });
+
+    // Animate to endNum after a short delay
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            slots.forEach((slot, i) => {
+              const strip = slot.querySelector('.odometer-strip') as HTMLElement;
+              strip.style.transition = 'transform 2.5s cubic-bezier(0.23, 1, 0.32, 1)';
+              strip.style.transform = `translateY(-${digits[i] * 96}px)`;
+            });
+            document.getElementById('odometer-diff')?.classList.add('visible');
+          }, 600);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(container);
+  }
+
+  // ============ B: REALTIME COUNTER ============
+  function initRealtimeCounter() {
+    const intEl = document.getElementById('realtime-integer');
+    const decEl = document.getElementById('realtime-decimal');
+    const lostEl = document.getElementById('realtime-lost');
+    if (!intEl || !decEl || !lostEl) return;
+
+    // 年間約576人減少 → 1秒あたりの減少数
+    const annualDecline = 576;
+    const perSecond = annualDecline / (365.25 * 24 * 3600); // ~0.00001826
+
+    // 2025年初の推計人口をベースに
+    const basePopulation = 23013;
+    const baseDate = new Date('2025-01-01T00:00:00+09:00');
+
+    let startTime = Date.now();
+
+    function formatInteger(n: number): string {
+      return Math.floor(n).toLocaleString('en-US');
+    }
+
+    function update() {
+      const now = Date.now();
+      const elapsedFromBase = (now - baseDate.getTime()) / 1000;
+      const elapsedFromStart = (now - startTime) / 1000;
+
+      const currentPop = basePopulation - perSecond * elapsedFromBase;
+      const lostSinceStart = perSecond * elapsedFromStart;
+
+      intEl.textContent = formatInteger(currentPop);
+
+      const decimal = (currentPop % 1).toFixed(3).slice(1); // .xxx
+      decEl.textContent = decimal;
+
+      lostEl.textContent = `−${lostSinceStart.toFixed(6)} 人`;
+
+      requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // ============ C: SCROLL TIMELINE ============
+  function initTimeline() {
+    const wrapper = document.getElementById('timeline-c');
+    const yearEl = document.getElementById('timeline-year');
+    const popEl = document.getElementById('timeline-pop');
+    const barEl = document.getElementById('timeline-bar');
+    const deltaEl = document.getElementById('timeline-delta');
+    const track = wrapper?.querySelector('.timeline-track');
+    if (!wrapper || !yearEl || !popEl || !barEl || !deltaEl || !track) return;
+
+    // Create year ticks
+    populationData.forEach(d => {
+      const tick = document.createElement('div');
+      tick.className = 'year-tick';
+      tick.textContent = String(d.year);
+      tick.dataset.year = String(d.year);
+      track.appendChild(tick);
+    });
+
+    const maxPop = populationData[0].pop;
+
+    function lerp(data: typeof populationData, year: number): number {
+      if (year <= data[0].year) return data[0].pop;
+      if (year >= data[data.length - 1].year) return data[data.length - 1].pop;
+      for (let i = 0; i < data.length - 1; i++) {
+        if (year >= data[i].year && year <= data[i + 1].year) {
+          const t = (year - data[i].year) / (data[i + 1].year - data[i].year);
+          return Math.round(data[i].pop + t * (data[i + 1].pop - data[i].pop));
+        }
+      }
+      return data[0].pop;
+    }
+
+    function onScroll() {
+      const rect = wrapper.getBoundingClientRect();
+      const wrapperHeight = wrapper.offsetHeight;
+      const viewportH = window.innerHeight;
+
+      // Progress: 0 when top of wrapper is at top of viewport, 1 when bottom reaches
+      const scrolled = -rect.top + 80;
+      const progress = Math.max(0, Math.min(1, scrolled / (wrapperHeight - viewportH + 80)));
+
+      const startYear = populationData[0].year;
+      const endYear = populationData[populationData.length - 1].year;
+      const currentYear = startYear + progress * (endYear - startYear);
+      const currentPop = lerp(populationData, currentYear);
+      const diff = currentPop - maxPop;
+
+      yearEl.textContent = String(Math.round(currentYear));
+      popEl.textContent = currentPop.toLocaleString('en-US');
+      barEl.style.width = `${(currentPop / maxPop) * 100}%`;
+
+      if (currentPop / maxPop < 0.5) {
+        barEl.classList.add('danger');
+      } else {
+        barEl.classList.remove('danger');
+      }
+
+      if (diff < 0) {
+        deltaEl.textContent = `2000年比: ${diff.toLocaleString('en-US')} 人（${((diff / maxPop) * 100).toFixed(1)}%）`;
+      } else {
+        deltaEl.textContent = '';
+      }
+
+      // Update year ticks
+      track.querySelectorAll('.year-tick').forEach(tick => {
+        const el = tick as HTMLElement;
+        const y = Number(el.dataset.year);
+        if (Math.abs(y - currentYear) < 2.5) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // ============ INIT ============
+  document.addEventListener('DOMContentLoaded', () => {
+    initOdometer();
+    initRealtimeCounter();
+    initTimeline();
+  });
+</script>
+
+</Base>
