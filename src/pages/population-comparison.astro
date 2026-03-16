@@ -1,0 +1,358 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { patternA as data } from '../data/pattern-a';
+import '../styles/global.css';
+---
+<Base
+  title="IKILAB — Population Expression Study"
+  description="トップページの人口表現を検討するための比較ページ。トリップメーター風を含む3パターンを並べて比較します。"
+>
+  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+
+  <main class="population-study">
+    <section class="study-intro">
+      <div class="study-kicker">Expression Study</div>
+      <h1>人口減少をどう見せるか</h1>
+      <p>
+        トップページに入れる人口表現の比較用ページです。下の3案はすべて比較用モックで、数値の見せ方と心理的な圧力の違いを確認するためのものです。
+      </p>
+    </section>
+
+    <section class="study-grid">
+      <article class="study-card reveal">
+        <div class="study-label">Pattern 1</div>
+        <h2>現在値を機械的に見せる</h2>
+        <p class="study-summary">
+          まず人口そのものを硬い数字として見せる案です。感情を煽りすぎず、制約条件としての人口規模を一目で認識させます。
+        </p>
+        <div class="meter-panel">
+          <div class="meter-caption">Iki Island Population / Current Snapshot</div>
+          <div class="meter-row" aria-label="population 25,000">
+            <span class="digit">0</span>
+            <span class="digit">2</span>
+            <span class="digit">5</span>
+            <span class="digit">0</span>
+            <span class="digit">0</span>
+            <span class="digit">0</span>
+          </div>
+          <div class="meter-meta">
+            <span>島の実験環境</span>
+            <span>人口規模を前提条件として提示</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="study-card reveal">
+        <div class="study-label">Pattern 2</div>
+        <h2>減少の差分を正面から見せる</h2>
+        <p class="study-summary">
+          過去との落差を同じUIで並置する案です。現在値だけでは弱い「減っている感」を、比較で明確に伝えます。
+        </p>
+        <div class="meter-panel meter-panel-alert">
+          <div class="meter-caption">Population Shift / Comparison Mock</div>
+          <div class="compare-row">
+            <div class="compare-block">
+              <div class="compare-tag">Past</div>
+              <div class="meter-row meter-row-small" aria-label="past population 31,000">
+                <span class="digit">0</span>
+                <span class="digit">3</span>
+                <span class="digit">1</span>
+                <span class="digit">0</span>
+                <span class="digit">0</span>
+                <span class="digit">0</span>
+              </div>
+            </div>
+            <div class="compare-arrow">→</div>
+            <div class="compare-block">
+              <div class="compare-tag">Now</div>
+              <div class="meter-row meter-row-small" aria-label="current population 25,000">
+                <span class="digit is-live">0</span>
+                <span class="digit is-live">2</span>
+                <span class="digit is-live">5</span>
+                <span class="digit is-live">0</span>
+                <span class="digit is-live">0</span>
+                <span class="digit is-live">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="change-note">
+            <span class="change-value">-6,000</span>
+            <span>比較で見ると、制約が進行中であることが伝わる</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="study-card reveal">
+        <div class="study-label">Pattern 3</div>
+        <h2>ロールダウンで減少を身体的に感じさせる</h2>
+        <p class="study-summary">
+          数字が落ち着くまでの短いアニメーションを付ける案です。トリップメーターに近い印象で、人口減少を視覚的な出来事として見せます。
+        </p>
+        <div class="meter-panel meter-panel-dark">
+          <div class="meter-caption">Population Descent / Motion Mock</div>
+          <div class="odometer-row" aria-label="population decreasing to 25,000">
+            <div class="reel"><div class="reel-track"><span>0</span><span>0</span></div></div>
+            <div class="reel"><div class="reel-track"><span>3</span><span>2</span></div></div>
+            <div class="reel"><div class="reel-track"><span>1</span><span>5</span></div></div>
+            <div class="reel"><div class="reel-track"><span>4</span><span>0</span></div></div>
+            <div class="reel"><div class="reel-track"><span>0</span><span>0</span></div></div>
+            <div class="reel"><div class="reel-track"><span>0</span><span>0</span></div></div>
+          </div>
+          <div class="meter-meta meter-meta-dark">
+            <span>31,400 → 25,000 に落ち着く演出</span>
+            <span>視覚効果は強いが、実データ表記の注意が必要</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+</Base>
+
+<style>
+  .population-study {
+    margin-top: 56px;
+    padding: 48px 0 0;
+    min-height: calc(100vh - 56px);
+    background:
+      linear-gradient(180deg, rgba(212, 43, 30, 0.06) 0%, rgba(212, 43, 30, 0) 18%),
+      var(--white);
+  }
+
+  .study-intro,
+  .study-grid {
+    width: min(1280px, calc(100vw - 48px));
+    margin: 0 auto;
+  }
+
+  .study-intro {
+    padding: 48px 0 40px;
+    border-bottom: var(--border);
+  }
+
+  .study-kicker,
+  .study-label,
+  .meter-caption,
+  .compare-tag,
+  .change-value {
+    font-family: var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .study-kicker,
+  .study-label {
+    font-size: 11px;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+
+  .study-intro h1 {
+    font-family: var(--font-jp);
+    font-size: clamp(32px, 5vw, 60px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+  }
+
+  .study-intro p,
+  .study-summary,
+  .change-note,
+  .meter-meta {
+    color: var(--gray-700);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .study-intro p {
+    max-width: 760px;
+  }
+
+  .study-grid {
+    display: grid;
+    gap: 24px;
+    padding: 32px 0 72px;
+  }
+
+  .study-card {
+    border: var(--border);
+    background: var(--white);
+    padding: 28px;
+  }
+
+  .study-card h2 {
+    font-family: var(--font-jp);
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+
+  .study-summary {
+    max-width: 720px;
+    margin-bottom: 28px;
+  }
+
+  .meter-panel {
+    border: var(--border);
+    background:
+      linear-gradient(180deg, rgba(17, 17, 17, 0.02) 0%, rgba(17, 17, 17, 0.08) 100%),
+      var(--paper);
+    padding: 24px;
+  }
+
+  .meter-panel-alert {
+    background:
+      linear-gradient(180deg, rgba(212, 43, 30, 0.04) 0%, rgba(212, 43, 30, 0.12) 100%),
+      #f7f0ec;
+  }
+
+  .meter-panel-dark {
+    background:
+      linear-gradient(180deg, rgba(212, 43, 30, 0.16) 0%, rgba(0, 0, 0, 0.7) 100%),
+      var(--black);
+    color: var(--white);
+  }
+
+  .meter-caption {
+    font-size: 10px;
+    color: var(--gray-500);
+    margin-bottom: 18px;
+  }
+
+  .meter-panel-dark .meter-caption {
+    color: rgba(250, 250, 250, 0.72);
+  }
+
+  .meter-row,
+  .odometer-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .digit,
+  .reel {
+    width: clamp(42px, 6vw, 74px);
+    height: clamp(58px, 8vw, 96px);
+    border: 2px solid var(--black);
+    background: var(--white);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-mono);
+    font-size: clamp(26px, 4vw, 48px);
+    font-weight: 700;
+    box-shadow: inset 0 -10px 0 rgba(17, 17, 17, 0.04);
+  }
+
+  .meter-row-small .digit {
+    width: clamp(34px, 5vw, 58px);
+    height: clamp(50px, 6vw, 76px);
+    font-size: clamp(22px, 3vw, 36px);
+  }
+
+  .digit.is-live {
+    background: #fff7f5;
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  .meter-meta,
+  .meter-meta-dark,
+  .change-note {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .meter-meta-dark,
+  .meter-panel-dark .change-note {
+    color: rgba(250, 250, 250, 0.78);
+  }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .compare-block {
+    display: grid;
+    gap: 10px;
+  }
+
+  .compare-tag {
+    font-size: 10px;
+    color: var(--gray-500);
+  }
+
+  .compare-arrow {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 4vw, 56px);
+    color: var(--red);
+  }
+
+  .change-value {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .reel {
+    overflow: hidden;
+    padding: 0;
+    background: #fffdfa;
+  }
+
+  .reel-track {
+    display: flex;
+    flex-direction: column;
+    animation: reelDrop 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transform: translateY(0);
+  }
+
+  .reel:nth-child(2) .reel-track { animation-delay: 0.06s; }
+  .reel:nth-child(3) .reel-track { animation-delay: 0.12s; }
+  .reel:nth-child(4) .reel-track { animation-delay: 0.18s; }
+  .reel:nth-child(5) .reel-track { animation-delay: 0.24s; }
+  .reel:nth-child(6) .reel-track { animation-delay: 0.3s; }
+
+  .reel-track span {
+    height: clamp(58px, 8vw, 96px);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-mono);
+    font-size: clamp(26px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  @keyframes reelDrop {
+    from { transform: translateY(0); }
+    to { transform: translateY(calc(clamp(58px, 8vw, 96px) * -1)); }
+  }
+
+  @media (max-width: 900px) {
+    .study-intro,
+    .study-grid {
+      width: min(100vw - 24px, 1280px);
+    }
+
+    .study-card,
+    .meter-panel {
+      padding: 20px;
+    }
+
+    .compare-row {
+      grid-template-columns: 1fr;
+    }
+
+    .compare-arrow {
+      display: none;
+    }
+  }
+</style>
