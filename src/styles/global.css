@@ -388,6 +388,7 @@ header {
 
 .exp-card:hover .exp-status { border-color: var(--white); color: var(--white); }
 .exp-card:hover .exp-status.status-active { background: var(--red); border-color: var(--red); }
+.exp-card:hover .exp-status.status-completed { background: var(--black); border-color: var(--white); }
 .exp-card:hover p { color: var(--gray-300); }
 .exp-card:hover .exp-arrow { color: var(--white); }
 
@@ -413,6 +414,11 @@ header {
 .status-planned {
   border-color: var(--gray-300);
   color: var(--gray-500);
+}
+
+.status-completed {
+  border-color: var(--black);
+  color: var(--black);
 }
 
 .exp-card h3 {

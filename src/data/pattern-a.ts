@@ -5,7 +5,7 @@ export const patternA = {
   copyright: "© 2025 IKILAB. All rights reserved.",
   navItems: [
     { label: "Concept", href: "/pattern-a/concept" },
-    { label: "Experiments", href: "/pattern-a/experiments" },
+    { label: "Projects", href: "/pattern-a/experiments" },
     { label: "Connect", href: "/pattern-a/connect" },
     { label: "Facility", href: "/pattern-a/facility" },
     { label: "Column", href: "/pattern-a/column" },
@@ -28,7 +28,7 @@ export const patternA = {
   },
   why: {
     num: "02",
-    title: "Why Iki Island — なぜ離島で実験するのか",
+    title: "Why Iki Island — なぜ壱岐島なのか",
     link: { label: "Read Full →", href: "/pattern-a/concept" },
     items: [
       {
@@ -50,15 +50,15 @@ export const patternA = {
   },
   experiments: {
     num: "03",
-    title: "Experiments — 進行中の実験",
+    title: "Projects — 進行中のプロジェクト",
     link: { label: "View All →", href: "/pattern-a/experiments" },
     items: [
-      { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の集約と配信基盤。分散していた告知を一箇所に集める。" },
+      { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の集約と配信基盤。分散していた告知を一箇所に集める。", href: "https://ikical.com/" },
       { status: "active", title: "離島型モビリティ実証", body: "電動トゥクトゥク・レンタカーによる二次交通モデルの実験。" },
-      { status: "active", title: "ワーケーション受入設計", body: "テレワーク拠点としての離島滞在モデル。働くと暮らすの境界を溶かす。" },
-      { status: "active", title: "地域コンテンツ制作", body: "ZINE・イベントを通じた文化発信。島の日常をコンテンツに変換する。" },
+      { status: "completed", title: "いきこども選挙", body: "2024年4月に壱岐市長選と同時開催した模擬選挙。こどもが候補者に質問し、聞いて、選んで、届ける主権者教育の実践。", href: "https://kodomo-senkyo.ikilab.org/" },
       { status: "planned", title: "離島型ジョブマッチング", body: "島内事業者と島外人材の接続。スキルと需要のミスマッチを構造的に解消。" },
       { status: "planned", title: "観光DX支援", body: "デジタル技術による観光体験の再設計。持続可能な観光モデルの構築。" },
+      { status: "active", title: "壱岐オープンダイアログ", body: "様々なテーマについて事実を元に互いの主観を交換するための対話会です。相互理解と多様性を尊重する方であれば、誰でも参加可能。" },
     ],
   },
   proof: {
@@ -72,7 +72,7 @@ export const patternA = {
       { num: "8", unit: "", label: "Migrations" },
     ],
     cases: [
-      { tag: "Event / Community", title: "IKI ZINE FES — 離島初のZINEイベント", body: "島内外のクリエイターが集結。自主制作冊子を通じた文化発信。好評につき追加開催。" },
+      { tag: "Event / Community", title: "サクセンカイギ", body: "新しいアイデアを共有し、対話を通じて磨き合い、島での取り組みにどう活かせるのかを考える場です。" },
       { tag: "Mobility / Tourism", title: "電動トゥクトゥク観光実証", body: "eMoBiとの連携による離島二次交通実証。観光客の島内回遊を促進。" },
       { tag: "Education / Community", title: "しまチャレ2024 協賛", body: "長崎県主催の島しょ地域ビジネスチャレンジにIKILAB特別賞を提供。" },
     ],
@@ -108,7 +108,7 @@ export const patternA = {
       title: "Thinking",
       links: [
         { label: "Concept", href: "/pattern-a/concept" },
-        { label: "Experiments", href: "/pattern-a/experiments" },
+        { label: "Projects", href: "/pattern-a/experiments" },
         { label: "Cases", href: "/pattern-a/cases" },
         { label: "Column", href: "/pattern-a/column" },
       ],
@@ -134,7 +134,7 @@ export const patternA = {
   ],
   subpages: [
     { slug: "concept", title: "Concept", titleJa: "コンセプト", description: "IKILABの考え方と、離島から始める理由。" },
-    { slug: "experiments", title: "Experiments", titleJa: "実験一覧", description: "現在進行中の実験プロジェクト。" },
+    { slug: "experiments", title: "Projects", titleJa: "プロジェクト一覧", description: "現在進行中のプロジェクト一覧。" },
     { slug: "connect", title: "Connect", titleJa: "接続する", description: "IKILABとつながる方法。" },
     { slug: "facility", title: "Facility", titleJa: "施設紹介", description: "IKILABの施設情報。" },
     { slug: "column", title: "Column", titleJa: "コラム", description: "島からのレポートとコラム。" },

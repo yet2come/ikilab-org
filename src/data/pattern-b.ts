@@ -72,7 +72,7 @@ export const patternB = {
       { num: "8", unit: "", label: "Migrations" },
     ],
     cases: [
-      { tag: "Culture / Event", title: "IKI ZINE FES — 島のクリエイターが集まる日", body: "島内外から参加者120人。手づくり冊子を通じて「島の表現」を外へ発信した一日。" },
+      { tag: "Culture / Event", title: "サクセンカイギ", body: "新しいアイデアを共有し、対話を通じて磨き合い、島での取り組みにどう活かせるのかを考える場です。" },
       { tag: "Mobility / Tourism", title: "トゥクトゥクで島めぐり", body: "電動トゥクトゥクの観光実証。レンタカー以外の選択肢が生まれた。" },
       { tag: "Education / Next Gen", title: "しまチャレ2024 — 島の若者を応援", body: "長崎県の島しょビジネスチャレンジにIKILAB特別賞を新設。次世代の挑戦を後押し。" },
     ],

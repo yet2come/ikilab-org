@@ -1,8 +1,9 @@
 ---
 interface Experiment {
-  status: "active" | "planned";
+  status: "active" | "planned" | "completed";
   title: string;
   body: string;
+  href?: string;
 }
 
 interface Props {
@@ -10,16 +11,45 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const statusLabels = {
+  active: "Active",
+  planned: "Planned",
+  completed: "Completed",
+} as const;
 ---
 <div class="exp-grid reveal">
   {items.map(item => (
-    <div class="exp-card">
-      <span class={`exp-status status-${item.status}`}>
-        {item.status === "active" ? "Active" : "Planned"}
-      </span>
-      <h3>{item.title}</h3>
-      <p>{item.body}</p>
-      <span class="exp-arrow">→</span>
-    </div>
+    item.href ? (
+      <a
+        class="exp-card exp-card-link"
+        href={item.href}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span class={`exp-status status-${item.status}`}>
+          {statusLabels[item.status]}
+        </span>
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+        <span class="exp-arrow">→</span>
+      </a>
+    ) : (
+      <div class="exp-card">
+        <span class={`exp-status status-${item.status}`}>
+          {statusLabels[item.status]}
+        </span>
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+        <span class="exp-arrow">→</span>
+      </div>
+    )
   ))}
 </div>
+
+<style>
+  .exp-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
