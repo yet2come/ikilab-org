@@ -2,59 +2,43 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SectionBar from '../components/SectionBar.astro';
+import HeroSection from '../components/HeroSection.astro';
+import WhySection from '../components/WhySection.astro';
+import ExperimentsGrid from '../components/ExperimentsGrid.astro';
+import ProofSection from '../components/ProofSection.astro';
+import ConnectSection from '../components/ConnectSection.astro';
+import InfraSection from '../components/InfraSection.astro';
+import { patternA as data } from '../data/pattern-a';
 import '../styles/global.css';
 ---
-<Base title="IKILAB — パターン比較">
-  <Header
-    brand="IKILAB"
-    navItems={[
-      { label: "Pattern A", href: "/pattern-a/" },
-      { label: "Pattern B", href: "/pattern-b/" },
-      { label: "Pattern C", href: "/pattern-c/" },
-    ]}
-    contactHref="/pattern-a/contact"
-  />
+<Base title="IKILAB — 島内外を接続する実験装置" description="IKILABは、島内外を接続する実験装置です。人口25,000人の壱岐島を舞台に、地域の課題を構造的に解き、新しい接続を生み出します。">
+  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
 
-  <div class="hub-hero">
-    <h1>IKILAB.ORG</h1>
-    <div class="hero-en">Design Pattern Comparison</div>
-    <p>3つのデザインパターンを比較し、IKILAB.ORGの最終デザインを選定するためのプレビューサイトです。</p>
+  <HeroSection {...data.hero} />
+
+  <SectionBar num={data.why.num} title={data.why.title} link={data.why.link} />
+  <WhySection items={data.why.items} />
+
+  <SectionBar num={data.experiments.num} title={data.experiments.title} link={data.experiments.link} />
+  <ExperimentsGrid items={data.experiments.items} />
+
+  <SectionBar num={data.proof.num} title={data.proof.title} link={data.proof.link} />
+  <ProofSection stats={data.proof.stats} cases={data.proof.cases} />
+
+  <div class="connect-section">
+    <SectionBar num={data.connect.num} title={data.connect.title} dark={true} />
+    <ConnectSection cards={data.connect.cards} />
   </div>
 
-  <div class="hub-grid">
-    <div class="hub-card">
-      <div class="hub-card-label">Pattern A</div>
-      <h2>名称のみ差し替え</h2>
-      <p>CROSSPORT → IKILAB に名称を差し替え。デザイン・構成・コンテンツはモックのままです。元のモックに最も近いバージョン。</p>
-      <a href="/pattern-a/" class="btn-brutal btn-fill">Pattern A を見る →</a>
-    </div>
-    <div class="hub-card">
-      <div class="hub-card-label">Pattern B</div>
-      <h2>名称＋コンテンツ変更</h2>
-      <p>名称変更に加え、説明文・セクション内容をIKILABの文脈に合わせて書き換え。「島の実験室」としてのトーンに統一。</p>
-      <a href="/pattern-b/" class="btn-brutal btn-fill">Pattern B を見る →</a>
-    </div>
-    <div class="hub-card">
-      <div class="hub-card-label">Pattern C</div>
-      <h2>名称＋コンテンツ＋ナビ再設計</h2>
-      <p>名称・コンテンツに加え、ナビゲーション・ページ構成もIKILABとして再設計。About / Lab / Projects / Space / Journal 構成。</p>
-      <a href="/pattern-c/" class="btn-brutal btn-fill">Pattern C を見る →</a>
-    </div>
-  </div>
-
-  <Footer
-    brandFull="IKILAB"
-    brandDesc="An island laboratory where\nconstraints spark invention."
-    copyright="© 2025 IKILAB. All rights reserved."
-    columns={[
-      {
-        title: "Patterns",
-        links: [
-          { label: "Pattern A", href: "/pattern-a/" },
-          { label: "Pattern B", href: "/pattern-b/" },
-          { label: "Pattern C", href: "/pattern-c/" },
-        ],
-      },
-    ]}
+  <SectionBar num={data.infra.num} title={data.infra.title} link={data.infra.link} />
+  <InfraSection
+    name={data.infra.name}
+    nameEn={data.infra.nameEn}
+    photoPlaceholder={data.infra.photoPlaceholder}
+    table={data.infra.table}
+    detailHref={data.infra.detailHref}
   />
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
 </Base>
