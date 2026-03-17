@@ -46,7 +46,6 @@ header {
   display: flex;
   align-items: center;
   padding: 0 24px;
-  gap: 10px;
   color: var(--black);
   text-decoration: none;
   border-right: var(--border);
@@ -59,12 +58,8 @@ header {
   object-fit: contain;
 }
 
-.logo-image--24 {
-  height: 24px;
-}
-
-.logo-image--26 {
-  height: 26px;
+.logo-image--30 {
+  height: 30px;
 }
 
 .nav-items {
