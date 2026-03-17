@@ -46,14 +46,17 @@ header {
   display: flex;
   align-items: center;
   padding: 0 24px;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.08em;
   color: var(--black);
   text-decoration: none;
   border-right: var(--border);
   white-space: nowrap;
+}
+
+.logo-image {
+  display: block;
+  width: auto;
+  height: 22px;
+  object-fit: contain;
 }
 
 .nav-items {

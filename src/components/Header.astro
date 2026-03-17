@@ -9,7 +9,9 @@ interface Props {
 const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
 ---
 <header>
-  <a href={brandHref} class="logo">{brand}</a>
+  <a href={brandHref} class="logo">
+    <img src="/ikilab_logo_1500x500.svg" alt={brand} class="logo-image" />
+  </a>
   <div class="nav-items">
     {navItems.map(item => (
       <a href={item.href}>{item.label}</a>

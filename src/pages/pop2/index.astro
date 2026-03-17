@@ -28,7 +28,7 @@ import '../../styles/global.css';
 <section class="demo-section">
   <div class="demo-description">
     <p>ページ表示時に、数字がトリップメーターのように短く桁送りしながら減少していきます。<br>
-    2020年の人口から2025年の推計値まで、約50秒かけて機械的にカウントダウン。</p>
+    2024年の人口から2025年の推計値まで、約15秒かけて機械的にカウントダウン。</p>
   </div>
   <div class="odometer-container" id="odometer-a">
     <div class="odometer-label">壱岐市 推計人口</div>
@@ -37,11 +37,11 @@ import '../../styles/global.css';
     </div>
     <div class="odometer-unit">人</div>
     <div class="odometer-year-display">
-      <span class="odometer-year-from">2020.01</span>
+      <span class="odometer-year-from">2024.01</span>
       <span class="odometer-year-arrow">→</span>
-      <span class="odometer-year-to" id="odometer-current-date">2020.01</span>
+      <span class="odometer-year-to" id="odometer-current-date">2024.01</span>
     </div>
-    <div class="odometer-diff" id="odometer-diff">−2,879 人（5年間）</div>
+    <div class="odometer-diff" id="odometer-diff">−576 人（1年間）</div>
   </div>
 </section>
 
@@ -264,7 +264,7 @@ import '../../styles/global.css';
     margin-top: 8px;
     letter-spacing: 0.02em;
     opacity: 0;
-    transition: opacity 0.5s 50.8s;
+    transition: opacity 0.5s 15.8s;
   }
 
   .odometer-diff.visible {
@@ -511,7 +511,7 @@ import '../../styles/global.css';
     { year: 2005, pop: 31354 },
     { year: 2010, pop: 29377 },
     { year: 2015, pop: 27104 },
-    { year: 2020, pop: 25892 },
+    { year: 2024, pop: 23589 },
     { year: 2025, pop: 23013 },
     { year: 2030, pop: 20800 },
     { year: 2035, pop: 18500 },
@@ -527,7 +527,7 @@ import '../../styles/global.css';
     const currentDate = document.getElementById('odometer-current-date');
     if (!container || !display) return;
 
-    const startNum = 25892;
+    const startNum = 23589;
     const endNum = 23013;
     const countdownFrames: string[] = [];
 
@@ -584,21 +584,29 @@ import '../../styles/global.css';
         if (entry.isIntersecting) {
           setTimeout(() => {
             const slotH = getSlotHeight();
-            const duration = 50000;
-            const totalMonths = 60;
+            const duration = 15000;
+            const totalMonths = 12;
             const animationStart = performance.now();
             let lastMonth = -1;
 
             slotEls.forEach(({ strip, totalSteps }) => {
               if (totalSteps === 0) return; // digit unchanged, skip
               const distance = totalSteps * slotH;
+              const leadSteps = Math.max(1, Math.round(totalSteps * 0.15));
+              const tailSteps = Math.max(1, Math.round(totalSteps * 0.15));
+              const middleSteps = Math.max(1, totalSteps - leadSteps - tailSteps);
+              const normalizedLeadSteps = totalSteps - middleSteps - tailSteps;
+              const leadDistance = normalizedLeadSteps * slotH;
+              const middleDistance = middleSteps * slotH;
+
               strip.animate([
-                { transform: 'translateY(0)' },
-                { transform: `translateY(-${distance}px)` },
+                { transform: 'translateY(0)', offset: 0, easing: `steps(${normalizedLeadSteps}, end)` },
+                { transform: `translateY(-${leadDistance}px)`, offset: 0.25, easing: `steps(${middleSteps}, end)` },
+                { transform: `translateY(-${leadDistance + middleDistance}px)`, offset: 0.75, easing: `steps(${tailSteps}, end)` },
+                { transform: `translateY(-${distance}px)`, offset: 1 },
               ], {
                 duration,
                 delay: 0,
-                easing: `steps(${totalSteps}, end)`,
                 fill: 'forwards',
               });
               strip.style.transform = `translateY(-${distance}px)`;
@@ -611,7 +619,7 @@ import '../../styles/global.css';
               const monthIndex = Math.round(progress * totalMonths);
 
               if (monthIndex !== lastMonth) {
-                const year = 2020 + Math.floor(monthIndex / 12);
+                const year = 2024 + Math.floor(monthIndex / 12);
                 const month = (monthIndex % 12) + 1;
                 currentDate.textContent = `${year}.${String(month).padStart(2, '0')}`;
                 lastMonth = monthIndex;

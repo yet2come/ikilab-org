@@ -18,7 +18,7 @@ interface Props {
 
 const { tag, titleHtml, en, bodyHtml, actions, date, coord, imagePlaceholder } = Astro.props;
 
-const odometerStart = 25892;
+const odometerStart = 23589;
 const odometerEnd = 23013;
 
 function buildCountdownFrames(start: number, end: number) {
@@ -76,11 +76,11 @@ const odometerSequences = Array.from({ length: 5 }, (_, index) =>
       </div>
       <div class="hero-odometer-unit">人</div>
       <div class="hero-odometer-years">
-        <span>2020.01</span>
+        <span>2024.01</span>
         <span class="hero-odometer-arrow">→</span>
-        <span id="hero-odometer-current-date">2020.01</span>
+        <span id="hero-odometer-current-date">2024.01</span>
       </div>
-      <div class="hero-odometer-diff" id="hero-odometer-diff">−2,879 人（5年間）</div>
+      <div class="hero-odometer-diff" id="hero-odometer-diff">−576 人（1年間）</div>
       <div class="hero-odometer-cta">詳しく見る →</div>
     </a>
     <div class="hero-date">{date}</div>
@@ -229,7 +229,7 @@ const odometerSequences = Array.from({ length: 5 }, (_, index) =>
     margin-top: 6px;
     letter-spacing: 0.02em;
     opacity: 0;
-    transition: opacity 0.5s 50.8s;
+    transition: opacity 0.5s 15.8s;
   }
 
   .hero-odometer-diff.visible {
@@ -281,8 +281,8 @@ const odometerSequences = Array.from({ length: 5 }, (_, index) =>
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setTimeout(() => {
-            const duration = 50000;
-            const totalMonths = 60;
+            const duration = 15000;
+            const totalMonths = 12;
             const animationStart = performance.now();
             let lastMonth = -1;
 
@@ -294,14 +294,21 @@ const odometerSequences = Array.from({ length: 5 }, (_, index) =>
               if (steps === 0) return;
 
               const distance = steps * h;
+              const leadSteps = Math.max(1, Math.round(steps * 0.15));
+              const tailSteps = Math.max(1, Math.round(steps * 0.15));
+              const middleSteps = Math.max(1, steps - leadSteps - tailSteps);
+              const normalizedLeadSteps = steps - middleSteps - tailSteps;
+              const leadDistance = normalizedLeadSteps * h;
+              const middleDistance = middleSteps * h;
 
               strip.animate([
-                { transform: 'translateY(0)' },
-                { transform: `translateY(-${distance}px)` },
+                { transform: 'translateY(0)', offset: 0, easing: `steps(${normalizedLeadSteps}, end)` },
+                { transform: `translateY(-${leadDistance}px)`, offset: 0.25, easing: `steps(${middleSteps}, end)` },
+                { transform: `translateY(-${leadDistance + middleDistance}px)`, offset: 0.75, easing: `steps(${tailSteps}, end)` },
+                { transform: `translateY(-${distance}px)`, offset: 1 },
               ], {
                 duration,
                 delay: 0,
-                easing: `steps(${steps}, end)`,
                 fill: 'forwards',
               });
               strip.style.transform = `translateY(-${distance}px)`;
@@ -314,7 +321,7 @@ const odometerSequences = Array.from({ length: 5 }, (_, index) =>
               const monthIndex = Math.round(progress * totalMonths);
 
               if (monthIndex !== lastMonth) {
-                const year = 2020 + Math.floor(monthIndex / 12);
+                const year = 2024 + Math.floor(monthIndex / 12);
                 const month = (monthIndex % 12) + 1;
                 currentDate.textContent = `${year}.${String(month).padStart(2, '0')}`;
                 lastMonth = monthIndex;
