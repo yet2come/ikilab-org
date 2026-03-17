@@ -10,7 +10,8 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
 ---
 <header>
   <a href={brandHref} class="logo">
-    <img src="/ikilab_logo_1500x500.svg" alt={brand} class="logo-image" />
+    <img src="/ikilab_logo_1500x500.svg" alt={`${brand} 24px`} class="logo-image logo-image--24" />
+    <img src="/ikilab_logo_1500x500.svg" alt={`${brand} 26px`} class="logo-image logo-image--26" />
   </a>
   <div class="nav-items">
     {navItems.map(item => (
