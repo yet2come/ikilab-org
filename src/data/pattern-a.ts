@@ -14,7 +14,7 @@ export const patternA = {
   contactHref: "/pattern-a/contact",
   hero: {
     tag: "IKI ISLAND — 33.7487°N, 129.6918°E",
-    titleHtml: "離島という<br>制約環境を、<br>可能性に変える。",
+    titleHtml: "離島という<br>制約環境を、<br><span style=\"white-space: nowrap;\">可能性に変える。</span>",
     en: "Turning constraints into possibility.",
     bodyHtml:
       'IKILABは、<strong>島内外を接続する実験装置</strong>です。人口25,000人の壱岐島を舞台に、地域の課題を構造的に解き、新しい接続を生み出します。',
