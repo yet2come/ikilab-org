@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { cases } from '../../data/cases';
+import { patternA as data } from '../../data/pattern-a';
+import '../../styles/global.css';
+
+export function getStaticPaths() {
+  return cases.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const Content = entry.Content;
+const pageTitle = `${entry.title} — IKILAB`;
+const pageDescription = entry.description;
+---
+<Base title={pageTitle} description={pageDescription}>
+  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+
+  <section class="case-hero">
+    <div class="case-hero-main">
+      <div class="case-hero-tag">{entry.category}</div>
+      <h1>{entry.title}</h1>
+      <div class="hero-en">{entry.en}</div>
+      <p>{entry.lead}</p>
+      <div class="case-hero-actions">
+        <a href="/cases" class="btn-brutal btn-ghost">一覧に戻る</a>
+        <a href="/contact" class="btn-brutal btn-fill">相談する</a>
+      </div>
+    </div>
+    <aside class="case-hero-side">
+      <div class="case-fact-label">Key Facts</div>
+      {entry.keyFacts.map((fact) => (
+        <div class="case-fact-row">
+          <span>{fact.label}</span>
+          <strong>{fact.value}</strong>
+        </div>
+      ))}
+    </aside>
+  </section>
+
+  <section class="case-summary reveal">
+    <div class="case-summary-grid">
+      <div>
+        <div class="case-summary-kicker">Project Summary</div>
+        <h2>{entry.summaryTitle}</h2>
+      </div>
+      <div class="case-summary-points">
+        {entry.summaryPoints.map((point, index) => (
+          <div class="case-summary-point">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <p>{point}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="case-body">
+    <div class="case-markdown reveal">
+      <Content />
+    </div>
+  </section>
+
+  <section class="case-timeline reveal">
+    <div class="case-timeline-head">
+      <div class="case-summary-kicker">Timeline</div>
+      <h2>準備から開票までの流れ</h2>
+    </div>
+    <div class="case-timeline-grid">
+      {entry.timeline.map((item) => (
+        <div class="case-timeline-item">
+          <span>{item.date}</span>
+          <p>{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="case-cta reveal">
+    <div>
+      <div class="case-summary-kicker">Connect</div>
+      <h2>{entry.ctaTitle}</h2>
+      <p>{entry.ctaBody}</p>
+    </div>
+    <a href="/contact" class="btn-brutal btn-fill">お問い合わせ →</a>
+  </section>
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+</Base>

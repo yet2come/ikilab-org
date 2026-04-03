@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { cases } from '../data/cases';
 import { patternA as data } from '../data/pattern-a';
 import '../styles/global.css';
 
@@ -30,12 +31,14 @@ const { page } = Astro.props;
         <p>IKILABでは、取り組みを活動報告ではなく、仮説、実施、学びまで含めたケースとして蓄積しています。現在公開中の事例を紹介します。</p>
       </div>
       <div class="case-index-list">
-        <a href="/cases/iki-kodomo-senkyo" class="case-index-card">
-          <div class="case-index-meta">Education / Community</div>
-          <h3>壱岐こども選挙</h3>
-          <p>条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践を、半年近い準備期間をかけて実装しました。</p>
-          <span class="case-index-link">詳細を見る →</span>
-        </a>
+        {cases.map((entry) => (
+          <a href={`/cases/${entry.slug}`} class="case-index-card">
+            <div class="case-index-meta">{entry.category}</div>
+            <h3>{entry.title}</h3>
+            <p>{entry.lead}</p>
+            <span class="case-index-link">詳細を見る →</span>
+          </a>
+        ))}
       </div>
     </div>
   ) : (
