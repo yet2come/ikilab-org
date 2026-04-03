@@ -1300,8 +1300,9 @@ footer {
 
 .case-timeline-item span {
   color: var(--red);
-  display: block;
-  margin-bottom: 10px;
+  display: inline-block;
+  margin-right: 16px;
+  min-width: 132px;
 }
 
 .case-timeline-item p,

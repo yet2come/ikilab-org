@@ -74,8 +74,7 @@ const pageDescription = entry.description;
     <div class="case-timeline-grid">
       {entry.timeline.map((item) => (
         <div class="case-timeline-item">
-          <span>{item.date}</span>
-          <p>{item.body}</p>
+          <p><span>{item.date}</span>{item.body}</p>
         </div>
       ))}
     </div>
