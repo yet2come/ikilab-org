@@ -1,0 +1,668 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { patternA as data } from '../../data/pattern-a';
+import '../../styles/global.css';
+
+const popData = [
+  { year: 2000, pop: 34417, source: '国勢調査' },
+  { year: 2005, pop: 31354, source: '国勢調査' },
+  { year: 2010, pop: 29377, source: '国勢調査' },
+  { year: 2015, pop: 27104, source: '国勢調査' },
+  { year: 2020, pop: 24948, source: '国勢調査' },
+  { year: 2025, pop: 22644, source: '社人研推計' },
+  { year: 2030, pop: 20503, source: '社人研推計' },
+  { year: 2035, pop: 18454, source: '社人研推計' },
+  { year: 2040, pop: 16475, source: '社人研推計' },
+  { year: 2045, pop: 14622, source: '社人研推計' },
+  { year: 2050, pop: 13199, source: '社人研推計' },
+];
+
+const basePop = popData[0].pop;
+---
+<Base title="壱岐市の将来人口推計 — IKILAB" description="国立社会保障・人口問題研究所（社人研）の令和5年推計に基づく、壱岐市の人口推移と将来推計データ。">
+  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+
+  <div class="subpage-hero">
+    <h1>壱岐市の将来人口推計</h1>
+    <div class="hero-en">Population Projections for Iki City</div>
+    <p>国立社会保障・人口問題研究所（社人研）の令和5（2023）年推計に基づく、壱岐市の人口推移と将来推計をまとめています。</p>
+  </div>
+
+  <!-- Key numbers -->
+  <section class="pop-key-numbers">
+    <div class="pop-key-card">
+      <div class="pop-key-label">2000年（基準）</div>
+      <div class="pop-key-value">34,417<span class="pop-key-unit">人</span></div>
+    </div>
+    <div class="pop-key-card">
+      <div class="pop-key-label">2020年（最新国勢調査）</div>
+      <div class="pop-key-value">24,948<span class="pop-key-unit">人</span></div>
+      <div class="pop-key-diff">-9,469人（-27.5%）</div>
+    </div>
+    <div class="pop-key-card pop-key-card--accent">
+      <div class="pop-key-label">2050年（社人研推計）</div>
+      <div class="pop-key-value">13,199<span class="pop-key-unit">人</span></div>
+      <div class="pop-key-diff">-21,218人（-61.6%）</div>
+    </div>
+  </section>
+
+  <!-- Chart -->
+  <section class="pop-chart-section reveal">
+    <div class="pop-section-head">
+      <div class="pop-section-kicker">Chart</div>
+      <h2>人口推移グラフ</h2>
+    </div>
+    <div class="pop-chart-container">
+      <div class="pop-chart" id="pop-chart">
+        <!-- rendered by JS -->
+      </div>
+      <div class="pop-chart-legend">
+        <span class="pop-legend-item"><span class="pop-legend-dot pop-legend-dot--census"></span>国勢調査</span>
+        <span class="pop-legend-item"><span class="pop-legend-dot pop-legend-dot--proj"></span>社人研推計</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data table -->
+  <section class="pop-table-section reveal">
+    <div class="pop-section-head">
+      <div class="pop-section-kicker">Data</div>
+      <h2>人口データ一覧</h2>
+    </div>
+    <div class="pop-table-wrap">
+      <table class="pop-table">
+        <thead>
+          <tr>
+            <th>年</th>
+            <th>総人口</th>
+            <th>2000年比</th>
+            <th>前期比</th>
+            <th>出典</th>
+          </tr>
+        </thead>
+        <tbody>
+          {popData.map((d, i) => {
+            const diffFromBase = d.pop - basePop;
+            const pctFromBase = ((diffFromBase / basePop) * 100).toFixed(1);
+            const prev = i > 0 ? popData[i - 1] : null;
+            const diffFromPrev = prev ? d.pop - prev.pop : 0;
+            const isProjection = d.source === '社人研推計';
+            return (
+              <tr class={isProjection ? 'pop-row-proj' : ''}>
+                <td class="pop-td-year">{d.year}</td>
+                <td class="pop-td-num">{d.pop.toLocaleString('en-US')}</td>
+                <td class="pop-td-diff">
+                  {diffFromBase !== 0 ? (
+                    <span class="pop-diff-neg">{diffFromBase.toLocaleString('en-US')}（{pctFromBase}%）</span>
+                  ) : '—'}
+                </td>
+                <td class="pop-td-diff">
+                  {prev ? (
+                    <span class={diffFromPrev < 0 ? 'pop-diff-neg' : ''}>{diffFromPrev.toLocaleString('en-US')}</span>
+                  ) : '—'}
+                </td>
+                <td class="pop-td-source">
+                  <span class={`pop-source-tag ${isProjection ? 'pop-source-tag--proj' : ''}`}>{d.source}</span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Context -->
+  <section class="pop-context reveal">
+    <div class="pop-section-head">
+      <div class="pop-section-kicker">Context</div>
+      <h2>この推計が意味すること</h2>
+    </div>
+    <div class="pop-context-grid">
+      <div class="pop-context-card">
+        <div class="pop-context-num">-61.6%</div>
+        <h3>半世紀で6割減</h3>
+        <p>2000年の34,417人から2050年には13,199人へ。50年間で約21,000人が減少する見通しです。</p>
+      </div>
+      <div class="pop-context-card">
+        <div class="pop-context-num">-472</div>
+        <h3>年平均の減少数</h3>
+        <p>2020〜2050年の30年間で約11,749人減。年平均にして約392人、毎日1人以上のペースで人口が減り続ける計算です。</p>
+      </div>
+      <div class="pop-context-card">
+        <div class="pop-context-num">50.4%</div>
+        <h3>2050年の高齢化率</h3>
+        <p>社人研の推計では、2050年には壱岐市の人口の約半数が65歳以上になると見込まれています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Source -->
+  <section class="pop-source reveal">
+    <div class="pop-section-head">
+      <div class="pop-section-kicker">Source</div>
+      <h2>出典</h2>
+    </div>
+    <div class="pop-source-list">
+      <div class="pop-source-item">
+        <span class="pop-source-label">国勢調査（2000〜2020年）</span>
+        <span class="pop-source-detail">総務省「国勢調査」各年版より壱岐市の総人口を引用</span>
+      </div>
+      <div class="pop-source-item">
+        <span class="pop-source-label">将来推計人口（2025〜2050年）</span>
+        <span class="pop-source-detail">国立社会保障・人口問題研究所「日本の地域別将来推計人口（令和5年推計）」</span>
+      </div>
+      <div class="pop-source-item">
+        <span class="pop-source-label">高齢化率</span>
+        <span class="pop-source-detail">同推計における壱岐市の65歳以上人口割合</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pop-cta reveal">
+    <p>IKILABは、この人口減少の現実に向き合いながら、<br>壱岐島で実験・実証・実装を進めています。</p>
+    <div class="pop-cta-actions">
+      <a href="/" class="btn-brutal btn-fill">トップに戻る →</a>
+      <a href="/contact" class="btn-brutal btn-ghost">相談する</a>
+    </div>
+  </section>
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+</Base>
+
+<style is:global>
+  /* ============ KEY NUMBERS ============ */
+  .pop-key-numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: var(--border);
+  }
+
+  .pop-key-card {
+    padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 40px);
+    border-right: var(--border);
+  }
+
+  .pop-key-card:last-child {
+    border-right: none;
+  }
+
+  .pop-key-card--accent {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .pop-key-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 12px;
+  }
+
+  .pop-key-card--accent .pop-key-label {
+    color: var(--gray-300);
+  }
+
+  .pop-key-value {
+    font-family: var(--font-mono);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .pop-key-unit {
+    font-family: var(--font-jp);
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 4px;
+    color: var(--gray-500);
+  }
+
+  .pop-key-card--accent .pop-key-unit {
+    color: var(--gray-300);
+  }
+
+  .pop-key-diff {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--red);
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .pop-key-card--accent .pop-key-diff {
+    color: #ff6b5e;
+  }
+
+  /* ============ SECTION COMMON ============ */
+  .pop-section-head {
+    margin-bottom: 32px;
+  }
+
+  .pop-section-kicker {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+  }
+
+  .pop-section-head h2 {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: clamp(20px, 3vw, 32px);
+    line-height: 1.4;
+  }
+
+  /* ============ CHART ============ */
+  .pop-chart-section {
+    padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 72px);
+    border-bottom: var(--border);
+  }
+
+  .pop-chart-container {
+    max-width: 900px;
+  }
+
+  .pop-chart {
+    position: relative;
+    height: 320px;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .pop-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+  }
+
+  .pop-bar {
+    width: 100%;
+    max-width: 56px;
+    border-radius: 2px 2px 0 0;
+    transition: height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+  }
+
+  .pop-bar--census {
+    background: var(--black);
+  }
+
+  .pop-bar--proj {
+    background: var(--gray-300);
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--gray-300),
+      var(--gray-300) 2px,
+      var(--gray-100) 2px,
+      var(--gray-100) 4px
+    );
+    border: 1px solid var(--gray-300);
+  }
+
+  .pop-bar-value {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gray-700);
+    white-space: nowrap;
+  }
+
+  .pop-bar-year {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-500);
+    white-space: nowrap;
+  }
+
+  .pop-chart-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+
+  .pop-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-500);
+    letter-spacing: 0.05em;
+  }
+
+  .pop-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+
+  .pop-legend-dot--census {
+    background: var(--black);
+  }
+
+  .pop-legend-dot--proj {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--gray-300),
+      var(--gray-300) 2px,
+      var(--gray-100) 2px,
+      var(--gray-100) 4px
+    );
+    border: 1px solid var(--gray-300);
+  }
+
+  /* ============ TABLE ============ */
+  .pop-table-section {
+    padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 72px);
+    border-bottom: var(--border);
+  }
+
+  .pop-table-wrap {
+    max-width: 900px;
+    overflow-x: auto;
+  }
+
+  .pop-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .pop-table thead {
+    border-bottom: var(--border);
+  }
+
+  .pop-table th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    text-align: left;
+    padding: 12px 16px;
+  }
+
+  .pop-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .pop-td-year {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .pop-td-num {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pop-td-diff {
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  .pop-diff-neg {
+    color: var(--red);
+  }
+
+  .pop-td-source {
+    font-size: 12px;
+  }
+
+  .pop-source-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--gray-100);
+    color: var(--gray-700);
+  }
+
+  .pop-source-tag--proj {
+    background: var(--red-dim);
+    color: var(--red);
+  }
+
+  .pop-row-proj {
+    background: rgba(212, 43, 30, 0.02);
+  }
+
+  /* ============ CONTEXT ============ */
+  .pop-context {
+    padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 72px);
+    border-bottom: var(--border);
+  }
+
+  .pop-context-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .pop-context-card {
+    padding: clamp(24px, 3vw, 40px);
+    border: var(--border);
+    margin-right: -2px;
+  }
+
+  .pop-context-card:last-child {
+    margin-right: 0;
+  }
+
+  .pop-context-num {
+    font-family: var(--font-mono);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .pop-context-card h3 {
+    font-family: var(--font-jp);
+    font-weight: 900;
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .pop-context-card p {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--gray-700);
+  }
+
+  /* ============ SOURCE ============ */
+  .pop-source {
+    padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 72px);
+    border-bottom: var(--border);
+  }
+
+  .pop-source-list {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pop-source-item {
+    display: flex;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-100);
+    align-items: baseline;
+  }
+
+  .pop-source-item:last-child {
+    border-bottom: none;
+  }
+
+  .pop-source-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--black);
+    min-width: 200px;
+    letter-spacing: 0.02em;
+  }
+
+  .pop-source-detail {
+    font-size: 14px;
+    color: var(--gray-700);
+    line-height: 1.8;
+  }
+
+  /* ============ CTA ============ */
+  .pop-cta {
+    padding: clamp(60px, 8vw, 120px) clamp(24px, 5vw, 72px);
+    text-align: center;
+    border-bottom: var(--border);
+  }
+
+  .pop-cta p {
+    font-family: var(--font-jp);
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 700;
+    line-height: 2;
+    margin-bottom: 32px;
+    color: var(--gray-700);
+  }
+
+  .pop-cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1000px) {
+    .pop-key-numbers {
+      grid-template-columns: 1fr;
+    }
+
+    .pop-key-card {
+      border-right: none;
+      border-bottom: var(--border);
+    }
+
+    .pop-key-card:last-child {
+      border-bottom: none;
+    }
+
+    .pop-context-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pop-context-card {
+      margin-right: 0;
+      margin-bottom: -2px;
+    }
+
+    .pop-context-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .pop-source-item {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pop-source-label {
+      min-width: auto;
+    }
+
+    .pop-chart {
+      height: 240px;
+    }
+
+    .pop-bar-value {
+      font-size: 8px;
+      top: -18px;
+    }
+  }
+</style>
+
+<script>
+  const popData = [
+    { year: 2000, pop: 34417, census: true },
+    { year: 2005, pop: 31354, census: true },
+    { year: 2010, pop: 29377, census: true },
+    { year: 2015, pop: 27104, census: true },
+    { year: 2020, pop: 24948, census: true },
+    { year: 2025, pop: 22644, census: false },
+    { year: 2030, pop: 20503, census: false },
+    { year: 2035, pop: 18454, census: false },
+    { year: 2040, pop: 16475, census: false },
+    { year: 2045, pop: 14622, census: false },
+    { year: 2050, pop: 13199, census: false },
+  ];
+
+  function initChart() {
+    const chart = document.getElementById('pop-chart');
+    if (!chart) return;
+
+    const maxPop = popData[0].pop;
+    const maxBarHeight = chart.clientHeight - 60;
+
+    popData.forEach((d) => {
+      const group = document.createElement('div');
+      group.className = 'pop-bar-group';
+
+      const bar = document.createElement('div');
+      bar.className = `pop-bar ${d.census ? 'pop-bar--census' : 'pop-bar--proj'}`;
+      const height = (d.pop / maxPop) * maxBarHeight;
+      bar.style.height = '0px';
+
+      const value = document.createElement('div');
+      value.className = 'pop-bar-value';
+      value.textContent = d.pop.toLocaleString('en-US');
+
+      const yearLabel = document.createElement('div');
+      yearLabel.className = 'pop-bar-year';
+      yearLabel.textContent = String(d.year);
+
+      bar.appendChild(value);
+      group.appendChild(bar);
+      group.appendChild(yearLabel);
+      chart.appendChild(group);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          bar.style.height = `${height}px`;
+        });
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initChart);
+</script>
