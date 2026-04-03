@@ -4,14 +4,14 @@ export const patternA = {
   brandDesc: "A laboratory connecting\nislands to the world.",
   copyright: "© 2025 IKILAB. All rights reserved.",
   navItems: [
-    { label: "Concept", href: "/pattern-a/concept" },
-    { label: "Projects", href: "/pattern-a/experiments" },
-    { label: "Connect", href: "/pattern-a/connect" },
-    { label: "Facility", href: "/pattern-a/facility" },
-    { label: "Column", href: "/pattern-a/column" },
-    { label: "EN", href: "/pattern-a/en" },
+    { label: "Concept", href: "/concept" },
+    { label: "Projects", href: "/experiments" },
+    { label: "Connect", href: "/connect" },
+    { label: "Facility", href: "/facility" },
+    { label: "Column", href: "/column" },
+    { label: "EN", href: "/en" },
   ],
-  contactHref: "/pattern-a/contact",
+  contactHref: "/contact",
   hero: {
     tag: "IKI ISLAND — 33.7487°N, 129.6918°E",
     titleHtml: "離島という<br>制約環境を、<br><span style=\"white-space: nowrap;\">可能性に変える。</span>",
@@ -19,8 +19,8 @@ export const patternA = {
     bodyHtml:
       'IKILABは、<strong>島内外を接続する実験装置</strong>です。人口25,000人の壱岐島を舞台に、地域の課題を構造的に解き、新しい接続を生み出します。',
     actions: [
-      { label: "実験に参加する →", href: "/pattern-a/connect", style: "fill" },
-      { label: "相談する", href: "/pattern-a/contact", style: "ghost" },
+      { label: "実験に参加する →", href: "/connect", style: "fill" },
+      { label: "相談する", href: "/contact", style: "ghost" },
     ],
     date: "EST. 2022",
     coord: "NAGASAKI, JAPAN",
@@ -29,7 +29,7 @@ export const patternA = {
   why: {
     num: "02",
     title: "Why Iki Island — なぜ壱岐島なのか",
-    link: { label: "Read Full →", href: "/pattern-a/concept" },
+    link: { label: "Read Full →", href: "/concept" },
     items: [
       {
         idx: "1",
@@ -51,7 +51,7 @@ export const patternA = {
   experiments: {
     num: "03",
     title: "Projects — 進行中のプロジェクト",
-    link: { label: "View All →", href: "/pattern-a/experiments" },
+    link: { label: "View All →", href: "/experiments" },
     items: [
       { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の集約と配信基盤。分散していた告知を一箇所に集める。", href: "https://ikical.com/" },
       { status: "active", title: "離島型モビリティ実証", body: "電動トゥクトゥク・レンタカーによる二次交通モデルの実験。" },
@@ -64,7 +64,7 @@ export const patternA = {
   proof: {
     num: "04",
     title: "Proof — 実装事例",
-    link: { label: "View All →", href: "/pattern-a/cases" },
+    link: { label: "View All →", href: "/cases" },
     stats: [
       { num: "1,200", unit: "+", label: "Annual Visitors" },
       { num: "15", unit: "", label: "Partners" },
@@ -90,7 +90,7 @@ export const patternA = {
   infra: {
     num: "06",
     title: "Infrastructure — 実験装置の物理的実体",
-    link: { label: "Detail →", href: "/pattern-a/facility" },
+    link: { label: "Detail →", href: "/facility" },
     name: "IKILAB",
     nameEn: "IKILAB",
     photoPlaceholder: "施設外観写真\nFACILITY EXTERIOR",
@@ -101,34 +101,34 @@ export const patternA = {
       { label: "Tel", value: "050-5211-5434" },
       { label: "Mail", value: "info@ikilab.org" },
     ],
-    detailHref: "/pattern-a/facility",
+    detailHref: "/facility",
   },
   footerColumns: [
     {
       title: "Thinking",
       links: [
-        { label: "Concept", href: "/pattern-a/concept" },
-        { label: "Projects", href: "/pattern-a/experiments" },
-        { label: "Cases", href: "/pattern-a/cases" },
-        { label: "Column", href: "/pattern-a/column" },
+        { label: "Concept", href: "/concept" },
+        { label: "Projects", href: "/experiments" },
+        { label: "Cases", href: "/cases" },
+        { label: "Column", href: "/column" },
       ],
     },
     {
       title: "Connect",
       links: [
-        { label: "企業の方", href: "/pattern-a/connect" },
-        { label: "個人の方", href: "/pattern-a/connect" },
-        { label: "ワーケーション", href: "/pattern-a/connect" },
-        { label: "施設利用", href: "/pattern-a/connect" },
+        { label: "企業の方", href: "/connect" },
+        { label: "個人の方", href: "/connect" },
+        { label: "ワーケーション", href: "/connect" },
+        { label: "施設利用", href: "/connect" },
       ],
     },
     {
       title: "Facility",
       links: [
-        { label: "施設紹介", href: "/pattern-a/facility" },
-        { label: "料金表", href: "/pattern-a/facility" },
-        { label: "モビリティ", href: "/pattern-a/facility" },
-        { label: "イベント", href: "/pattern-a/facility" },
+        { label: "施設紹介", href: "/facility" },
+        { label: "料金表", href: "/facility" },
+        { label: "モビリティ", href: "/facility" },
+        { label: "イベント", href: "/facility" },
       ],
     },
   ],
