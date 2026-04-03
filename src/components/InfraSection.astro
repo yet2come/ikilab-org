@@ -19,8 +19,9 @@ const { name, nameEn, photoPlaceholder, table, detailHref } = Astro.props;
     <div class="infra-photo-ph" set:html={photoPlaceholder.replace(/\n/g, '<br>')} />
   </div>
   <div class="infra-details">
-    <div class="infra-name">{name}</div>
-    <div class="infra-name-en">{nameEn}</div>
+    <div class="infra-name">
+      <img src="/ikilab_logo_1500x500.svg" alt={name} class="infra-logo" />
+    </div>
     <table class="infra-table">
       {table.map(row => (
         <tr>

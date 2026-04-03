@@ -87,15 +87,15 @@ export const patternA = {
   },
   infra: {
     num: "06",
-    title: "Infrastructure — 実装を支える拠点",
+    title: "CROSSPORT MSZ — 実装を支える拠点",
     link: { label: "Contact →", href: "/contact" },
     name: "IKILAB",
     nameEn: "IKILAB",
     photoPlaceholder: "施設外観写真\nFACILITY EXTERIOR",
     table: [
-      { label: "Address", value: "〒811-5135\n長崎県壱岐市郷ノ浦町郷ノ浦 122-8" },
+      { label: "Address", value: '〒811-5135\n長崎県壱岐市郷ノ浦町郷ノ浦 122-8\n<a href="https://crossport.cc" target="_blank" rel="noopener">クロスポート武生水</a>' },
       { label: "Hours", value: "毎日 9:00〜18:00（年中無休）" },
-      { label: "Access", value: "郷ノ浦港から徒歩12分\n博多港から高速船で約1時間" },
+      { label: "Access", value: "郷ノ浦港から徒歩約13分\n博多港から高速船で約1時間" },
       { label: "Tel", value: "050-5211-5434" },
       { label: "Mail", value: "info@ikilab.org" },
     ],

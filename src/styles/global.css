@@ -232,8 +232,10 @@ header {
 
 @media (max-width: 1000px) {
   .nav-items { display: none; }
-  .header-pop { display: none; }
   .mobile-menu-btn { display: flex; align-items: center; margin-left: auto; }
+  .header-pop { flex: 1; justify-content: center; }
+  .header-pop-label { display: none; }
+  .header-pop-meta { display: none; }
 }
 
 /* ============ HERO ============ */
@@ -820,19 +822,12 @@ header {
 }
 
 .infra-name {
-  font-family: var(--font-jp);
-  font-weight: 900;
-  font-size: clamp(22px, 2.4vw, 32px);
-  margin-bottom: 4px;
-  line-height: 1.4;
+  margin-bottom: 32px;
 }
 
-.infra-name-en {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--gray-500);
-  margin-bottom: 32px;
+.infra-logo {
+  height: 36px;
+  width: auto;
 }
 
 .infra-table {
