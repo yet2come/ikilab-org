@@ -17,7 +17,6 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       <a href={item.href}>{item.label}</a>
     ))}
     <div class="nav-spacer"></div>
-    <a href={contactHref} class="nav-contact">Contact</a>
   </div>
   <div class="header-pop" id="header-pop">
     <div class="header-pop-label">
@@ -37,6 +36,7 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       <span class="header-pop-pct" id="header-pop-pct"></span>
     </div>
   </div>
+  <a href={contactHref} class="nav-contact">Contact</a>
   <button class="mobile-menu-btn" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
