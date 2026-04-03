@@ -17,9 +17,86 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       <a href={item.href}>{item.label}</a>
     ))}
     <div class="nav-spacer"></div>
+    <div class="header-pop" id="header-pop">
+      <span class="header-pop-year" id="header-pop-year">2000</span>
+      <div class="header-pop-display">
+        <div class="header-pop-slot"><span id="hpd-0">3</span></div>
+        <div class="header-pop-slot"><span id="hpd-1">4</span></div>
+        <div class="header-pop-comma">,</div>
+        <div class="header-pop-slot"><span id="hpd-2">4</span></div>
+        <div class="header-pop-slot"><span id="hpd-3">1</span></div>
+        <div class="header-pop-slot"><span id="hpd-4">7</span></div>
+      </div>
+      <span class="header-pop-unit">人</span>
+      <span class="header-pop-delta" id="header-pop-delta"></span>
+    </div>
     <a href={contactHref} class="nav-contact">Contact</a>
   </div>
   <button class="mobile-menu-btn" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
 </header>
+
+<script>
+  const popData = [
+    { year: 2000, pop: 34417 },
+    { year: 2005, pop: 31354 },
+    { year: 2010, pop: 29377 },
+    { year: 2015, pop: 27104 },
+    { year: 2024, pop: 23589 },
+    { year: 2025, pop: 23013 },
+    { year: 2030, pop: 20800 },
+    { year: 2035, pop: 18500 },
+    { year: 2040, pop: 16200 },
+    { year: 2045, pop: 14000 },
+    { year: 2050, pop: 12000 },
+  ];
+
+  function lerpPop(year: number): number {
+    if (year <= popData[0].year) return popData[0].pop;
+    if (year >= popData[popData.length - 1].year) return popData[popData.length - 1].pop;
+    for (let i = 0; i < popData.length - 1; i++) {
+      if (year >= popData[i].year && year <= popData[i + 1].year) {
+        const t = (year - popData[i].year) / (popData[i + 1].year - popData[i].year);
+        return Math.round(popData[i].pop + t * (popData[i + 1].pop - popData[i].pop));
+      }
+    }
+    return popData[0].pop;
+  }
+
+  function initHeaderPop() {
+    const yearEl = document.getElementById('header-pop-year');
+    const digitEls = [0,1,2,3,4].map(i => document.getElementById(`hpd-${i}`));
+    const deltaEl = document.getElementById('header-pop-delta');
+    if (!yearEl || digitEls.some(e => !e) || !deltaEl) return;
+
+    const basePop = popData[0].pop;
+    const startYear = popData[0].year;
+    const endYear = popData[popData.length - 1].year;
+
+    function onScroll() {
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docH > 0 ? Math.max(0, Math.min(1, window.scrollY / docH)) : 0;
+      const currentYear = startYear + progress * (endYear - startYear);
+      const currentPop = lerpPop(currentYear);
+      const diff = currentPop - basePop;
+      const pct = ((diff / basePop) * 100).toFixed(1);
+
+      yearEl.textContent = String(Math.round(currentYear));
+
+      const digits = String(currentPop).padStart(5, '0');
+      digitEls.forEach((el, i) => { if (el) el.textContent = digits[i]; });
+
+      if (diff < 0) {
+        deltaEl.textContent = `${pct}%`;
+      } else {
+        deltaEl.textContent = '';
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  document.addEventListener('DOMContentLoaded', initHeaderPop);
+</script>

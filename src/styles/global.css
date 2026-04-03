@@ -101,6 +101,98 @@ header {
   background: var(--black) !important;
 }
 
+.header-pop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-left: 1px solid var(--gray-100);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.header-pop-year {
+  font-size: 10px;
+  color: var(--gray-500);
+  letter-spacing: 0.05em;
+}
+
+.header-pop-display {
+  display: inline-flex;
+  align-items: center;
+  background: var(--black);
+  padding: 3px 3px;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.header-pop-slot {
+  width: 20px;
+  height: 28px;
+  overflow: hidden;
+  position: relative;
+  background: var(--dark);
+  margin: 0 1px;
+  border-radius: 2px;
+  border: 1px solid #333;
+}
+
+.header-pop-slot span {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 28px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: #e0e0e0;
+  text-shadow: 0 0 6px rgba(255,255,255,0.1);
+}
+
+.header-pop-slot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+.header-pop-slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.header-pop-comma {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: #666;
+  margin: 0 1px;
+  align-self: flex-end;
+  padding-bottom: 2px;
+}
+
+.header-pop-unit {
+  font-family: var(--font-jp);
+  font-size: 10px;
+  color: var(--gray-500);
+}
+
+.header-pop-delta {
+  font-size: 10px;
+  color: var(--red);
+  letter-spacing: 0.02em;
+}
+
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -120,6 +212,7 @@ header {
 
 @media (max-width: 1000px) {
   .nav-items { display: none; }
+  .header-pop { display: none; }
   .mobile-menu-btn { display: flex; align-items: center; margin-left: auto; }
 }
 
