@@ -18,7 +18,10 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
     ))}
     <div class="nav-spacer"></div>
     <div class="header-pop" id="header-pop">
-      <span class="header-pop-year" id="header-pop-year">2000</span>
+      <div class="header-pop-label">
+        <span>壱岐市</span>
+        <span>推計人口</span>
+      </div>
       <div class="header-pop-display">
         <div class="header-pop-slot"><span id="hpd-0">3</span></div>
         <div class="header-pop-slot"><span id="hpd-1">4</span></div>
@@ -27,8 +30,10 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
         <div class="header-pop-slot"><span id="hpd-3">1</span></div>
         <div class="header-pop-slot"><span id="hpd-4">7</span></div>
       </div>
-      <span class="header-pop-unit">人</span>
-      <span class="header-pop-delta" id="header-pop-delta"></span>
+      <div class="header-pop-meta">
+        <span class="header-pop-year" id="header-pop-year">2000年</span>
+        <span class="header-pop-delta" id="header-pop-delta"></span>
+      </div>
     </div>
     <a href={contactHref} class="nav-contact">Contact</a>
   </div>
@@ -82,13 +87,13 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       const diff = currentPop - basePop;
       const pct = ((diff / basePop) * 100).toFixed(1);
 
-      yearEl.textContent = String(Math.round(currentYear));
+      yearEl.textContent = `${Math.round(currentYear)}年`;
 
       const digits = String(currentPop).padStart(5, '0');
       digitEls.forEach((el, i) => { if (el) el.textContent = digits[i]; });
 
       if (diff < 0) {
-        deltaEl.textContent = `${pct}%`;
+        deltaEl.textContent = `${diff.toLocaleString('en-US')}人（${pct}%）`;
       } else {
         deltaEl.textContent = '';
       }

@@ -104,11 +104,29 @@ header {
 .header-pop {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 0 14px;
   border-left: 1px solid var(--gray-100);
   font-family: var(--font-mono);
   white-space: nowrap;
+}
+
+.header-pop-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-jp);
+  font-size: 9px;
+  line-height: 1.4;
+  color: var(--gray-500);
+  letter-spacing: 0.05em;
+}
+
+.header-pop-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
 }
 
 .header-pop-year {
@@ -181,16 +199,11 @@ header {
   padding-bottom: 2px;
 }
 
-.header-pop-unit {
-  font-family: var(--font-jp);
-  font-size: 10px;
-  color: var(--gray-500);
-}
-
 .header-pop-delta {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--red);
   letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .mobile-menu-btn {

@@ -8,8 +8,6 @@ export const patternA = {
     { label: "Projects", href: "/projects" },
     { label: "Connect", href: "/connect" },
     { label: "Facility", href: "/facility" },
-    { label: "Column", href: "/column" },
-    { label: "EN", href: "/en" },
   ],
   contactHref: "/contact",
   hero: {
@@ -111,7 +109,6 @@ export const patternA = {
         { label: "Concept", href: "/concept" },
         { label: "Projects", href: "/projects" },
         { label: "Cases", href: "/cases" },
-        { label: "Column", href: "/column" },
       ],
     },
     {
@@ -138,8 +135,6 @@ export const patternA = {
     { slug: "projects", title: "Projects", titleJa: "進行中のテーマ", description: "IKILABが現在取り組んでいるプロジェクトと、その背景にある課題意識を紹介します。" },
     { slug: "connect", title: "Connect", titleJa: "一緒に取り組む", description: "企業、個人、地域内外のプレイヤーがIKILABとどう関われるかを案内します。" },
     { slug: "facility", title: "Facility", titleJa: "施設紹介", description: "プロジェクトを進めるためのIKILABの拠点と利用環境を紹介します。" },
-    { slug: "column", title: "Column", titleJa: "コラム", description: "壱岐での実践を通じて見えてきたこと、考えていることを発信します。" },
-    { slug: "en", title: "English", titleJa: "English", description: "IKILAB in English." },
     { slug: "contact", title: "Contact", titleJa: "お問い合わせ", description: "相談、視察、連携、施設利用など、IKILABへの問い合わせはこちらから。" },
     { slug: "cases", title: "Cases", titleJa: "事例", description: "実験から実証、実装につながったIKILABの取り組み事例を紹介します。" },
   ],
