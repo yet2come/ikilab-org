@@ -23,11 +23,28 @@ const { page } = Astro.props;
     <p>{page.description}</p>
   </div>
 
-  <div class="subpage-content">
-    <h2>Coming Soon</h2>
-    <p>このページは現在準備中です。トップページに戻って他のセクションをご覧ください。</p>
-    <a href="/" class="btn-brutal btn-fill" style="display:inline-flex">トップに戻る →</a>
-  </div>
+  {page.slug === 'cases' ? (
+    <div class="subpage-content subpage-content--wide">
+      <div class="case-index-head">
+        <h2>Case Archive</h2>
+        <p>IKILABでは、取り組みを活動報告ではなく、仮説、実施、学びまで含めたケースとして蓄積しています。現在公開中の事例を紹介します。</p>
+      </div>
+      <div class="case-index-list">
+        <a href="/cases/iki-kodomo-senkyo" class="case-index-card">
+          <div class="case-index-meta">Education / Community</div>
+          <h3>壱岐こども選挙</h3>
+          <p>条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践を、半年近い準備期間をかけて実装しました。</p>
+          <span class="case-index-link">詳細を見る →</span>
+        </a>
+      </div>
+    </div>
+  ) : (
+    <div class="subpage-content">
+      <h2>Coming Soon</h2>
+      <p>このページは現在準備中です。トップページに戻って他のセクションをご覧ください。</p>
+      <a href="/" class="btn-brutal btn-fill" style="display:inline-flex">トップに戻る →</a>
+    </div>
+  )}
 
   <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
 </Base>

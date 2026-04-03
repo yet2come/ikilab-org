@@ -9,6 +9,7 @@ interface Case {
   tag: string;
   title: string;
   body: string;
+  href?: string;
 }
 
 interface Props {
@@ -30,14 +31,26 @@ const { stats, cases } = Astro.props;
 </div>
 <div class="proof-cases reveal">
   {cases.map(c => (
-    <div class="case-row">
-      <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
-      <div class="case-content">
-        <div class="case-tag">{c.tag}</div>
-        <h4>{c.title}</h4>
-        <p>{c.body}</p>
+    c.href ? (
+      <a href={c.href} class="case-row case-row-link">
+        <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
+        <div class="case-content">
+          <div class="case-tag">{c.tag}</div>
+          <h4>{c.title}</h4>
+          <p>{c.body}</p>
+        </div>
+        <div class="case-arrow">→</div>
+      </a>
+    ) : (
+      <div class="case-row">
+        <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
+        <div class="case-content">
+          <div class="case-tag">{c.tag}</div>
+          <h4>{c.title}</h4>
+          <p>{c.body}</p>
+        </div>
+        <div class="case-arrow">→</div>
       </div>
-      <div class="case-arrow">→</div>
-    </div>
+    )
   ))}
 </div>
