@@ -120,6 +120,8 @@ header {
   border-left: 1px solid var(--gray-100);
   font-family: var(--font-mono);
   white-space: nowrap;
+  text-decoration: none;
+  color: inherit;
 }
 
 .header-pop-label {

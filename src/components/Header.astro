@@ -18,7 +18,7 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
     ))}
     <div class="nav-spacer"></div>
   </div>
-  <div class="header-pop" id="header-pop">
+  <a href="/population/" class="header-pop" id="header-pop">
     <div class="header-pop-label">
       <span id="header-pop-year">2000年</span>
       <span>推計人口</span>
@@ -35,7 +35,7 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       <span class="header-pop-delta" id="header-pop-delta"></span>
       <span class="header-pop-pct" id="header-pop-pct"></span>
     </div>
-  </div>
+  </a>
   <a href={contactHref} class="nav-contact">Contact</a>
   <button class="mobile-menu-btn" aria-label="メニュー">
     <span></span><span></span><span></span>

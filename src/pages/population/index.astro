@@ -127,7 +127,7 @@ const basePop = popData[0].pop;
         <p>2000年の34,417人から2050年には13,199人へ。50年間で約21,000人が減少する見通しです。</p>
       </div>
       <div class="pop-context-card">
-        <div class="pop-context-num">-472</div>
+        <div class="pop-context-num">-392</div>
         <h3>年平均の減少数</h3>
         <p>2020〜2050年の30年間で約11,749人減。年平均にして約392人、毎日1人以上のペースで人口が減り続ける計算です。</p>
       </div>
@@ -274,7 +274,7 @@ const basePop = popData[0].pop;
     position: relative;
     height: 320px;
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     gap: 2px;
     padding-bottom: 32px;
     border-bottom: 1px solid var(--gray-100);
@@ -285,13 +285,14 @@ const basePop = popData[0].pop;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    justify-content: flex-end;
     position: relative;
   }
 
   .pop-bar {
     width: 100%;
     max-width: 56px;
+    min-height: 0;
     border-radius: 2px 2px 0 0;
     transition: height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
@@ -326,14 +327,12 @@ const basePop = popData[0].pop;
   }
 
   .pop-bar-year {
-    position: absolute;
-    bottom: -28px;
-    left: 50%;
-    transform: translateX(-50%);
     font-family: var(--font-mono);
     font-size: 10px;
     color: var(--gray-500);
     white-space: nowrap;
+    margin-top: 8px;
+    flex-shrink: 0;
   }
 
   .pop-chart-legend {
@@ -632,7 +631,12 @@ const basePop = popData[0].pop;
     if (!chart) return;
 
     const maxPop = popData[0].pop;
-    const maxBarHeight = chart.clientHeight - 60;
+    // Available height = chart height minus space for year labels and value labels
+    const chartStyle = getComputedStyle(chart);
+    const paddingBottom = parseFloat(chartStyle.paddingBottom) || 32;
+    const maxBarHeight = chart.clientHeight - paddingBottom - 28; // 28px for value label above
+
+    const bars: { el: HTMLElement; height: number }[] = [];
 
     popData.forEach((d) => {
       const group = document.createElement('div');
@@ -656,9 +660,13 @@ const basePop = popData[0].pop;
       group.appendChild(yearLabel);
       chart.appendChild(group);
 
+      bars.push({ el: bar, height });
+    });
+
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          bar.style.height = `${height}px`;
+        bars.forEach(({ el, height }) => {
+          el.style.height = `${height}px`;
         });
       });
     });
