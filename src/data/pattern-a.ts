@@ -7,7 +7,6 @@ export const patternA = {
     { label: "Concept", href: "/concept" },
     { label: "Projects", href: "/projects" },
     { label: "Connect", href: "/connect" },
-    { label: "Facility", href: "/facility" },
   ],
   contactHref: "/contact",
   hero: {
@@ -89,7 +88,7 @@ export const patternA = {
   infra: {
     num: "06",
     title: "Infrastructure — 実装を支える拠点",
-    link: { label: "Detail →", href: "/facility" },
+    link: { label: "Contact →", href: "/contact" },
     name: "IKILAB",
     nameEn: "IKILAB",
     photoPlaceholder: "施設外観写真\nFACILITY EXTERIOR",
@@ -100,7 +99,7 @@ export const patternA = {
       { label: "Tel", value: "050-5211-5434" },
       { label: "Mail", value: "info@ikilab.org" },
     ],
-    detailHref: "/facility",
+    detailHref: "/contact",
   },
   footerColumns: [
     {
@@ -120,21 +119,11 @@ export const patternA = {
         { label: "施設利用", href: "/connect" },
       ],
     },
-    {
-      title: "Facility",
-      links: [
-        { label: "施設紹介", href: "/facility" },
-        { label: "料金表", href: "/facility" },
-        { label: "モビリティ", href: "/facility" },
-        { label: "イベント", href: "/facility" },
-      ],
-    },
   ],
   subpages: [
     { slug: "concept", title: "Concept", titleJa: "コンセプト", description: "なぜ壱岐島で、実験・実証・実装を進めるのか。IKILABの考え方を紹介します。" },
     { slug: "projects", title: "Projects", titleJa: "進行中のテーマ", description: "IKILABが現在取り組んでいるプロジェクトと、その背景にある課題意識を紹介します。" },
     { slug: "connect", title: "Connect", titleJa: "一緒に取り組む", description: "企業、個人、地域内外のプレイヤーがIKILABとどう関われるかを案内します。" },
-    { slug: "facility", title: "Facility", titleJa: "施設紹介", description: "プロジェクトを進めるためのIKILABの拠点と利用環境を紹介します。" },
     { slug: "contact", title: "Contact", titleJa: "お問い合わせ", description: "相談、視察、連携、施設利用など、IKILABへの問い合わせはこちらから。" },
     { slug: "cases", title: "Cases", titleJa: "事例", description: "実験から実証、実装につながったIKILABの取り組み事例を紹介します。" },
   ],
