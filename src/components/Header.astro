@@ -17,25 +17,25 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       <a href={item.href}>{item.label}</a>
     ))}
     <div class="nav-spacer"></div>
-    <div class="header-pop" id="header-pop">
-      <div class="header-pop-label">
-        <span id="header-pop-year">2000年（平成12年）</span>
-        <span>壱岐市推計人口</span>
-      </div>
-      <div class="header-pop-display">
-        <div class="header-pop-slot"><span id="hpd-0">3</span></div>
-        <div class="header-pop-slot"><span id="hpd-1">4</span></div>
-        <div class="header-pop-comma">,</div>
-        <div class="header-pop-slot"><span id="hpd-2">4</span></div>
-        <div class="header-pop-slot"><span id="hpd-3">1</span></div>
-        <div class="header-pop-slot"><span id="hpd-4">7</span></div>
-      </div>
-      <div class="header-pop-meta">
-        <span class="header-pop-delta" id="header-pop-delta"></span>
-        <span class="header-pop-pct" id="header-pop-pct"></span>
-      </div>
-    </div>
     <a href={contactHref} class="nav-contact">Contact</a>
+  </div>
+  <div class="header-pop" id="header-pop">
+    <div class="header-pop-label">
+      <span id="header-pop-year">2000年</span>
+      <span>推計人口</span>
+    </div>
+    <div class="header-pop-display">
+      <div class="header-pop-slot"><span id="hpd-0">3</span></div>
+      <div class="header-pop-slot"><span id="hpd-1">4</span></div>
+      <div class="header-pop-comma">,</div>
+      <div class="header-pop-slot"><span id="hpd-2">4</span></div>
+      <div class="header-pop-slot"><span id="hpd-3">1</span></div>
+      <div class="header-pop-slot"><span id="hpd-4">7</span></div>
+    </div>
+    <div class="header-pop-meta">
+      <span class="header-pop-delta" id="header-pop-delta"></span>
+      <span class="header-pop-pct" id="header-pop-pct"></span>
+    </div>
   </div>
   <button class="mobile-menu-btn" aria-label="メニュー">
     <span></span><span></span><span></span>
@@ -95,7 +95,7 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       const diff = currentPop - basePop;
       const pct = ((diff / basePop) * 100).toFixed(1);
 
-      yearEl.textContent = `${roundedYear}年（${toJapaneseEra(roundedYear)}）`;
+      yearEl.textContent = `${roundedYear}年`;
 
       const digits = String(currentPop).padStart(5, '0');
       digitEls.forEach((el, i) => { if (el) el.textContent = digits[i]; });
