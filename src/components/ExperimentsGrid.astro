@@ -16,6 +16,10 @@ const statusLabels = {
   planned: "Planned",
   completed: "Completed",
 } as const;
+
+function isExternalHref(href: string) {
+  return href.startsWith('http://') || href.startsWith('https://');
+}
 ---
 <div class="exp-grid reveal">
   {items.map(item => (
@@ -23,8 +27,8 @@ const statusLabels = {
       <a
         class="exp-card exp-card-link"
         href={item.href}
-        target="_blank"
-        rel="noreferrer"
+        target={isExternalHref(item.href) ? "_blank" : undefined}
+        rel={isExternalHref(item.href) ? "noreferrer" : undefined}
       >
         <span class={`exp-status status-${item.status}`}>
           {statusLabels[item.status]}

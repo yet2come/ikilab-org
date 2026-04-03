@@ -65,6 +65,8 @@ sourceHref: https://kodomo-senkyo.com/zenkoku/
 
 *参考: [全国こども選挙実行委員会の方針](https://kodomo-senkyo.com/zenkoku/)*
 
+*実際の特設サイト: [いきこども選挙](https://kodomo-senkyo.ikilab.org/)*
+
 ## Outcome
 
 ### 実施して何が実現したか
