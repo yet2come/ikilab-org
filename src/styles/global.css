@@ -1226,22 +1226,15 @@ footer {
 
 .case-timeline-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
-  border: var(--border);
+  grid-template-columns: 1fr;
 }
 
 .case-timeline-item {
-  padding: 24px 28px;
-  border-right: 1px solid var(--gray-100);
+  padding: 20px 0;
   border-bottom: 1px solid var(--gray-100);
 }
 
-.case-timeline-item:nth-child(2n) {
-  border-right: none;
-}
-
-.case-timeline-item:nth-last-child(-n+2) {
+.case-timeline-item:last-child {
   border-bottom: none;
 }
 
@@ -1254,6 +1247,17 @@ footer {
 .case-timeline-item p,
 .case-cta p {
   color: var(--gray-700);
+}
+
+.case-source-note {
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.case-source-note a {
+  color: var(--red);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 43, 30, 0.3);
 }
 
 .case-cta {
@@ -1280,18 +1284,6 @@ footer {
 
   .case-timeline-grid {
     grid-template-columns: 1fr;
-  }
-
-  .case-timeline-item:nth-child(2n) {
-    border-right: 1px solid var(--gray-100);
-  }
-
-  .case-timeline-item:nth-last-child(-n+2) {
-    border-bottom: 1px solid var(--gray-100);
-  }
-
-  .case-timeline-item:last-child {
-    border-bottom: none;
   }
 
   .case-cta {
