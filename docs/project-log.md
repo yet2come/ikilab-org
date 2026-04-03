@@ -2,7 +2,7 @@
 
 ## 概要
 
-`docs/crossport-top-mockup-C.html`（CROSSPORT名義のデザインモック）をベースに、**IKILAB.ORG** として新規ウェブサイトを構築。3段階のバリエーション（パターンA/B/C）を作成し、比較検討できるようにした。
+`docs/crossport-top-mockup-C.html`（CROSSPORT名義のデザインモック）をベースに、**IKILAB.ORG** として新規ウェブサイトを構築。3段階のバリエーション（パターンA/B/C）を作成・比較した結果、**パターンAを採用**し、サイトルート（`/`）で運用中。
 
 ## 技術スタック
 
@@ -14,18 +14,15 @@
 | フォント | Google Fonts（Instrument Serif, JetBrains Mono, Zen Kaku Gothic New, Noto Sans JP） |
 | サイトマップ | @astrojs/sitemap |
 
-## 3パターンの定義
+## 3パターンの比較（完了）
 
-| パターン | 変更内容 | パス |
+比較検討の結果、**パターンAを採用**。パターンB/Cのページ・データファイルは削除済み。
+
+| パターン | 変更内容 | 結果 |
 |---|---|---|
-| **A: 名称のみ** | CROSSPORT → IKILAB に名称差し替え。デザイン・構成・コンテンツはモックのまま | `/pattern-a/` |
-| **B: 名称＋コンテンツ** | 名称変更に加え、説明文・セクション内容をIKILABの文脈に合わせて書き換え | `/pattern-b/` |
-| **C: 名称＋コンテンツ＋ナビ構成** | 名称・コンテンツに加え、ナビゲーション・ページ構成もIKILABとして再設計 | `/pattern-c/` |
-
-### パターン別ナビ構成
-
-- **A / B**: Concept / Experiments / Connect / Facility / Column / EN / Contact
-- **C**: About / Lab / Projects / Space / Journal / Contact
+| **A: 名称のみ** | CROSSPORT → IKILAB に名称差し替え。デザイン・構成・コンテンツはモックのまま | **採用** → `/` に昇格 |
+| **B: 名称＋コンテンツ** | 名称変更に加え、説明文・セクション内容をIKILABの文脈に合わせて書き換え | 削除済み |
+| **C: 名称＋コンテンツ＋ナビ構成** | 名称・コンテンツに加え、ナビゲーション・ページ構成もIKILABとして再設計 | 削除済み |
 
 ## ディレクトリ構成
 
@@ -46,30 +43,22 @@ src/
   styles/
     global.css              # CSS変数、リセット、全コンポーネントスタイル
   data/
-    pattern-a.ts            # パターンAのコンテンツデータ
-    pattern-b.ts            # パターンBのコンテンツデータ
-    pattern-c.ts            # パターンCのコンテンツデータ
+    pattern-a.ts            # サイトコンテンツデータ（採用パターンA）
   pages/
-    index.astro             # パターン選択ハブ
+    index.astro             # トップページ
+    [...slug].astro         # 下層ページ（concept, contact 等）
     404.astro               # 404ページ
-    pattern-a/
-      index.astro           # パターンA トップ
-      [...slug].astro       # パターンA 下層ページ
-    pattern-b/
-      index.astro           # パターンB トップ
-      [...slug].astro       # パターンB 下層ページ
-    pattern-c/
-      index.astro           # パターンC トップ
-      [...slug].astro       # パターンC 下層ページ
+    pop2/
+      index.astro           # 人口カウンター比較ページ
 docs/
   crossport-top-mockup-C.html  # 元モック（参照用）
 ```
 
 ## 設計方針
 
-- **コンポーネント駆動**: 全セクションを props ベースのコンポーネントに分離し、3パターンで再利用
-- **データ分離**: 各パターンのコンテンツは `src/data/` の TypeScript ファイルに集約。コンポーネントはデータに依存しない
-- **動的ルーティング**: `[...slug].astro` で各パターンの下層ページを自動生成
+- **コンポーネント駆動**: 全セクションを props ベースのコンポーネントに分離
+- **データ分離**: コンテンツは `src/data/pattern-a.ts` に集約。コンポーネントはデータに依存しない
+- **動的ルーティング**: `[...slug].astro` でサブページ（concept, contact 等）を自動生成
 
 ## デプロイ経緯
 
@@ -121,8 +110,8 @@ docs/
 
 ## 次のステップ
 
-- [ ] 3パターンの比較・最終選定
-- [ ] 選定パターンをルート `/` に昇格
+- [x] 3パターンの比較・最終選定 → パターンA採用
+- [x] 選定パターンをルート `/` に昇格
 - [ ] 実写真・実コンテンツの差し替え
 - [ ] 下層ページの実装
 - [ ] OGP 画像の作成
