@@ -8,6 +8,7 @@ interface MarkdownModule {
     keyFacts: { label: string; value: string }[];
     summaryTitle: string;
     summaryPoints: string[];
+    timelineTitle: string;
     timeline: { date: string; body: string }[];
     ctaTitle: string;
     ctaBody: string;
