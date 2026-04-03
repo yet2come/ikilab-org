@@ -19,8 +19,8 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
     <div class="nav-spacer"></div>
     <div class="header-pop" id="header-pop">
       <div class="header-pop-label">
-        <span>壱岐市</span>
-        <span>推計人口</span>
+        <span id="header-pop-year">2000年（平成12年）</span>
+        <span>壱岐市推計人口</span>
       </div>
       <div class="header-pop-display">
         <div class="header-pop-slot"><span id="hpd-0">3</span></div>
@@ -31,8 +31,8 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
         <div class="header-pop-slot"><span id="hpd-4">7</span></div>
       </div>
       <div class="header-pop-meta">
-        <span class="header-pop-year" id="header-pop-year">2000年</span>
         <span class="header-pop-delta" id="header-pop-delta"></span>
+        <span class="header-pop-pct" id="header-pop-pct"></span>
       </div>
     </div>
     <a href={contactHref} class="nav-contact">Contact</a>
@@ -69,11 +69,18 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
     return popData[0].pop;
   }
 
+  function toJapaneseEra(year: number): string {
+    if (year >= 2019) return `令和${year - 2018}年`;
+    if (year >= 1989) return `平成${year - 1988}年`;
+    return `昭和${year - 1925}年`;
+  }
+
   function initHeaderPop() {
     const yearEl = document.getElementById('header-pop-year');
     const digitEls = [0,1,2,3,4].map(i => document.getElementById(`hpd-${i}`));
     const deltaEl = document.getElementById('header-pop-delta');
-    if (!yearEl || digitEls.some(e => !e) || !deltaEl) return;
+    const pctEl = document.getElementById('header-pop-pct');
+    if (!yearEl || digitEls.some(e => !e) || !deltaEl || !pctEl) return;
 
     const basePop = popData[0].pop;
     const startYear = popData[0].year;
@@ -83,19 +90,22 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
       const docH = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docH > 0 ? Math.max(0, Math.min(1, window.scrollY / docH)) : 0;
       const currentYear = startYear + progress * (endYear - startYear);
+      const roundedYear = Math.round(currentYear);
       const currentPop = lerpPop(currentYear);
       const diff = currentPop - basePop;
       const pct = ((diff / basePop) * 100).toFixed(1);
 
-      yearEl.textContent = `${Math.round(currentYear)}年`;
+      yearEl.textContent = `${roundedYear}年（${toJapaneseEra(roundedYear)}）`;
 
       const digits = String(currentPop).padStart(5, '0');
       digitEls.forEach((el, i) => { if (el) el.textContent = digits[i]; });
 
       if (diff < 0) {
-        deltaEl.textContent = `${diff.toLocaleString('en-US')}人（${pct}%）`;
+        deltaEl.textContent = `${diff.toLocaleString('en-US')}人`;
+        pctEl.textContent = `${pct}%`;
       } else {
         deltaEl.textContent = '';
+        pctEl.textContent = '';
       }
     }
 
