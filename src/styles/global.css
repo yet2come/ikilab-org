@@ -246,12 +246,12 @@ header {
   .nav-contact { display: none; }
   .logo { padding: 0 12px; flex-shrink: 0; }
   .header-pop { flex: 1 1 0; justify-content: center; min-width: 0; overflow: hidden; }
-  .header-pop-label { display: none; }
-  .header-pop-meta { display: none; }
   .header-pop-display { padding: 2px 2px; }
   .header-pop-slot { width: 18px; height: 26px; }
   .header-pop-slot span { width: 18px; height: 26px; font-size: 14px; }
   .header-pop-comma { font-size: 12px; }
+  .header-pop-label span { font-size: 8px; }
+  .header-pop-meta span { font-size: 8px; }
   .mobile-menu-btn { display: flex; align-items: center; flex-shrink: 0; padding: 0 14px; }
 }
 
