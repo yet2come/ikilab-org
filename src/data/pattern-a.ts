@@ -50,7 +50,7 @@ export const patternA = {
     title: "Projects — 進行中のテーマ",
     link: { label: "View All →", href: "/projects" },
     items: [
-      { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の分散を解消し、地域内外の人が必要な情報にたどり着ける状態をつくるための情報基盤づくり。", href: "/cases/iki-calendar" },
+      { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の分散を解消し、地域内外の人が必要な情報にたどり着ける状態をつくるための情報基盤づくり。", href: "/projects/iki-calendar" },
       { status: "active", title: "離島型モビリティ実証", body: "電動トゥクトゥクやレンタカーを通じて、島内移動の選択肢を増やし、観光と暮らしの両面で回遊性を高める実証。" },
       { status: "completed", title: "いきこども選挙", body: "こどもが候補者に質問し、聞き、選び、届けるプロセスを通じて、主権者教育を地域の実践として形にした取り組み。", href: "/cases/iki-kodomo-senkyo" },
       { status: "planned", title: "離島型ジョブマッチング", body: "島内事業者の課題と島外人材のスキルを接続し、単発支援ではなく継続的な関わりを生む仕組みづくり。" },
@@ -69,7 +69,6 @@ export const patternA = {
       { num: "8", unit: "", label: "Migrations" },
     ],
     cases: [
-      { tag: "Information / Community", title: "壱岐カレンダー", body: "島内に分散するイベント情報を一つのカレンダーに集約。住民にも観光客にも開かれた情報基盤として運用中。", href: "/cases/iki-calendar" },
       { tag: "Education / Community", title: "壱岐こども選挙", body: "条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践を、半年近い準備期間をかけて実装しました。", href: "/cases/iki-kodomo-senkyo" },
       { tag: "Dialogue / Community", title: "サクセンカイギ", body: "新しいアイデアを持ち寄り、対話を通じて磨き、島での実践につなげる場として運営。構想段階のアイデアを前に進める土壌を育てています。" },
       { tag: "Education / Community", title: "しまチャレ2024 協賛", body: "長崎県主催の島しょ地域ビジネスチャレンジにIKILAB特別賞を提供。次の担い手が地域で挑戦しやすい環境づくりを後押ししました。" },

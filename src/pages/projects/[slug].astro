@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { patternA as data } from '../../data/pattern-a';
+import { projects } from '../../data/projects';
+import '../../styles/global.css';
+
+export function getStaticPaths() {
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const Content = entry.Content;
+const pageTitle = `${entry.title} — IKILAB`;
+const pageDescription = entry.description;
+---
+<Base title={pageTitle} description={pageDescription}>
+  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+
+  <section class="project-hero">
+    <div class="project-hero-main">
+      <div class="project-status">{entry.status}</div>
+      <h1>{entry.title}</h1>
+      <div class="hero-en">{entry.en}</div>
+      <p>{entry.lead}</p>
+      <div class="project-hero-actions">
+        <a href="/projects" class="btn-brutal btn-ghost">一覧に戻る</a>
+        <a href="/contact" class="btn-brutal btn-fill">相談する</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-snapshot reveal">
+    <div class="project-section-head">
+      <div class="project-section-kicker">Snapshot</div>
+      <h2>Project Snapshot</h2>
+    </div>
+    <div class="project-snapshot-grid">
+      {entry.snapshot.map((item) => (
+        <div class="project-snapshot-card">
+          <div class="project-snapshot-label">{item.label}</div>
+          <p>{item.value}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="project-body">
+    <div class="project-markdown reveal">
+      <Content />
+    </div>
+  </section>
+
+  <section class="project-focus reveal">
+    <div class="project-section-head">
+      <div class="project-section-kicker">Current Focus</div>
+      <h2>現在の取り組み</h2>
+    </div>
+    <div class="project-list-grid">
+      {entry.focus.map((item, index) => (
+        <div class="project-list-card">
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <p>{item}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="project-phases reveal">
+    <div class="project-section-head">
+      <div class="project-section-kicker">Progress</div>
+      <h2>進行フェーズ</h2>
+    </div>
+    <div class="project-phase-list">
+      {entry.phases.map((phase) => (
+        <div class="project-phase-item">
+          <div class="project-phase-label">{phase.label}</div>
+          <div class="project-phase-content">
+            <h3>{phase.title}</h3>
+            <p>{phase.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="project-questions reveal">
+    <div class="project-section-head">
+      <div class="project-section-kicker">Open Questions</div>
+      <h2>未解決の論点</h2>
+    </div>
+    <div class="project-question-list">
+      {entry.questions.map((item) => (
+        <div class="project-question-item">
+          <p>{item}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="project-cta reveal">
+    <div>
+      <div class="project-section-kicker">Connect</div>
+      <h2>{entry.ctaTitle}</h2>
+      <p>{entry.ctaBody}</p>
+    </div>
+    <div class="project-cta-actions">
+      {entry.externalLabel && entry.externalHref && (
+        <a href={entry.externalHref} target="_blank" rel="noreferrer" class="btn-brutal btn-ghost">{entry.externalLabel}</a>
+      )}
+      <a href="/contact" class="btn-brutal btn-fill">お問い合わせ →</a>
+    </div>
+  </section>
+
+  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+</Base>

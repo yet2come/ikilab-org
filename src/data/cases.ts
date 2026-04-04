@@ -30,4 +30,4 @@ export const cases = Object.entries(modules).map(([path, mod]) => {
     ...mod.frontmatter,
     Content: mod.Content,
   };
-});
+}).filter((entry) => entry.slug !== 'iki-calendar');
