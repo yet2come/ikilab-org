@@ -1,8 +1,8 @@
 export const homeData = {
   hero: {
     tag: "IKI ISLAND — 33.7487°N, 129.6918°E",
-    titleHtml: "離島という制約環境から、<br><span style=\"white-space: nowrap;\">実験・実証・実装を進める。</span>",
-    en: "From island constraints to real implementation.",
+    titleHtml: "離島という制約環境を、<br><span style=\"white-space: nowrap;\">可能性に変える。</span>",
+    en: "From island constraints to new possibilities.",
     bodyHtml:
       'IKILABは、壱岐島を舞台に、地域課題に対する仮説を<strong>小さく試し、確かめ、現場で回る仕組みへつなげる</strong>実践拠点です。島内外の人と知恵を接続しながら、実験で終わらないプロジェクトを進めています。',
     actions: [
