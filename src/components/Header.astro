@@ -2,9 +2,9 @@
 interface Props {
   brand: string;
   brandHref?: string;
-  navItems: { label: string; href: string }[];
+  navItems: { label: string; labelJa?: string; href: string }[];
   contactHref: string;
-  mobileMenuVariant?: 'panel' | 'grid' | 'editorial' | 'slide' | 'minimal' | 'bottom-sheet';
+  mobileMenuVariant?: 'panel' | 'grid' | 'editorial' | 'slide' | 'minimal' | 'bottom-sheet' | 'slide-a' | 'slide-b' | 'slide-c';
 }
 
 const { brand, brandHref = "/", navItems, contactHref, mobileMenuVariant = 'panel' } = Astro.props;
@@ -57,18 +57,27 @@ const menuId = `mobile-menu-${mobileMenuVariant}`;
       {navItems.map((item, index) => (
         <a href={item.href} class="mobile-menu-link" data-mobile-menu-link>
           <span class="mobile-menu-index">{String(index + 1).padStart(2, '0')}</span>
-          <span class="mobile-menu-label">{item.label}</span>
+          <span class="mobile-menu-label">
+            {item.label}
+            {item.labelJa && <span class="mobile-menu-label-ja">{item.labelJa}</span>}
+          </span>
           <span class="mobile-menu-arrow">→</span>
         </a>
       ))}
       <a href="/population/" class="mobile-menu-link mobile-menu-link--population" data-mobile-menu-link>
         <span class="mobile-menu-index">P0</span>
-        <span class="mobile-menu-label">Population</span>
+        <span class="mobile-menu-label">
+          Population
+          <span class="mobile-menu-label-ja">人口推移</span>
+        </span>
         <span class="mobile-menu-arrow">→</span>
       </a>
       <a href={contactHref} class="mobile-menu-link mobile-menu-link--contact" data-mobile-menu-link>
         <span class="mobile-menu-index">C0</span>
-        <span class="mobile-menu-label">Contact</span>
+        <span class="mobile-menu-label">
+          Contact
+          <span class="mobile-menu-label-ja">お問い合わせ</span>
+        </span>
         <span class="mobile-menu-arrow">→</span>
       </a>
     </nav>

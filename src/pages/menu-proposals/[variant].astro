@@ -21,6 +21,18 @@ const variants = {
     title: 'Slide Drawer',
     body: '右端からスライドインするドロワー型です。ホバーで左ボーダーにアクセントカラーが入ります。',
   },
+  'slide-a': {
+    title: 'Slide Compact',
+    body: 'Slideベースのナロー版。幅240px、モノスペース強調、インデックス番号を大きく表示します。',
+  },
+  'slide-b': {
+    title: 'Slide Dark',
+    body: 'Slideベースのダーク版。セリフ体の英語ラベルと赤アクセントでブランド感を重視します。',
+  },
+  'slide-c': {
+    title: 'Slide Wide',
+    body: 'Slideベースのワイド版。カード風リンクと紙のような背景で柔らかい印象を与えます。',
+  },
   minimal: {
     title: 'Minimal Card',
     body: '画面中央に小さなカードで表示する案です。装飾を削ぎ落とし、余白で呼吸感を出します。',
@@ -32,7 +44,7 @@ const variants = {
 } as const;
 
 export function getStaticPaths() {
-  return ['panel', 'grid', 'editorial', 'slide', 'minimal', 'bottom-sheet'].map((variant) => ({
+  return ['panel', 'grid', 'editorial', 'slide', 'slide-a', 'slide-b', 'slide-c', 'minimal', 'bottom-sheet'].map((variant) => ({
     params: { variant },
     props: { variant },
   }));

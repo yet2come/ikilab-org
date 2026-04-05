@@ -4,11 +4,11 @@ export const siteData = {
   brandDesc: "An island lab for experimentation,\nvalidation, and implementation.",
   copyright: "© 2025 IKILAB. All rights reserved.",
   navItems: [
-    { label: "Concept", href: "/concept" },
-    { label: "Projects", href: "/projects" },
-    { label: "Cases", href: "/cases" },
-    { label: "Connect", href: "/connect" },
-    { label: "Access", href: "/#access" },
+    { label: "Concept", labelJa: "コンセプト", href: "/concept" },
+    { label: "Projects", labelJa: "進行中のテーマ", href: "/projects" },
+    { label: "Cases", labelJa: "事例", href: "/cases" },
+    { label: "Connect", labelJa: "一緒に取り組む", href: "/connect" },
+    { label: "Access", labelJa: "アクセス", href: "/#access" },
   ],
   contactHref: "/contact",
   footerColumns: [
