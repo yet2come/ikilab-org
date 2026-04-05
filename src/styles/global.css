@@ -465,97 +465,111 @@ header {
   color: rgba(255,255,255,0.5);
 }
 
-/* --- A1: Serif + Gothic --- */
-/* Instrument Serif（英語）+ Zen Kaku Gothic New（日本語）。クラシックで知的な印象 */
-.mobile-menu--slide-a1 .mobile-menu-label {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 16px;
-  letter-spacing: 0.01em;
-}
-.mobile-menu--slide-a1 .mobile-menu-label-ja {
-  font-family: var(--font-jp);
-  font-weight: 500;
-}
-
-/* --- A2: Body統一 --- */
-/* Noto Sans JP で英日統一。すっきり読みやすい */
-.mobile-menu--slide-a2 .mobile-menu-label {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0;
-}
-.mobile-menu--slide-a2 .mobile-menu-label-ja {
-  font-family: var(--font-body);
-  font-weight: 400;
-}
-.mobile-menu--slide-a2 .mobile-menu-index {
-  font-family: var(--font-body);
-  font-weight: 700;
-}
-
-/* --- A3: Gothic統一 --- */
-/* Zen Kaku Gothic New で英日統一。太めウェイトで力強い */
-.mobile-menu--slide-a3 .mobile-menu-label {
-  font-family: var(--font-jp);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-}
-.mobile-menu--slide-a3 .mobile-menu-label-ja {
-  font-family: var(--font-jp);
-  font-weight: 400;
-}
-
-/* --- A4: Serif Italic + Body --- */
-/* Instrument Serif イタリック（英語）+ Noto Sans JP（日本語）。エディトリアル風 */
-.mobile-menu--slide-a4 .mobile-menu-label {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 17px;
-  letter-spacing: 0.01em;
-}
-.mobile-menu--slide-a4 .mobile-menu-label-ja {
-  font-family: var(--font-body);
-  font-style: normal;
-  font-weight: 400;
-}
-
-/* --- A5: Mono全振り --- */
-/* JetBrains Mono で英日両方。ターミナル的・テック感全開 */
-.mobile-menu--slide-a5 .mobile-menu-label {
+/* === Mono base style (shared by all variants) === */
+[class*="mobile-menu--slide-a"] .mobile-menu-label {
   font-family: var(--font-mono);
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.mobile-menu--slide-a5 .mobile-menu-label-ja {
+[class*="mobile-menu--slide-a"] .mobile-menu-label-ja {
   font-family: var(--font-mono), var(--font-body);
   font-size: 10px;
   letter-spacing: 0;
   text-transform: none;
 }
-.mobile-menu--slide-a5 .mobile-menu-index {
-  font-size: 12px;
-  font-weight: 400;
+
+/* --- A1: Red Bar Slide --- */
+/* ホバーで左ボーダーが赤くスライドイン */
+.mobile-menu--slide-a1 .mobile-menu-link {
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, padding-left 0.2s;
+}
+.mobile-menu--slide-a1 .mobile-menu-link:hover {
+  border-left-color: var(--red);
+  padding-left: 18px;
 }
 
-/* --- A6: Serif大 + Gothic小 --- */
-/* Instrument Serif 大きめ（英語）+ Zen Kaku Gothic New 小さめ（日本語）。コントラスト強め */
-.mobile-menu--slide-a6 .mobile-menu-label {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.1;
+/* --- A2: BG Fill --- */
+/* ホバーで背景が黒く塗りつぶされ、テキストが白に反転 */
+.mobile-menu--slide-a2 .mobile-menu-link {
+  transition: background 0.2s, color 0.2s;
 }
-.mobile-menu--slide-a6 .mobile-menu-label-ja {
-  font-family: var(--font-jp);
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+.mobile-menu--slide-a2 .mobile-menu-link:hover {
+  background: var(--black);
+  color: var(--white);
+}
+.mobile-menu--slide-a2 .mobile-menu-link:hover .mobile-menu-index,
+.mobile-menu--slide-a2 .mobile-menu-link:hover .mobile-menu-arrow {
+  color: rgba(255,255,255,0.5);
+}
+.mobile-menu--slide-a2 .mobile-menu-link:hover .mobile-menu-label-ja {
+  color: rgba(255,255,255,0.6);
+}
+
+/* --- A3: Arrow Slide --- */
+/* ホバーで矢印が右に移動し、ラベルも少し右にずれる */
+.mobile-menu--slide-a3 .mobile-menu-label {
+  transition: transform 0.2s;
+}
+.mobile-menu--slide-a3 .mobile-menu-arrow {
+  transition: transform 0.2s, color 0.2s;
+}
+.mobile-menu--slide-a3 .mobile-menu-link:hover .mobile-menu-label {
+  transform: translateX(4px);
+}
+.mobile-menu--slide-a3 .mobile-menu-link:hover .mobile-menu-arrow {
+  transform: translateX(6px);
+  color: var(--red);
+}
+
+/* --- A4: Index Highlight --- */
+/* ホバーでインデックス番号が赤く大きくなる */
+.mobile-menu--slide-a4 .mobile-menu-index {
+  transition: color 0.2s, transform 0.2s;
+}
+.mobile-menu--slide-a4 .mobile-menu-link:hover .mobile-menu-index {
+  color: var(--red);
+  transform: scale(1.3);
+}
+
+/* --- A5: Underline Expand --- */
+/* ホバーでラベル下にアンダーラインが左から伸びる */
+.mobile-menu--slide-a5 .mobile-menu-label {
+  position: relative;
+}
+.mobile-menu--slide-a5 .mobile-menu-label::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  transition: width 0.3s ease;
+}
+.mobile-menu--slide-a5 .mobile-menu-link:hover .mobile-menu-label::after {
+  width: 100%;
+}
+
+/* --- A6: Stagger Fade --- */
+/* メニューオープン時にリンクが順にフェードイン */
+.mobile-menu--slide-a6 .mobile-menu-link {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.mobile-menu--slide-a6.is-open .mobile-menu-link { opacity: 1; transform: translateX(0); }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(2) { transition-delay: 0.10s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(4) { transition-delay: 0.20s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(5) { transition-delay: 0.25s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(6) { transition-delay: 0.30s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(7) { transition-delay: 0.35s; }
+.mobile-menu--slide-a6 .mobile-menu-link:hover .mobile-menu-arrow {
+  color: var(--red);
 }
 
 .menu-variant-toggle {
