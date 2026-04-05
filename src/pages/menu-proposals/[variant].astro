@@ -5,46 +5,38 @@ import { siteData } from '../../data/site';
 import '../../styles/global.css';
 
 const variants = {
-  panel: {
-    title: 'Panel Drop',
-    body: '最小変更で既存のヘッダー文法に寄せた案です。横並びナビをそのまま縦積みに変換します。',
-  },
-  grid: {
-    title: 'Grid Card',
-    body: '情報をカードとして並べる案です。回遊性を保ちつつ、メニュー自体に少し楽しさを持たせています。',
-  },
-  editorial: {
-    title: 'Editorial Overlay',
-    body: 'ブランド表現を優先する全面オーバーレイ案です。没入感は強いですが、UIの主張も強めです。',
-  },
-  slide: {
-    title: 'Slide Drawer',
-    body: '右端からスライドインするドロワー型です。ホバーで左ボーダーにアクセントカラーが入ります。',
-  },
   'slide-a': {
-    title: 'Slide Compact',
-    body: 'Slideベースのナロー版。幅240px、モノスペース強調、インデックス番号を大きく表示します。',
+    title: 'Slide Compact (Base)',
+    body: 'ベース案。JetBrains Mono + Zen Kaku Gothic New。モノスペース強調のコンパクト設計。',
   },
-  'slide-b': {
-    title: 'Slide Dark',
-    body: 'Slideベースのダーク版。セリフ体の英語ラベルと赤アクセントでブランド感を重視します。',
+  'slide-a1': {
+    title: 'Inter',
+    body: 'モダンなUI系サンセリフ。シンプルで読みやすく、アプリ的な印象を与えます。',
   },
-  'slide-c': {
-    title: 'Slide Wide',
-    body: 'Slideベースのワイド版。カード風リンクと紙のような背景で柔らかい印象を与えます。',
+  'slide-a2': {
+    title: 'DM Serif Display',
+    body: 'クラシックなセリフ体。格式と温かみのある印象。英語ラベルに存在感。',
   },
-  minimal: {
-    title: 'Minimal Card',
-    body: '画面中央に小さなカードで表示する案です。装飾を削ぎ落とし、余白で呼吸感を出します。',
+  'slide-a3': {
+    title: 'Space Grotesk',
+    body: 'テック系グロテスク。幾何学的でモダンなサンセリフ。インデックスにも適用。',
   },
-  'bottom-sheet': {
-    title: 'Bottom Sheet',
-    body: '画面下部からスライドアップする案です。親指操作を意識したモバイルアプリ的アプローチ。',
+  'slide-a4': {
+    title: 'Playfair Display',
+    body: 'エレガントなセリフ体。コントラストの強い優雅なスタイル。',
+  },
+  'slide-a5': {
+    title: 'IBM Plex Sans',
+    body: '堅実な企業系サンセリフ。信頼感と可読性のバランスが良い。',
+  },
+  'slide-a6': {
+    title: 'Cormorant Garamond',
+    body: '繊細な古典セリフ。上品で知的な印象。やや大きめのフォントサイズ。',
   },
 } as const;
 
 export function getStaticPaths() {
-  return ['panel', 'grid', 'editorial', 'slide', 'slide-a', 'slide-b', 'slide-c', 'minimal', 'bottom-sheet'].map((variant) => ({
+  return ['slide-a', 'slide-a1', 'slide-a2', 'slide-a3', 'slide-a4', 'slide-a5', 'slide-a6'].map((variant) => ({
     params: { variant },
     props: { variant },
   }));

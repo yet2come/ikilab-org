@@ -4,10 +4,10 @@ interface Props {
   brandHref?: string;
   navItems: { label: string; labelJa?: string; href: string }[];
   contactHref: string;
-  mobileMenuVariant?: 'panel' | 'grid' | 'editorial' | 'slide' | 'minimal' | 'bottom-sheet' | 'slide-a' | 'slide-b' | 'slide-c';
+  mobileMenuVariant?: 'slide-a' | 'slide-a1' | 'slide-a2' | 'slide-a3' | 'slide-a4' | 'slide-a5' | 'slide-a6';
 }
 
-const { brand, brandHref = "/", navItems, contactHref, mobileMenuVariant = 'panel' } = Astro.props;
+const { brand, brandHref = "/", navItems, contactHref, mobileMenuVariant = 'slide-a' } = Astro.props;
 const menuId = `mobile-menu-${mobileMenuVariant}`;
 ---
 <header class="site-header" data-mobile-menu-variant={mobileMenuVariant}>

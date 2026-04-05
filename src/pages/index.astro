@@ -19,15 +19,13 @@ import '../styles/global.css';
   <div class="menu-variant-toggle" data-menu-variant-toggle>
     <div class="menu-variant-toggle-label">Mobile Menu</div>
     <div class="menu-variant-toggle-buttons">
-      <button type="button" class="is-active" data-menu-variant-button data-variant="panel">01 Panel</button>
-      <button type="button" data-menu-variant-button data-variant="grid">02 Grid</button>
-      <button type="button" data-menu-variant-button data-variant="editorial">03 Editorial</button>
-      <button type="button" data-menu-variant-button data-variant="slide">04 Slide</button>
-      <button type="button" data-menu-variant-button data-variant="slide-a">04A Compact</button>
-      <button type="button" data-menu-variant-button data-variant="slide-b">04B Dark</button>
-      <button type="button" data-menu-variant-button data-variant="slide-c">04C Wide</button>
-      <button type="button" data-menu-variant-button data-variant="minimal">05 Minimal</button>
-      <button type="button" data-menu-variant-button data-variant="bottom-sheet">06 Bottom</button>
+      <button type="button" class="is-active" data-menu-variant-button data-variant="slide-a">Base</button>
+      <button type="button" data-menu-variant-button data-variant="slide-a1">Inter</button>
+      <button type="button" data-menu-variant-button data-variant="slide-a2">DM Serif</button>
+      <button type="button" data-menu-variant-button data-variant="slide-a3">Space</button>
+      <button type="button" data-menu-variant-button data-variant="slide-a4">Playfair</button>
+      <button type="button" data-menu-variant-button data-variant="slide-a5">IBM Plex</button>
+      <button type="button" data-menu-variant-button data-variant="slide-a6">Cormorant</button>
     </div>
   </div>
 
@@ -69,7 +67,7 @@ import '../styles/global.css';
     const menu = document.querySelector('[data-mobile-menu]');
     if (!toggle || !buttons.length || !header || !menu) return;
 
-    const variantClasses = ['mobile-menu--panel', 'mobile-menu--grid', 'mobile-menu--editorial', 'mobile-menu--slide', 'mobile-menu--slide-a', 'mobile-menu--slide-b', 'mobile-menu--slide-c', 'mobile-menu--minimal', 'mobile-menu--bottom-sheet'];
+    const variantClasses = ['mobile-menu--slide-a', 'mobile-menu--slide-a1', 'mobile-menu--slide-a2', 'mobile-menu--slide-a3', 'mobile-menu--slide-a4', 'mobile-menu--slide-a5', 'mobile-menu--slide-a6'];
 
     function setVariant(variant) {
       header.setAttribute('data-mobile-menu-variant', variant);
