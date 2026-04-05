@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { cases } from '../../data/cases';
-import { patternA as data } from '../../data/pattern-a';
+import { siteData } from '../../data/site';
 import '../../styles/global.css';
 
 export function getStaticPaths() {
@@ -19,7 +19,7 @@ const pageTitle = `${entry.title} — IKILAB`;
 const pageDescription = entry.description;
 ---
 <Base title={pageTitle} description={pageDescription}>
-  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+  <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
 
   <section class="case-hero">
     <div class="case-hero-main">
@@ -89,5 +89,5 @@ const pageDescription = entry.description;
     <a href="/contact" class="btn-brutal btn-fill">お問い合わせ →</a>
   </section>
 
-  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+  <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
 </Base>

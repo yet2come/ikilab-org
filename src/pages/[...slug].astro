@@ -3,11 +3,11 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { cases } from '../data/cases';
-import { patternA as data } from '../data/pattern-a';
+import { siteData } from '../data/site';
 import '../styles/global.css';
 
 export function getStaticPaths() {
-  return data.subpages.map((page) => ({
+  return siteData.subpages.map((page) => ({
     params: { slug: page.slug },
     props: { page },
   }));
@@ -16,7 +16,7 @@ export function getStaticPaths() {
 const { page } = Astro.props;
 ---
 <Base title={`${page.titleJa} — IKILAB`} description={page.description}>
-  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+  <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
 
   <div class="subpage-hero">
     <h1>{page.titleJa}</h1>
@@ -49,5 +49,5 @@ const { page } = Astro.props;
     </div>
   )}
 
-  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+  <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
 </Base>

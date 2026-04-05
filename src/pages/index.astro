@@ -9,36 +9,37 @@ import ExperimentsGrid from '../components/ExperimentsGrid.astro';
 import ProofSection from '../components/ProofSection.astro';
 import ConnectSection from '../components/ConnectSection.astro';
 import InfraSection from '../components/InfraSection.astro';
-import { patternA as data } from '../data/pattern-a';
+import { homeData } from '../data/home';
+import { siteData } from '../data/site';
 import '../styles/global.css';
 ---
 <Base title="IKILAB — 島内外を接続する実験装置" description="IKILABは、島内外を接続する実験装置です。人口25,000人の壱岐島を舞台に、地域の課題を構造的に解き、新しい接続を生み出します。">
-  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+  <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
 
-  <HeroSection {...data.hero} />
+  <HeroSection {...homeData.hero} />
 
-  <SectionBar num={data.why.num} title={data.why.title} link={data.why.link} />
-  <WhySection items={data.why.items} />
+  <SectionBar num={homeData.why.num} title={homeData.why.title} link={homeData.why.link} />
+  <WhySection items={homeData.why.items} />
 
-  <SectionBar num={data.experiments.num} title={data.experiments.title} link={data.experiments.link} />
-  <ExperimentsGrid items={data.experiments.items} />
+  <SectionBar num={homeData.experiments.num} title={homeData.experiments.title} link={homeData.experiments.link} />
+  <ExperimentsGrid items={homeData.experiments.items} />
 
-  <SectionBar num={data.proof.num} title={data.proof.title} link={data.proof.link} />
-  <ProofSection stats={data.proof.stats} cases={data.proof.cases} />
+  <SectionBar num={homeData.proof.num} title={homeData.proof.title} link={homeData.proof.link} />
+  <ProofSection stats={homeData.proof.stats} cases={homeData.proof.cases} />
 
   <div class="connect-section">
-    <SectionBar num={data.connect.num} title={data.connect.title} dark={true} />
-    <ConnectSection cards={data.connect.cards} />
+    <SectionBar num={homeData.connect.num} title={homeData.connect.title} dark={true} />
+    <ConnectSection cards={homeData.connect.cards} />
   </div>
 
-  <SectionBar num={data.infra.num} title={data.infra.title} link={data.infra.link} />
+  <SectionBar num={homeData.infra.num} title={homeData.infra.title} link={homeData.infra.link} />
   <InfraSection
-    name={data.infra.name}
-    nameEn={data.infra.nameEn}
-    photoPlaceholder={data.infra.photoPlaceholder}
-    table={data.infra.table}
-    detailHref={data.infra.detailHref}
+    name={homeData.infra.name}
+    nameEn={homeData.infra.nameEn}
+    photoPlaceholder={homeData.infra.photoPlaceholder}
+    table={homeData.infra.table}
+    detailHref={homeData.infra.detailHref}
   />
 
-  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+  <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
 </Base>

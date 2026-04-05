@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { patternA as data } from '../../data/pattern-a';
+import { siteData } from '../../data/site';
 import '../../styles/global.css';
 
 const popData = [
@@ -22,7 +22,7 @@ const popData = [
 const basePop = popData[0].pop;
 ---
 <Base title="壱岐市の将来人口推計 — IKILAB" description="国立社会保障・人口問題研究所（社人研）の令和5年推計に基づく、壱岐市の人口推移と将来推計データ。">
-  <Header brand={data.brand} brandHref="/" navItems={data.navItems} contactHref={data.contactHref} />
+  <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
 
   <div class="subpage-hero">
     <h1>壱岐市の将来人口推計</h1>
@@ -170,7 +170,7 @@ const basePop = popData[0].pop;
     </div>
   </section>
 
-  <Footer brandFull={data.brandFull} brandDesc={data.brandDesc} copyright={data.copyright} columns={data.footerColumns} />
+  <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
 </Base>
 
 <style is:global>

@@ -1,14 +1,4 @@
-export const patternA = {
-  brand: "IKILAB",
-  brandFull: "IKILAB",
-  brandDesc: "An island lab for experimentation,\nvalidation, and implementation.",
-  copyright: "© 2025 IKILAB. All rights reserved.",
-  navItems: [
-    { label: "Concept", href: "/concept" },
-    { label: "Projects", href: "/projects" },
-    { label: "Connect", href: "/connect" },
-  ],
-  contactHref: "/contact",
+export const homeData = {
   hero: {
     tag: "IKI ISLAND — 33.7487°N, 129.6918°E",
     titleHtml: "離島という制約環境から、<br><span style=\"white-space: nowrap;\">実験・実証・実装を進める。</span>",
@@ -69,7 +59,7 @@ export const patternA = {
       { num: "8", unit: "", label: "Migrations" },
     ],
     cases: [
-      { tag: "Education / Community", title: "壱岐こども選挙", body: "条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践を、半年近い準備期間をかけて実装しました。", href: "/cases/iki-kodomo-senkyo" },
+      { tag: "Education / Community", title: "いきこども選挙", body: "条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践を、半年近い準備期間をかけて実装しました。", href: "/cases/iki-kodomo-senkyo" },
       { tag: "Dialogue / Community", title: "サクセンカイギ", body: "新しいアイデアを持ち寄り、対話を通じて磨き、島での実践につなげる場として運営。構想段階のアイデアを前に進める土壌を育てています。" },
       { tag: "Education / Community", title: "しまチャレ2024 協賛", body: "長崎県主催の島しょ地域ビジネスチャレンジにIKILAB特別賞を提供。次の担い手が地域で挑戦しやすい環境づくりを後押ししました。" },
     ],
@@ -100,30 +90,4 @@ export const patternA = {
     ],
     detailHref: "/contact",
   },
-  footerColumns: [
-    {
-      title: "Thinking",
-      links: [
-        { label: "Concept", href: "/concept" },
-        { label: "Projects", href: "/projects" },
-        { label: "Cases", href: "/cases" },
-      ],
-    },
-    {
-      title: "Connect",
-      links: [
-        { label: "企業の方", href: "/connect" },
-        { label: "個人の方", href: "/connect" },
-        { label: "ワーケーション", href: "/connect" },
-        { label: "施設利用", href: "/connect" },
-      ],
-    },
-  ],
-  subpages: [
-    { slug: "concept", title: "Concept", titleJa: "コンセプト", description: "なぜ壱岐島で、実験・実証・実装を進めるのか。IKILABの考え方を紹介します。" },
-    { slug: "projects", title: "Projects", titleJa: "進行中のテーマ", description: "IKILABが現在取り組んでいるプロジェクトと、その背景にある課題意識を紹介します。" },
-    { slug: "connect", title: "Connect", titleJa: "一緒に取り組む", description: "企業、個人、地域内外のプレイヤーがIKILABとどう関われるかを案内します。" },
-    { slug: "contact", title: "Contact", titleJa: "お問い合わせ", description: "相談、視察、連携、施設利用など、IKILABへの問い合わせはこちらから。" },
-    { slug: "cases", title: "Cases", titleJa: "事例", description: "実験から実証、実装につながったIKILABの取り組み事例を紹介します。" },
-  ],
 };
