@@ -22,6 +22,9 @@ import '../styles/global.css';
       <button type="button" class="is-active" data-menu-variant-button data-variant="panel">01 Panel</button>
       <button type="button" data-menu-variant-button data-variant="grid">02 Grid</button>
       <button type="button" data-menu-variant-button data-variant="editorial">03 Editorial</button>
+      <button type="button" data-menu-variant-button data-variant="slide">04 Slide</button>
+      <button type="button" data-menu-variant-button data-variant="minimal">05 Minimal</button>
+      <button type="button" data-menu-variant-button data-variant="bottom-sheet">06 Bottom</button>
     </div>
   </div>
 
@@ -63,7 +66,7 @@ import '../styles/global.css';
     const menu = document.querySelector('[data-mobile-menu]');
     if (!toggle || !buttons.length || !header || !menu) return;
 
-    const variantClasses = ['mobile-menu--panel', 'mobile-menu--grid', 'mobile-menu--editorial'];
+    const variantClasses = ['mobile-menu--panel', 'mobile-menu--grid', 'mobile-menu--editorial', 'mobile-menu--slide', 'mobile-menu--minimal', 'mobile-menu--bottom-sheet'];
 
     function setVariant(variant) {
       header.setAttribute('data-mobile-menu-variant', variant);

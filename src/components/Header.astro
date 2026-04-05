@@ -4,7 +4,7 @@ interface Props {
   brandHref?: string;
   navItems: { label: string; href: string }[];
   contactHref: string;
-  mobileMenuVariant?: 'panel' | 'grid' | 'editorial';
+  mobileMenuVariant?: 'panel' | 'grid' | 'editorial' | 'slide' | 'minimal' | 'bottom-sheet';
 }
 
 const { brand, brandHref = "/", navItems, contactHref, mobileMenuVariant = 'panel' } = Astro.props;

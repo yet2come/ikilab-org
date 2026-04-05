@@ -17,10 +17,22 @@ const variants = {
     title: 'Editorial Overlay',
     body: 'ブランド表現を優先する全面オーバーレイ案です。没入感は強いですが、UIの主張も強めです。',
   },
+  slide: {
+    title: 'Slide Drawer',
+    body: '右端からスライドインするドロワー型です。ホバーで左ボーダーにアクセントカラーが入ります。',
+  },
+  minimal: {
+    title: 'Minimal Card',
+    body: '画面中央に小さなカードで表示する案です。装飾を削ぎ落とし、余白で呼吸感を出します。',
+  },
+  'bottom-sheet': {
+    title: 'Bottom Sheet',
+    body: '画面下部からスライドアップする案です。親指操作を意識したモバイルアプリ的アプローチ。',
+  },
 } as const;
 
 export function getStaticPaths() {
-  return ['panel', 'grid', 'editorial'].map((variant) => ({
+  return ['panel', 'grid', 'editorial', 'slide', 'minimal', 'bottom-sheet'].map((variant) => ({
     params: { variant },
     props: { variant },
   }));
