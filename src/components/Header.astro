@@ -4,13 +4,11 @@ interface Props {
   brandHref?: string;
   navItems: { label: string; labelJa?: string; href: string }[];
   contactHref: string;
-  mobileMenuVariant?: 'slide-a6';
 }
 
-const { brand, brandHref = "/", navItems, contactHref, mobileMenuVariant = 'slide-a6' } = Astro.props;
-const menuId = `mobile-menu-${mobileMenuVariant}`;
+const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
 ---
-<header class="site-header" data-mobile-menu-variant={mobileMenuVariant}>
+<header class="site-header">
   <a href={brandHref} class="logo">
     <img src="/ikilab_logo_1500x500.svg" alt={brand} class="logo-image logo-image--30" />
   </a>
@@ -39,11 +37,11 @@ const menuId = `mobile-menu-${mobileMenuVariant}`;
     </div>
   </a>
   <a href={contactHref} class="nav-contact">Contact</a>
-  <button class="mobile-menu-btn" aria-label="メニュー" aria-controls={menuId} aria-expanded="false" data-mobile-menu-toggle>
+  <button class="mobile-menu-btn" aria-label="メニュー" aria-controls="mobile-menu" aria-expanded="false" data-mobile-menu-toggle>
     <span></span><span></span><span></span>
   </button>
 </header>
-<div class={`mobile-menu mobile-menu--${mobileMenuVariant}`} id={menuId} hidden data-mobile-menu>
+<div class="mobile-menu mobile-menu--slide-a6" id="mobile-menu" hidden data-mobile-menu>
   <button class="mobile-menu-backdrop" aria-label="メニューを閉じる" data-mobile-menu-close></button>
   <div class="mobile-menu-surface">
     <div class="mobile-menu-head">
@@ -203,7 +201,7 @@ const menuId = `mobile-menu-${mobileMenuVariant}`;
         setTimeout(() => {
           closeMenu();
           if (href) window.location.href = href;
-        }, 300);
+        }, 600);
       });
     });
     document.addEventListener('keydown', (event) => {

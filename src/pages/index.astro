@@ -16,13 +16,6 @@ import '../styles/global.css';
 <Base title="IKILAB — 島内外を接続する実験装置" description="IKILABは、島内外を接続する実験装置です。人口25,000人の壱岐島を舞台に、地域の課題を構造的に解き、新しい接続を生み出します。">
   <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
 
-  <div class="menu-variant-toggle" data-menu-variant-toggle>
-    <div class="menu-variant-toggle-label">Mobile Menu</div>
-    <div class="menu-variant-toggle-buttons">
-      <button type="button" class="is-active" data-menu-variant-button data-variant="slide-a6">Menu</button>
-    </div>
-  </div>
-
   <HeroSection {...homeData.hero} />
 
   <SectionBar num={homeData.why.num} title={homeData.why.title} link={homeData.why.link} />
@@ -52,37 +45,3 @@ import '../styles/global.css';
 
   <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
 </Base>
-
-<script>
-  function initMenuVariantToggle() {
-    const toggle = document.querySelector('[data-menu-variant-toggle]');
-    const buttons = Array.from(document.querySelectorAll('[data-menu-variant-button]'));
-    const header = document.querySelector('.site-header');
-    const menu = document.querySelector('[data-mobile-menu]');
-    if (!toggle || !buttons.length || !header || !menu) return;
-
-    const variantClasses = ['mobile-menu--slide-a6'];
-
-    function setVariant(variant) {
-      header.setAttribute('data-mobile-menu-variant', variant);
-      variantClasses.forEach((className) => menu.classList.remove(className));
-      menu.classList.add(`mobile-menu--${variant}`);
-      buttons.forEach((button) => {
-        button.classList.toggle('is-active', button.getAttribute('data-variant') === variant);
-      });
-      window.localStorage.setItem('ikilab-mobile-menu-variant', variant);
-    }
-
-    const initialVariant = window.localStorage.getItem('ikilab-mobile-menu-variant') || 'panel';
-    setVariant(initialVariant);
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const variant = button.getAttribute('data-variant');
-        if (variant) setVariant(variant);
-      });
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', initMenuVariantToggle);
-</script>

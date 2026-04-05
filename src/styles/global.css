@@ -468,56 +468,24 @@ header {
 .mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(5) { transition-delay: 0.50s; }
 .mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(6) { transition-delay: 0.60s; }
 .mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(7) { transition-delay: 0.70s; }
-.mobile-menu--slide-a6 .mobile-menu-link:active,
-.mobile-menu--slide-a6 .mobile-menu-link.is-tapped {
+.mobile-menu--slide-a6 .mobile-menu-link:active {
   border-left-color: var(--red);
   background: var(--red-dim);
 }
 
-.menu-variant-toggle {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 110;
-  background: rgba(250, 250, 250, 0.94);
-  border: var(--border);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
-  backdrop-filter: blur(12px);
+.mobile-menu--slide-a6 .mobile-menu-link.is-tapped {
+  border-left-color: var(--red);
+  animation: tap-blink 0.6s ease;
 }
 
-.menu-variant-toggle-label {
-  padding: 10px 12px 8px;
-  border-bottom: 1px solid var(--gray-100);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gray-500);
-}
-
-.menu-variant-toggle-buttons {
-  display: grid;
-}
-
-.menu-variant-toggle-buttons button {
-  border: 0;
-  border-top: 1px solid var(--gray-100);
-  background: transparent;
-  text-align: left;
-  padding: 10px 12px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-}
-
-.menu-variant-toggle-buttons button:first-child {
-  border-top: 0;
-}
-
-.menu-variant-toggle-buttons button.is-active {
-  background: var(--black);
-  color: var(--white);
+@keyframes tap-blink {
+  0%   { background: var(--red-dim); }
+  17%  { background: transparent; }
+  33%  { background: var(--red-dim); }
+  50%  { background: transparent; }
+  67%  { background: var(--red-dim); }
+  83%  { background: transparent; }
+  100% { background: var(--red-dim); }
 }
 
 @media (max-width: 1000px) {
@@ -532,31 +500,11 @@ header {
   .header-pop-label span { font-size: 8px; }
   .header-pop-meta span { font-size: 8px; }
   .mobile-menu-btn { display: flex; flex-shrink: 0; padding: 0 12px; }
-  .menu-variant-toggle {
-    right: 10px;
-    left: 10px;
-    bottom: 10px;
-  }
-  .menu-variant-toggle-buttons {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .menu-variant-toggle-buttons button {
-    text-align: center;
-    padding: 12px 8px;
-    border-top: 0;
-    border-left: 1px solid var(--gray-100);
-  }
-  .menu-variant-toggle-buttons button:first-child {
-    border-left: 0;
-  }
 }
 
 @media (min-width: 1001px) {
   .mobile-menu {
     display: none;
-  }
-  .menu-variant-toggle {
-    width: 220px;
   }
 }
 
