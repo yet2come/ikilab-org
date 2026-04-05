@@ -550,6 +550,16 @@ header {
   animation: appear 0.6s 0.2s forwards;
 }
 
+.hero-line {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .hero-line {
+    display: block;
+  }
+}
+
 .hero-en {
   font-family: var(--font-serif);
   font-style: italic;
