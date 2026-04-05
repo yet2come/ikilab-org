@@ -4,11 +4,13 @@ interface Props {
   brandHref?: string;
   navItems: { label: string; href: string }[];
   contactHref: string;
+  mobileMenuVariant?: 'panel' | 'grid' | 'editorial';
 }
 
-const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
+const { brand, brandHref = "/", navItems, contactHref, mobileMenuVariant = 'panel' } = Astro.props;
+const menuId = `mobile-menu-${mobileMenuVariant}`;
 ---
-<header>
+<header class="site-header" data-mobile-menu-variant={mobileMenuVariant}>
   <a href={brandHref} class="logo">
     <img src="/ikilab_logo_1500x500.svg" alt={brand} class="logo-image logo-image--30" />
   </a>
@@ -37,10 +39,41 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
     </div>
   </a>
   <a href={contactHref} class="nav-contact">Contact</a>
-  <button class="mobile-menu-btn" aria-label="メニュー">
+  <button class="mobile-menu-btn" aria-label="メニュー" aria-controls={menuId} aria-expanded="false" data-mobile-menu-toggle>
     <span></span><span></span><span></span>
   </button>
 </header>
+<div class={`mobile-menu mobile-menu--${mobileMenuVariant}`} id={menuId} hidden data-mobile-menu>
+  <button class="mobile-menu-backdrop" aria-label="メニューを閉じる" data-mobile-menu-close></button>
+  <div class="mobile-menu-surface">
+    <div class="mobile-menu-head">
+      <div>
+        <div class="mobile-menu-eyebrow">Navigation</div>
+        <div class="mobile-menu-brand">{brand}</div>
+      </div>
+      <button class="mobile-menu-close" aria-label="メニューを閉じる" data-mobile-menu-close>Close</button>
+    </div>
+    <nav class="mobile-menu-nav">
+      {navItems.map((item, index) => (
+        <a href={item.href} class="mobile-menu-link" data-mobile-menu-link>
+          <span class="mobile-menu-index">{String(index + 1).padStart(2, '0')}</span>
+          <span class="mobile-menu-label">{item.label}</span>
+          <span class="mobile-menu-arrow">→</span>
+        </a>
+      ))}
+      <a href="/population/" class="mobile-menu-link mobile-menu-link--population" data-mobile-menu-link>
+        <span class="mobile-menu-index">P0</span>
+        <span class="mobile-menu-label">Population</span>
+        <span class="mobile-menu-arrow">→</span>
+      </a>
+      <a href={contactHref} class="mobile-menu-link mobile-menu-link--contact" data-mobile-menu-link>
+        <span class="mobile-menu-index">C0</span>
+        <span class="mobile-menu-label">Contact</span>
+        <span class="mobile-menu-arrow">→</span>
+      </a>
+    </nav>
+  </div>
+</div>
 
 <script>
   const popData = [
@@ -114,5 +147,53 @@ const { brand, brandHref = "/", navItems, contactHref } = Astro.props;
     onScroll();
   }
 
-  document.addEventListener('DOMContentLoaded', initHeaderPop);
+  function initMobileMenu() {
+    const toggle = document.querySelector<HTMLElement>('[data-mobile-menu-toggle]');
+    const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+    if (!toggle || !menu) return;
+
+    const closeButtons = menu.querySelectorAll<HTMLElement>('[data-mobile-menu-close]');
+    const links = menu.querySelectorAll<HTMLElement>('[data-mobile-menu-link]');
+
+    function openMenu() {
+      menu.hidden = false;
+      requestAnimationFrame(() => {
+        menu.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('mobile-menu-open');
+      });
+    }
+
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('mobile-menu-open');
+      window.setTimeout(() => {
+        if (!menu.classList.contains('is-open')) {
+          menu.hidden = true;
+        }
+      }, 220);
+    }
+
+    toggle.addEventListener('click', () => {
+      if (menu.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    closeButtons.forEach((button) => button.addEventListener('click', closeMenu));
+    links.forEach((link) => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initHeaderPop();
+    initMobileMenu();
+  });
 </script>
