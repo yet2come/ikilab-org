@@ -30,9 +30,4 @@ const { tag, titleHtml, en, bodyHtml, actions, date, coord, imagePlaceholder } =
       ))}
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-image-ph" set:html={imagePlaceholder.replace(/\n/g, '<br>')} />
-    <div class="hero-date">{date}</div>
-    <div class="hero-coord">{coord}</div>
-  </div>
 </section>

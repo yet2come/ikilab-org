@@ -513,7 +513,7 @@ header {
   margin-top: 56px;
   min-height: calc(100vh - 56px);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   border-bottom: var(--border);
 }
 
@@ -522,7 +522,6 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-right: var(--border);
   position: relative;
 }
 
@@ -664,8 +663,6 @@ header {
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
-  .hero-left { border-right: none; border-bottom: var(--border); }
-  .hero-right { min-height: 40vh; }
 }
 
 /* ============ SECTION COMMON ============ */
