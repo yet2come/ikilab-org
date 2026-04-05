@@ -4,46 +4,40 @@ import '../../styles/global.css';
 
 const variants = [
   {
-    slug: 'slide-a',
-    title: 'Base',
-    name: 'Slide Compact',
-    body: 'ベース案。JetBrains Mono + Zen Kaku Gothic New。モノスペース強調。',
-  },
-  {
-    slug: 'slide-a1',
-    title: 'Tap 01',
-    name: 'Tap Flash',
-    body: 'タップ時に背景が赤く光って戻る。最もシンプルなタッチフィードバック。',
-  },
-  {
-    slug: 'slide-a2',
-    title: 'Tap 02',
-    name: 'Tap Invert',
-    body: 'タップ時に黒背景・白テキストに反転。押した実感が強い。',
-  },
-  {
-    slug: 'slide-a3',
-    title: 'Anim 03',
-    name: 'Stagger Slide',
-    body: '開時にリンクが右から時差でスライドイン。タップで赤く光る。',
-  },
-  {
-    slug: 'slide-a4',
-    title: 'Anim 04',
-    name: 'Stagger Fade Up',
-    body: '開時にリンクが下からフェードアップ。タップで番号が赤くなる。',
-  },
-  {
-    slug: 'slide-a5',
-    title: 'Tap 05',
-    name: 'Tap Scale',
-    body: 'タップ時に少し縮んで押下感を演出。番号が赤くなる。',
-  },
-  {
     slug: 'slide-a6',
-    title: 'Combo 06',
-    name: 'Bar + Stagger',
-    body: '開時スライドイン＋タップで左ボーダー赤＋背景フラッシュの合わせ技。',
+    title: 'A6 Base',
+    name: '30ms 等間隔',
+    body: '各リンク30ms間隔。素早くサッと出る。時差はほぼ感じない。',
+  },
+  {
+    slug: 'slide-a6b',
+    title: 'A6b',
+    name: '60ms 等間隔',
+    body: '各リンク60ms間隔。1つずつ順に出てくるのが見える。',
+  },
+  {
+    slug: 'slide-a6c',
+    title: 'A6c',
+    name: '100ms 等間隔',
+    body: '各リンク100ms間隔。はっきり時差が見え、演出感が強い。',
+  },
+  {
+    slug: 'slide-a6d',
+    title: 'A6d',
+    name: '加速型',
+    body: '最初はゆっくり、後ろに向かって速くなる。加速感のある登場。',
+  },
+  {
+    slug: 'slide-a6e',
+    title: 'A6e',
+    name: '減速型',
+    body: '最初は一気に出て、後ろがゆっくり。余韻を残す登場。',
+  },
+  {
+    slug: 'slide-a6f',
+    title: 'A6f',
+    name: '一斉＋末尾遅延',
+    body: '上5つは一斉に出て、最後の2つ（Population・Contact）だけ遅れて出る。',
   },
 ];
 ---

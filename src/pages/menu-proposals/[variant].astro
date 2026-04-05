@@ -5,38 +5,34 @@ import { siteData } from '../../data/site';
 import '../../styles/global.css';
 
 const variants = {
-  'slide-a': {
-    title: 'Slide Compact (Base)',
-    body: 'ベース案。JetBrains Mono + Zen Kaku Gothic New。モノスペース強調のコンパクト設計。',
-  },
-  'slide-a1': {
-    title: 'Tap Flash',
-    body: 'タップ時に背景が赤く光って戻ります。最もシンプルなタッチフィードバック。',
-  },
-  'slide-a2': {
-    title: 'Tap Invert',
-    body: 'タップ時に黒背景・白テキストに反転します。押した実感が強い演出。',
-  },
-  'slide-a3': {
-    title: 'Stagger Slide',
-    body: 'メニュー開時にリンクが右から時差でスライドイン。タップで赤く光ります。',
-  },
-  'slide-a4': {
-    title: 'Stagger Fade Up',
-    body: 'メニュー開時にリンクが下からフェードアップ。タップで番号が赤くなります。',
-  },
-  'slide-a5': {
-    title: 'Tap Scale',
-    body: 'タップ時に少し縮んで押下感を演出。番号が赤くなります。',
-  },
   'slide-a6': {
-    title: 'Bar + Stagger',
-    body: '開時スライドイン＋タップで左ボーダー赤＋背景フラッシュの合わせ技です。',
+    title: '30ms 等間隔',
+    body: '各リンク30ms間隔。素早くサッと出ます。時差はほぼ感じません。',
+  },
+  'slide-a6b': {
+    title: '60ms 等間隔',
+    body: '各リンク60ms間隔。1つずつ順に出てくるのが見えます。',
+  },
+  'slide-a6c': {
+    title: '100ms 等間隔',
+    body: '各リンク100ms間隔。はっきり時差が見え、演出感が強いです。',
+  },
+  'slide-a6d': {
+    title: '加速型',
+    body: '最初はゆっくり、後ろに向かって速くなります。加速感のある登場。',
+  },
+  'slide-a6e': {
+    title: '減速型',
+    body: '最初は一気に出て、後ろがゆっくり。余韻を残す登場です。',
+  },
+  'slide-a6f': {
+    title: '一斉＋末尾遅延',
+    body: '上5つは一斉に出て、最後の2つ（Population・Contact）だけ遅れて出ます。',
   },
 } as const;
 
 export function getStaticPaths() {
-  return ['slide-a', 'slide-a1', 'slide-a2', 'slide-a3', 'slide-a4', 'slide-a5', 'slide-a6'].map((variant) => ({
+  return ['slide-a6', 'slide-a6b', 'slide-a6c', 'slide-a6d', 'slide-a6e', 'slide-a6f'].map((variant) => ({
     params: { variant },
     props: { variant },
   }));
