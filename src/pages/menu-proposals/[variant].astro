@@ -6,16 +6,16 @@ import '../../styles/global.css';
 
 const variants = {
   'slide-a6': {
-    title: '30ms 等間隔',
-    body: '各リンク30ms間隔。素早くサッと出ます。時差はほぼ感じません。',
+    title: '300ms 等間隔',
+    body: '各リンク300ms間隔。1つずつ順に出てくるのが見えます。',
   },
   'slide-a6b': {
-    title: '60ms 等間隔',
-    body: '各リンク60ms間隔。1つずつ順に出てくるのが見えます。',
+    title: '600ms 等間隔',
+    body: '各リンク600ms間隔。はっきり時差が見え、演出感が出ます。',
   },
   'slide-a6c': {
-    title: '100ms 等間隔',
-    body: '各リンク100ms間隔。はっきり時差が見え、演出感が強いです。',
+    title: '1000ms 等間隔',
+    body: '各リンク1秒間隔。非常にゆっくり、1つずつ登場します。',
   },
   'slide-a6d': {
     title: '加速型',
@@ -27,7 +27,7 @@ const variants = {
   },
   'slide-a6f': {
     title: '一斉＋末尾遅延',
-    body: '上5つは一斉に出て、最後の2つ（Population・Contact）だけ遅れて出ます。',
+    body: '上5つは200msで一斉、最後の2つが1.5s・3sで遅れて出ます。',
   },
 } as const;
 
