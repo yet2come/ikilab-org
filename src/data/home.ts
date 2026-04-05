@@ -14,7 +14,7 @@ export const homeData = {
     imagePlaceholder: "HERO IMAGE\n壱岐島の風景写真\nor 施設の記録写真",
   },
   why: {
-    num: "02",
+    num: "01",
     title: "Why Iki Island — なぜ壱岐島なのか",
     link: { label: "Read Full →", href: "/concept" },
     items: [
@@ -36,7 +36,7 @@ export const homeData = {
     ],
   },
   experiments: {
-    num: "03",
+    num: "02",
     title: "Projects — 進行中のテーマ",
     link: { label: "View All →", href: "/projects" },
     items: [
@@ -49,7 +49,7 @@ export const homeData = {
     ],
   },
   proof: {
-    num: "04",
+    num: "03",
     title: "Cases — 実証と実装の事例",
     link: { label: "View All →", href: "/cases" },
     stats: [
@@ -65,7 +65,7 @@ export const homeData = {
     ],
   },
   connect: {
-    num: "05",
+    num: "04",
     title: "Connect — 一緒に取り組む",
     cards: [
       { sym: "A", title: "離島で実証・実装を進めたい", body: "壱岐島をフィールドに、新しい仕組みやサービスの実証・実装を進めたい企業や研究者の方へ。", cta: "For Company" },
@@ -75,7 +75,7 @@ export const homeData = {
     ],
   },
   infra: {
-    num: "06",
+    num: "05",
     title: "BASE - 研究拠点",
     link: { label: "Contact →", href: "/contact" },
     name: "IKILAB",
