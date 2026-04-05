@@ -465,74 +465,97 @@ header {
   color: rgba(255,255,255,0.5);
 }
 
-/* --- A1: Inter (Modern UI) --- */
+/* --- A1: Serif + Gothic --- */
+/* Instrument Serif（英語）+ Zen Kaku Gothic New（日本語）。クラシックで知的な印象 */
 .mobile-menu--slide-a1 .mobile-menu-label {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-.mobile-menu--slide-a1 .mobile-menu-label-ja {
-  font-family: 'Noto Sans JP', sans-serif;
-}
-
-/* --- A2: DM Serif Display (Classic) --- */
-.mobile-menu--slide-a2 .mobile-menu-label {
-  font-family: 'DM Serif Display', serif;
-  font-weight: 400;
-  font-size: 16px;
-}
-.mobile-menu--slide-a2 .mobile-menu-label-ja {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
-}
-
-/* --- A3: Space Grotesk (Tech) --- */
-.mobile-menu--slide-a3 .mobile-menu-label {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-.mobile-menu--slide-a3 .mobile-menu-label-ja {
-  font-family: 'Noto Sans JP', sans-serif;
-}
-.mobile-menu--slide-a3 .mobile-menu-index {
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-/* --- A4: Playfair Display (Elegant) --- */
-.mobile-menu--slide-a4 .mobile-menu-label {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif);
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.01em;
 }
-.mobile-menu--slide-a4 .mobile-menu-label-ja {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
+.mobile-menu--slide-a1 .mobile-menu-label-ja {
+  font-family: var(--font-jp);
   font-weight: 500;
 }
 
-/* --- A5: IBM Plex Sans (Corporate) --- */
-.mobile-menu--slide-a5 .mobile-menu-label {
-  font-family: 'IBM Plex Sans', sans-serif;
+/* --- A2: Body統一 --- */
+/* Noto Sans JP で英日統一。すっきり読みやすい */
+.mobile-menu--slide-a2 .mobile-menu-label {
+  font-family: var(--font-body);
   font-weight: 500;
-  letter-spacing: 0.02em;
+  font-size: 14px;
+  letter-spacing: 0;
 }
-.mobile-menu--slide-a5 .mobile-menu-label-ja {
-  font-family: 'IBM Plex Sans', 'Noto Sans JP', sans-serif;
+.mobile-menu--slide-a2 .mobile-menu-label-ja {
+  font-family: var(--font-body);
+  font-weight: 400;
 }
-.mobile-menu--slide-a5 .mobile-menu-index {
-  font-family: 'IBM Plex Sans', monospace;
+.mobile-menu--slide-a2 .mobile-menu-index {
+  font-family: var(--font-body);
+  font-weight: 700;
 }
 
-/* --- A6: Cormorant Garamond (Refined) --- */
-.mobile-menu--slide-a6 .mobile-menu-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
+/* --- A3: Gothic統一 --- */
+/* Zen Kaku Gothic New で英日統一。太めウェイトで力強い */
+.mobile-menu--slide-a3 .mobile-menu-label {
+  font-family: var(--font-jp);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+.mobile-menu--slide-a3 .mobile-menu-label-ja {
+  font-family: var(--font-jp);
+  font-weight: 400;
+}
+
+/* --- A4: Serif Italic + Body --- */
+/* Instrument Serif イタリック（英語）+ Noto Sans JP（日本語）。エディトリアル風 */
+.mobile-menu--slide-a4 .mobile-menu-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
   font-size: 17px;
   letter-spacing: 0.01em;
 }
-.mobile-menu--slide-a6 .mobile-menu-label-ja {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
+.mobile-menu--slide-a4 .mobile-menu-label-ja {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* --- A5: Mono全振り --- */
+/* JetBrains Mono で英日両方。ターミナル的・テック感全開 */
+.mobile-menu--slide-a5 .mobile-menu-label {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.mobile-menu--slide-a5 .mobile-menu-label-ja {
+  font-family: var(--font-mono), var(--font-body);
   font-size: 10px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.mobile-menu--slide-a5 .mobile-menu-index {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* --- A6: Serif大 + Gothic小 --- */
+/* Instrument Serif 大きめ（英語）+ Zen Kaku Gothic New 小さめ（日本語）。コントラスト強め */
+.mobile-menu--slide-a6 .mobile-menu-label {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.1;
+}
+.mobile-menu--slide-a6 .mobile-menu-label-ja {
+  font-family: var(--font-jp);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
 }
 
 .menu-variant-toggle {
