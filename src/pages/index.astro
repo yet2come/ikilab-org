@@ -32,14 +32,16 @@ import '../styles/global.css';
     <ConnectSection cards={homeData.connect.cards} />
   </div>
 
-  <SectionBar num={homeData.infra.num} title={homeData.infra.title} link={homeData.infra.link} />
-  <InfraSection
-    name={homeData.infra.name}
-    nameEn={homeData.infra.nameEn}
-    photoPlaceholder={homeData.infra.photoPlaceholder}
-    table={homeData.infra.table}
-    detailHref={homeData.infra.detailHref}
-  />
+  <div id="access">
+    <SectionBar num={homeData.infra.num} title={homeData.infra.title} link={homeData.infra.link} />
+    <InfraSection
+      name={homeData.infra.name}
+      nameEn={homeData.infra.nameEn}
+      photoPlaceholder={homeData.infra.photoPlaceholder}
+      table={homeData.infra.table}
+      detailHref={homeData.infra.detailHref}
+    />
+  </div>
 
   <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
 </Base>

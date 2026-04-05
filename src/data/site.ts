@@ -6,7 +6,9 @@ export const siteData = {
   navItems: [
     { label: "Concept", href: "/concept" },
     { label: "Projects", href: "/projects" },
+    { label: "Cases", href: "/cases" },
     { label: "Connect", href: "/connect" },
+    { label: "Access", href: "/#access" },
   ],
   contactHref: "/contact",
   footerColumns: [

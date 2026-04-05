@@ -76,7 +76,7 @@ export const homeData = {
   },
   infra: {
     num: "06",
-    title: "CROSSPORT MSZ — 実装を支える拠点",
+    title: "BASE - 研究拠点",
     link: { label: "Contact →", href: "/contact" },
     name: "IKILAB",
     nameEn: "IKILAB",
