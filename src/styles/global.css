@@ -142,8 +142,9 @@ header {
 .header-pop-meta {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 0;
+  text-align: right;
 }
 
 .header-pop-year {
@@ -351,13 +352,7 @@ header {
 }
 
 /* === Slide-A base (shared by all font variants) === */
-.mobile-menu--slide-a .mobile-menu-surface,
-.mobile-menu--slide-a6 .mobile-menu-surface,
-.mobile-menu--slide-a6b .mobile-menu-surface,
-.mobile-menu--slide-a6c .mobile-menu-surface,
-.mobile-menu--slide-a6d .mobile-menu-surface,
-.mobile-menu--slide-a6e .mobile-menu-surface,
-.mobile-menu--slide-a6f .mobile-menu-surface {
+.mobile-menu--slide-a6 .mobile-menu-surface {
   width: 240px;
   height: calc(100vh - 56px);
   background: var(--white);
@@ -368,45 +363,21 @@ header {
   transition: transform 0.25s ease;
 }
 
-.mobile-menu--slide-a,
-.mobile-menu--slide-a6,
-.mobile-menu--slide-a6b,
-.mobile-menu--slide-a6c,
-.mobile-menu--slide-a6d,
-.mobile-menu--slide-a6e,
-.mobile-menu--slide-a6f {
+.mobile-menu--slide-a6 {
   display: flex;
   justify-content: flex-end;
 }
 
-.mobile-menu--slide-a .mobile-menu-backdrop,
-.mobile-menu--slide-a6 .mobile-menu-backdrop,
-.mobile-menu--slide-a6b .mobile-menu-backdrop,
-.mobile-menu--slide-a6c .mobile-menu-backdrop,
-.mobile-menu--slide-a6d .mobile-menu-backdrop,
-.mobile-menu--slide-a6e .mobile-menu-backdrop,
-.mobile-menu--slide-a6f .mobile-menu-backdrop {
+.mobile-menu--slide-a6 .mobile-menu-backdrop {
   opacity: 0;
   transition: opacity 0.25s;
 }
 
-.mobile-menu--slide-a.is-open .mobile-menu-backdrop,
-.mobile-menu--slide-a6.is-open .mobile-menu-backdrop,
-.mobile-menu--slide-a6b.is-open .mobile-menu-backdrop,
-.mobile-menu--slide-a6c.is-open .mobile-menu-backdrop,
-.mobile-menu--slide-a6d.is-open .mobile-menu-backdrop,
-.mobile-menu--slide-a6e.is-open .mobile-menu-backdrop,
-.mobile-menu--slide-a6f.is-open .mobile-menu-backdrop {
+.mobile-menu--slide-a6.is-open .mobile-menu-backdrop {
   opacity: 1;
 }
 
-.mobile-menu--slide-a.is-open .mobile-menu-surface,
-.mobile-menu--slide-a6.is-open .mobile-menu-surface,
-.mobile-menu--slide-a6b.is-open .mobile-menu-surface,
-.mobile-menu--slide-a6c.is-open .mobile-menu-surface,
-.mobile-menu--slide-a6d.is-open .mobile-menu-surface,
-.mobile-menu--slide-a6e.is-open .mobile-menu-surface,
-.mobile-menu--slide-a6f.is-open .mobile-menu-surface {
+.mobile-menu--slide-a6.is-open .mobile-menu-surface {
   transform: translateX(0);
 }
 
@@ -482,8 +453,7 @@ header {
   text-transform: none;
 }
 
-/* --- A6: Base (300ms間隔) --- */
-/* 左ボーダー赤 + 開時スライドイン の合わせ技 */
+/* --- A6: 100ms間隔 + タップフラッシュ --- */
 .mobile-menu--slide-a6 .mobile-menu-link {
   border-left: 3px solid transparent;
   opacity: 0;
@@ -491,114 +461,15 @@ header {
   transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.15s, background 0.15s;
 }
 .mobile-menu--slide-a6.is-open .mobile-menu-link { opacity: 1; transform: translateX(0); }
-.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(1) { transition-delay: 0.30s; }
-.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(2) { transition-delay: 0.60s; }
-.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(3) { transition-delay: 0.90s; }
-.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(4) { transition-delay: 1.20s; }
-.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(5) { transition-delay: 1.50s; }
-.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(6) { transition-delay: 1.80s; }
-.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(7) { transition-delay: 2.10s; }
-.mobile-menu--slide-a6 .mobile-menu-link:active {
-  border-left-color: var(--red);
-  background: var(--red-dim);
-}
-
-/* --- A6b: 600ms間隔（ゆったり） --- */
-.mobile-menu--slide-a6b .mobile-menu-link {
-  border-left: 3px solid transparent;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.15s, background 0.15s;
-}
-.mobile-menu--slide-a6b.is-open .mobile-menu-link { opacity: 1; transform: translateX(0); }
-.mobile-menu--slide-a6b.is-open .mobile-menu-link:nth-child(1) { transition-delay: 0.60s; }
-.mobile-menu--slide-a6b.is-open .mobile-menu-link:nth-child(2) { transition-delay: 1.20s; }
-.mobile-menu--slide-a6b.is-open .mobile-menu-link:nth-child(3) { transition-delay: 1.80s; }
-.mobile-menu--slide-a6b.is-open .mobile-menu-link:nth-child(4) { transition-delay: 2.40s; }
-.mobile-menu--slide-a6b.is-open .mobile-menu-link:nth-child(5) { transition-delay: 3.00s; }
-.mobile-menu--slide-a6b.is-open .mobile-menu-link:nth-child(6) { transition-delay: 3.60s; }
-.mobile-menu--slide-a6b.is-open .mobile-menu-link:nth-child(7) { transition-delay: 4.20s; }
-.mobile-menu--slide-a6b .mobile-menu-link:active {
-  border-left-color: var(--red);
-  background: var(--red-dim);
-}
-
-/* --- A6c: 1000ms間隔（はっきり時差） --- */
-.mobile-menu--slide-a6c .mobile-menu-link {
-  border-left: 3px solid transparent;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.15s, background 0.15s;
-}
-.mobile-menu--slide-a6c.is-open .mobile-menu-link { opacity: 1; transform: translateX(0); }
-.mobile-menu--slide-a6c.is-open .mobile-menu-link:nth-child(1) { transition-delay: 1.00s; }
-.mobile-menu--slide-a6c.is-open .mobile-menu-link:nth-child(2) { transition-delay: 2.00s; }
-.mobile-menu--slide-a6c.is-open .mobile-menu-link:nth-child(3) { transition-delay: 3.00s; }
-.mobile-menu--slide-a6c.is-open .mobile-menu-link:nth-child(4) { transition-delay: 4.00s; }
-.mobile-menu--slide-a6c.is-open .mobile-menu-link:nth-child(5) { transition-delay: 5.00s; }
-.mobile-menu--slide-a6c.is-open .mobile-menu-link:nth-child(6) { transition-delay: 6.00s; }
-.mobile-menu--slide-a6c.is-open .mobile-menu-link:nth-child(7) { transition-delay: 7.00s; }
-.mobile-menu--slide-a6c .mobile-menu-link:active {
-  border-left-color: var(--red);
-  background: var(--red-dim);
-}
-
-/* --- A6d: 加速型（最初遅く、後ろが速い） --- */
-.mobile-menu--slide-a6d .mobile-menu-link {
-  border-left: 3px solid transparent;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.15s, background 0.15s;
-}
-.mobile-menu--slide-a6d.is-open .mobile-menu-link { opacity: 1; transform: translateX(0); }
-.mobile-menu--slide-a6d.is-open .mobile-menu-link:nth-child(1) { transition-delay: 1.20s; }
-.mobile-menu--slide-a6d.is-open .mobile-menu-link:nth-child(2) { transition-delay: 2.00s; }
-.mobile-menu--slide-a6d.is-open .mobile-menu-link:nth-child(3) { transition-delay: 2.60s; }
-.mobile-menu--slide-a6d.is-open .mobile-menu-link:nth-child(4) { transition-delay: 3.00s; }
-.mobile-menu--slide-a6d.is-open .mobile-menu-link:nth-child(5) { transition-delay: 3.30s; }
-.mobile-menu--slide-a6d.is-open .mobile-menu-link:nth-child(6) { transition-delay: 3.50s; }
-.mobile-menu--slide-a6d.is-open .mobile-menu-link:nth-child(7) { transition-delay: 3.60s; }
-.mobile-menu--slide-a6d .mobile-menu-link:active {
-  border-left-color: var(--red);
-  background: var(--red-dim);
-}
-
-/* --- A6e: 減速型（最初速く、後ろが遅い） --- */
-.mobile-menu--slide-a6e .mobile-menu-link {
-  border-left: 3px solid transparent;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.15s, background 0.15s;
-}
-.mobile-menu--slide-a6e.is-open .mobile-menu-link { opacity: 1; transform: translateX(0); }
-.mobile-menu--slide-a6e.is-open .mobile-menu-link:nth-child(1) { transition-delay: 0.20s; }
-.mobile-menu--slide-a6e.is-open .mobile-menu-link:nth-child(2) { transition-delay: 0.50s; }
-.mobile-menu--slide-a6e.is-open .mobile-menu-link:nth-child(3) { transition-delay: 1.00s; }
-.mobile-menu--slide-a6e.is-open .mobile-menu-link:nth-child(4) { transition-delay: 1.70s; }
-.mobile-menu--slide-a6e.is-open .mobile-menu-link:nth-child(5) { transition-delay: 2.60s; }
-.mobile-menu--slide-a6e.is-open .mobile-menu-link:nth-child(6) { transition-delay: 3.70s; }
-.mobile-menu--slide-a6e.is-open .mobile-menu-link:nth-child(7) { transition-delay: 5.00s; }
-.mobile-menu--slide-a6e .mobile-menu-link:active {
-  border-left-color: var(--red);
-  background: var(--red-dim);
-}
-
-/* --- A6f: 一斉 → 最後だけ遅延 --- */
-.mobile-menu--slide-a6f .mobile-menu-link {
-  border-left: 3px solid transparent;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.15s, background 0.15s;
-}
-.mobile-menu--slide-a6f.is-open .mobile-menu-link { opacity: 1; transform: translateX(0); }
-.mobile-menu--slide-a6f.is-open .mobile-menu-link:nth-child(1) { transition-delay: 0.20s; }
-.mobile-menu--slide-a6f.is-open .mobile-menu-link:nth-child(2) { transition-delay: 0.20s; }
-.mobile-menu--slide-a6f.is-open .mobile-menu-link:nth-child(3) { transition-delay: 0.20s; }
-.mobile-menu--slide-a6f.is-open .mobile-menu-link:nth-child(4) { transition-delay: 0.20s; }
-.mobile-menu--slide-a6f.is-open .mobile-menu-link:nth-child(5) { transition-delay: 0.20s; }
-.mobile-menu--slide-a6f.is-open .mobile-menu-link:nth-child(6) { transition-delay: 1.50s; }
-.mobile-menu--slide-a6f.is-open .mobile-menu-link:nth-child(7) { transition-delay: 3.00s; }
-.mobile-menu--slide-a6f .mobile-menu-link:active {
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(1) { transition-delay: 0.10s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(2) { transition-delay: 0.20s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(3) { transition-delay: 0.30s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(4) { transition-delay: 0.40s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(5) { transition-delay: 0.50s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(6) { transition-delay: 0.60s; }
+.mobile-menu--slide-a6.is-open .mobile-menu-link:nth-child(7) { transition-delay: 0.70s; }
+.mobile-menu--slide-a6 .mobile-menu-link:active,
+.mobile-menu--slide-a6 .mobile-menu-link.is-tapped {
   border-left-color: var(--red);
   background: var(--red-dim);
 }

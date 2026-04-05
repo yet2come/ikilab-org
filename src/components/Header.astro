@@ -4,7 +4,7 @@ interface Props {
   brandHref?: string;
   navItems: { label: string; labelJa?: string; href: string }[];
   contactHref: string;
-  mobileMenuVariant?: 'slide-a' | 'slide-a6' | 'slide-a6b' | 'slide-a6c' | 'slide-a6d' | 'slide-a6e' | 'slide-a6f';
+  mobileMenuVariant?: 'slide-a6';
 }
 
 const { brand, brandHref = "/", navItems, contactHref, mobileMenuVariant = 'slide-a6' } = Astro.props;
@@ -22,7 +22,7 @@ const menuId = `mobile-menu-${mobileMenuVariant}`;
   </div>
   <a href="/population/" class="header-pop" id="header-pop">
     <div class="header-pop-label">
-      <span id="header-pop-year">2000年</span>
+      <span id="header-pop-year">2000-01</span>
       <span>推計人口</span>
     </div>
     <div class="header-pop-display">
@@ -138,7 +138,9 @@ const menuId = `mobile-menu-${mobileMenuVariant}`;
       const diff = currentPop - basePop;
       const pct = ((diff / basePop) * 100).toFixed(1);
 
-      yearEl.textContent = `${roundedYear}年`;
+      const monthIndex = Math.round((currentYear - roundedYear) * 12);
+      const month = Math.max(1, Math.min(12, monthIndex + 1));
+      yearEl.textContent = `${roundedYear}-${String(month).padStart(2, '0')}`;
 
       const digits = String(currentPop).padStart(5, '0');
       digitEls.forEach((el, i) => { if (el) el.textContent = digits[i]; });
@@ -193,7 +195,17 @@ const menuId = `mobile-menu-${mobileMenuVariant}`;
     });
 
     closeButtons.forEach((button) => button.addEventListener('click', closeMenu));
-    links.forEach((link) => link.addEventListener('click', closeMenu));
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        link.classList.add('is-tapped');
+        setTimeout(() => {
+          closeMenu();
+          if (href) window.location.href = href;
+        }, 300);
+      });
+    });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && menu.classList.contains('is-open')) {
         closeMenu();

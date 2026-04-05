@@ -6,33 +6,13 @@ import '../../styles/global.css';
 
 const variants = {
   'slide-a6': {
-    title: '300ms 等間隔',
-    body: '各リンク300ms間隔。1つずつ順に出てくるのが見えます。',
-  },
-  'slide-a6b': {
-    title: '600ms 等間隔',
-    body: '各リンク600ms間隔。はっきり時差が見え、演出感が出ます。',
-  },
-  'slide-a6c': {
-    title: '1000ms 等間隔',
-    body: '各リンク1秒間隔。非常にゆっくり、1つずつ登場します。',
-  },
-  'slide-a6d': {
-    title: '加速型',
-    body: '最初はゆっくり、後ろに向かって速くなります。加速感のある登場。',
-  },
-  'slide-a6e': {
-    title: '減速型',
-    body: '最初は一気に出て、後ろがゆっくり。余韻を残す登場です。',
-  },
-  'slide-a6f': {
-    title: '一斉＋末尾遅延',
-    body: '上5つは200msで一斉、最後の2つが1.5s・3sで遅れて出ます。',
+    title: 'Slide A6',
+    body: '100ms時差スライドイン。タップで左ボーダー赤＋背景フラッシュ後、300ms待ってから遷移。',
   },
 } as const;
 
 export function getStaticPaths() {
-  return ['slide-a6', 'slide-a6b', 'slide-a6c', 'slide-a6d', 'slide-a6e', 'slide-a6f'].map((variant) => ({
+  return ['slide-a6'].map((variant) => ({
     params: { variant },
     props: { variant },
   }));

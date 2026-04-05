@@ -19,12 +19,7 @@ import '../styles/global.css';
   <div class="menu-variant-toggle" data-menu-variant-toggle>
     <div class="menu-variant-toggle-label">Mobile Menu</div>
     <div class="menu-variant-toggle-buttons">
-      <button type="button" class="is-active" data-menu-variant-button data-variant="slide-a6">300ms</button>
-      <button type="button" data-menu-variant-button data-variant="slide-a6b">600ms</button>
-      <button type="button" data-menu-variant-button data-variant="slide-a6c">1000ms</button>
-      <button type="button" data-menu-variant-button data-variant="slide-a6d">加速</button>
-      <button type="button" data-menu-variant-button data-variant="slide-a6e">減速</button>
-      <button type="button" data-menu-variant-button data-variant="slide-a6f">一斉+末尾</button>
+      <button type="button" class="is-active" data-menu-variant-button data-variant="slide-a6">Menu</button>
     </div>
   </div>
 
@@ -66,7 +61,7 @@ import '../styles/global.css';
     const menu = document.querySelector('[data-mobile-menu]');
     if (!toggle || !buttons.length || !header || !menu) return;
 
-    const variantClasses = ['mobile-menu--slide-a6', 'mobile-menu--slide-a6b', 'mobile-menu--slide-a6c', 'mobile-menu--slide-a6d', 'mobile-menu--slide-a6e', 'mobile-menu--slide-a6f'];
+    const variantClasses = ['mobile-menu--slide-a6'];
 
     function setVariant(variant) {
       header.setAttribute('data-mobile-menu-variant', variant);
