@@ -232,19 +232,21 @@ header {
 
 .mobile-menu-btn {
   display: none;
+  flex-direction: column;
+  justify-content: center;
   background: none;
   border: none;
   border-left: var(--border);
-  padding: 0 20px;
+  padding: 0 14px;
   cursor: pointer;
 }
 
 .mobile-menu-btn span {
   display: block;
-  width: 22px;
-  height: 2px;
+  width: 18px;
+  height: 1.5px;
   background: var(--black);
-  margin: 4px 0;
+  margin: 3px 0;
 }
 
 .mobile-menu {
@@ -632,7 +634,7 @@ header {
   .header-pop-comma { font-size: 12px; }
   .header-pop-label span { font-size: 8px; }
   .header-pop-meta span { font-size: 8px; }
-  .mobile-menu-btn { display: flex; align-items: center; flex-shrink: 0; padding: 0 14px; }
+  .mobile-menu-btn { display: flex; flex-shrink: 0; padding: 0 12px; }
   .menu-variant-toggle {
     right: 10px;
     left: 10px;
