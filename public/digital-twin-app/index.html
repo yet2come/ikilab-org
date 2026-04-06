@@ -878,6 +878,13 @@ const params = new URLSearchParams(location.search);
 const isEmbed = params.has('embed');
 const isAutoRotate = params.has('autorotate');
 
+// Layer preset from query param: ?layers=terrain,coastline
+if (params.has('layers')) {
+  const preset = params.get('layers').split(',');
+  const allLayers = ['terrain', 'roads', 'hubs', 'contours', 'coastline'];
+  allLayers.forEach(l => { layerState[l] = preset.includes(l); });
+}
+
 if (isEmbed) {
   document.querySelector('.header').style.display = 'none';
   document.querySelector('.panel').style.display = 'none';
@@ -896,6 +903,14 @@ setupOrbit();
 if (!isEmbed) setupUI();
 updateLayers();
 
+// Sync toggle UI to match layer preset
+if (params.has('layers')) {
+  Object.keys(layerState).forEach(l => {
+    const tog = document.getElementById('tog-' + l);
+    if (tog) tog.className = 'layer-toggle ' + (layerState[l] ? 'on' : 'off');
+  });
+}
+
 if (isAutoRotate) {
   let theta = 0.4;
   setInterval(() => {
@@ -909,6 +924,32 @@ if (isAutoRotate) {
     camera.lookAt(0, ty, 0);
   }, 16);
 }
+
+// Keyboard shortcuts: 1-5 toggle layers, R reset
+function handleKey(key) {
+  const layerKeys = { '1': 'terrain', '2': 'roads', '3': 'hubs', '4': 'contours', '5': 'coastline' };
+  if (layerKeys[key]) {
+    const l = layerKeys[key];
+    layerState[l] = !layerState[l];
+    const tog = document.getElementById('tog-' + l);
+    if (tog) tog.className = 'layer-toggle ' + (layerState[l] ? 'on' : 'off');
+    updateLayers();
+  }
+  if (key === 'r' || key === 'R') {
+    Object.keys(layerState).forEach(l => { layerState[l] = true; });
+    document.querySelectorAll('.layer-toggle').forEach(t => t.className = 'layer-toggle on');
+    sepVal = 12; exagVal = 8; contourInterval = 10;
+    const sepEl = document.getElementById('separation');
+    const exgEl = document.getElementById('exaggeration');
+    if (sepEl) sepEl.value = 12;
+    if (exgEl) exgEl.value = 8;
+    document.querySelectorAll('.cbtn').forEach(b => b.classList.toggle('active', b.dataset.v === '10'));
+    rebuildAll();
+  }
+}
+
+document.addEventListener('keydown', (e) => { handleKey(e.key); });
+window.addEventListener('message', (e) => { if (e.data && e.data.type === 'keydown') handleKey(e.data.key); });
 
 animate();
 </script>

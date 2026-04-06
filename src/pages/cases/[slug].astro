@@ -66,10 +66,22 @@ const pageDescription = entry.description;
         <div class="case-summary-kicker">Interactive Demo</div>
         <h2>3Dワイヤーフレームを操作する</h2>
       </div>
-      <div class="case-demo-frame">
-        <iframe src="/digital-twin-app/" title="壱岐島 3Dワイヤーフレーム" loading="lazy"></iframe>
+      <div class="case-demo-frame" id="demo-frame">
+        <div class="case-demo-guard" id="demo-guard">クリックして操作を開始</div>
+        <iframe src="/digital-twin-app/?layers=terrain,coastline,contours" title="壱岐島 3Dワイヤーフレーム" loading="lazy" id="demo-iframe"></iframe>
       </div>
-      <p class="case-demo-hint">ドラッグで回転 / スクロールでズーム / 右ドラッグで移動</p>
+      <div class="case-demo-bar">
+        <p class="case-demo-hint">ドラッグで回転 / スクロールでズーム / 右ドラッグで移動</p>
+        <button class="btn-brutal btn-ghost case-demo-fs" id="demo-fs">全画面で操作 →</button>
+      </div>
+      <script>
+        const guard = document.getElementById('demo-guard');
+        const frame = document.getElementById('demo-frame');
+        const iframe = document.getElementById('demo-iframe');
+        guard.addEventListener('click', () => { guard.classList.add('is-hidden'); iframe.style.pointerEvents = 'auto'; });
+        document.addEventListener('click', (e) => { if (!frame.contains(e.target)) { guard.classList.remove('is-hidden'); iframe.style.pointerEvents = 'none'; } });
+        document.getElementById('demo-fs').addEventListener('click', () => { if (frame.requestFullscreen) frame.requestFullscreen(); else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen(); });
+      </script>
     </section>
   )}
 

@@ -8,11 +8,42 @@ import '../styles/global.css';
 <Base title="壱岐島デジタルツイン — IKILAB" description="OSMと国土地理院のオープンデータから壱岐島の地形・道路網・交通拠点を3Dで再現。">
   <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
   <section class="dt-fullscreen">
-    <iframe src="/digital-twin-app/?embed" title="壱岐島 3Dワイヤーフレーム" allow="accelerometer; gyroscope"></iframe>
+    <div class="dt-breadcrumb">
+      <a href="/">IKILAB</a><span>/</span><a href="/cases">Cases</a><span>/</span><a href="/cases/iki-digital-twin">壱岐島デジタルツイン</a><span>/</span><span>3Dデモ</span>
+    </div>
+    <iframe src="/digital-twin-app/" title="壱岐島 3Dワイヤーフレーム" allow="accelerometer; gyroscope" id="dt-iframe"></iframe>
     <div class="dt-fullscreen-bar">
       <a href="/cases/iki-digital-twin" class="btn-brutal btn-ghost">プロジェクト詳細 →</a>
-      <a href="/digital-twin-app/?embed" target="_blank" class="btn-brutal btn-ghost">フルスクリーンで開く →</a>
+      <button class="btn-brutal btn-ghost" id="dt-share">URLを共有</button>
+      <div class="dt-keys"><kbd>1</kbd>-<kbd>5</kbd> レイヤー切替 &nbsp; <kbd>R</kbd> リセット &nbsp; <kbd>F</kbd> フルスクリーン</div>
     </div>
   </section>
   <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
 </Base>
+<script>
+  const iframe = document.getElementById('dt-iframe');
+
+  // Keyboard shortcuts — forward to iframe
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      const el = document.querySelector('.dt-fullscreen');
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (el.requestFullscreen) el.requestFullscreen();
+    }
+    // Forward 1-5, r/R to iframe
+    if (/^[1-5rR]$/.test(e.key)) {
+      iframe.contentWindow.postMessage({ type: 'keydown', key: e.key }, '*');
+    }
+  });
+
+  // Share button — copy current URL
+  document.getElementById('dt-share').addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.getElementById('dt-share');
+      btn.textContent = 'コピーしました';
+      setTimeout(() => { btn.textContent = 'URLを共有'; }, 2000);
+    });
+  });
+</script>
