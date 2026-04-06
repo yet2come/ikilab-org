@@ -1746,6 +1746,10 @@ footer {
   background: var(--white);
 }
 
+.dt-fullscreen-bar .btn-brutal {
+  border-left: var(--border);
+}
+
 .dt-keys {
   margin-left: auto;
   font-family: var(--font-mono);

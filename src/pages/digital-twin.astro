@@ -14,7 +14,7 @@ import '../styles/global.css';
     <iframe src="/digital-twin-app/" title="壱岐島 3Dワイヤーフレーム" allow="accelerometer; gyroscope" id="dt-iframe"></iframe>
     <div class="dt-fullscreen-bar">
       <a href="/cases/iki-digital-twin" class="btn-brutal btn-ghost">プロジェクト詳細 →</a>
-      <button class="btn-brutal btn-ghost" id="dt-share">URLを共有</button>
+      <a href="#" class="btn-brutal btn-ghost" id="dt-share">URLを共有</a>
       <div class="dt-keys"><kbd>1</kbd>-<kbd>5</kbd> レイヤー切替 &nbsp; <kbd>R</kbd> リセット &nbsp; <kbd>F</kbd> フルスクリーン</div>
     </div>
   </section>
@@ -39,7 +39,8 @@ import '../styles/global.css';
   });
 
   // Share button — copy current URL
-  document.getElementById('dt-share').addEventListener('click', () => {
+  document.getElementById('dt-share').addEventListener('click', (e) => {
+    e.preventDefault();
     navigator.clipboard.writeText(window.location.href).then(() => {
       const btn = document.getElementById('dt-share');
       btn.textContent = 'コピーしました';
