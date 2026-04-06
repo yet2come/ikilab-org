@@ -1700,11 +1700,11 @@ footer {
   letter-spacing: 0.05em;
 }
 
-.case-demo-fs {
+.case-demo-bar .btn-brutal.case-demo-fs {
   flex-shrink: 0;
   font-size: 12px;
   padding: 6px 14px;
-  border-left: var(--border);
+  border: var(--border);
 }
 
 .dt-fullscreen {

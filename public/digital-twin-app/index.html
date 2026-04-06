@@ -72,11 +72,6 @@ canvas{display:block}
     <span class="layer-name">交通拠点</span>
     <div class="layer-toggle on" id="tog-hubs"></div>
   </div>
-  <div class="layer-row" data-layer="contours">
-    <div class="layer-color" style="background:#a78bfa"></div>
-    <span class="layer-name">等高線</span>
-    <div class="layer-toggle on" id="tog-contours"></div>
-  </div>
   <div class="layer-row" data-layer="coastline">
     <div class="layer-color" style="background:#60a5fa"></div>
     <span class="layer-name">海岸線</span>
@@ -93,10 +88,10 @@ canvas{display:block}
   <div class="slider-group">
     <label>等高線の間隔 (m)</label>
     <div style="display:flex;gap:6px;margin-top:6px" id="contourBtns">
+      <button class="cbtn" data-v="0">なし</button>
       <button class="cbtn" data-v="5">5</button>
       <button class="cbtn active" data-v="10">10</button>
-      <button class="cbtn" data-v="25">25</button>
-      <button class="cbtn" data-v="50">50</button>
+      <button class="cbtn" data-v="20">20</button>
     </div>
   </div>
 </div>
@@ -323,6 +318,7 @@ function marchGrid(elevGrid, rows, cols, latMin, latMax, lngMin, lngMax, levelSe
   const maxElev = ELEV_MAX;
   function lerpVal(v0, v1, t) { return v0 + (v1 - v0) * t; }
 
+  if (contourInterval <= 0) return;
   for (let lev = contourInterval; lev <= maxElev; lev += contourInterval) {
     if (!levelSegments[lev]) levelSegments[lev] = [];
 
@@ -898,7 +894,7 @@ if (isAutoRotate) {
 
 // Keyboard shortcuts: 1-5 toggle layers, R reset
 function handleKey(key) {
-  const layerKeys = { '1': 'terrain', '2': 'roads', '3': 'hubs', '4': 'contours', '5': 'coastline' };
+  const layerKeys = { '1': 'terrain', '2': 'roads', '3': 'hubs', '4': 'coastline' };
   if (layerKeys[key]) {
     const l = layerKeys[key];
     layerState[l] = !layerState[l];

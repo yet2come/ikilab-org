@@ -15,7 +15,7 @@ import '../styles/global.css';
     <div class="dt-fullscreen-bar">
       <a href="/cases/iki-digital-twin" class="btn-brutal btn-ghost">プロジェクト詳細 →</a>
       <a href="#" class="btn-brutal btn-ghost" id="dt-share">URLを共有</a>
-      <div class="dt-keys"><kbd>1</kbd>-<kbd>5</kbd> レイヤー切替 &nbsp; <kbd>R</kbd> リセット &nbsp; <kbd>F</kbd> フルスクリーン</div>
+      <div class="dt-keys"><kbd>1</kbd>-<kbd>4</kbd> レイヤー切替 &nbsp; <kbd>R</kbd> リセット &nbsp; <kbd>F</kbd> フルスクリーン</div>
     </div>
   </section>
   <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
@@ -33,7 +33,7 @@ import '../styles/global.css';
       else if (el.requestFullscreen) el.requestFullscreen();
     }
     // Forward 1-5, r/R to iframe
-    if (/^[1-5rR]$/.test(e.key)) {
+    if (/^[1-4rR]$/.test(e.key)) {
       iframe.contentWindow.postMessage({ type: 'keydown', key: e.key }, '*');
     }
   });
