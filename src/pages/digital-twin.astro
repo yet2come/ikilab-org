@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteData } from '../data/site';
+import '../styles/global.css';
+---
+<Base title="壱岐島デジタルツイン — IKILAB" description="OSMと国土地理院のオープンデータから壱岐島の地形・道路網・交通拠点を3Dで再現。">
+  <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
+  <section class="dt-fullscreen">
+    <iframe src="/digital-twin-app/?embed" title="壱岐島 3Dワイヤーフレーム" allow="accelerometer; gyroscope"></iframe>
+    <div class="dt-fullscreen-bar">
+      <a href="/cases/iki-digital-twin" class="btn-brutal btn-ghost">プロジェクト詳細 →</a>
+      <a href="/digital-twin-app/?embed" target="_blank" class="btn-brutal btn-ghost">フルスクリーンで開く →</a>
+    </div>
+  </section>
+  <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
+</Base>

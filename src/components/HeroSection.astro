@@ -30,9 +30,9 @@ const { tag, titleHtml, en, bodyHtml, actions, date, coord, imagePlaceholder } =
       ))}
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-image-ph" set:html={imagePlaceholder.replace(/\n/g, '<br>')} />
+  <a href="/digital-twin" class="hero-right hero-right--dt" aria-label="壱岐島デジタルツイン">
+    <iframe src="/digital-twin-app/?embed&autorotate" title="壱岐島 3D" loading="lazy" aria-hidden="true"></iframe>
     <div class="hero-date">{date}</div>
     <div class="hero-coord">{coord}</div>
-  </div>
+  </a>
 </section>

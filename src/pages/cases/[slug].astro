@@ -60,6 +60,19 @@ const pageDescription = entry.description;
     </div>
   </section>
 
+  {entry.slug === 'iki-digital-twin' && (
+    <section class="case-demo reveal">
+      <div class="case-demo-head">
+        <div class="case-summary-kicker">Interactive Demo</div>
+        <h2>3Dワイヤーフレームを操作する</h2>
+      </div>
+      <div class="case-demo-frame">
+        <iframe src="/digital-twin-app/" title="壱岐島 3Dワイヤーフレーム" loading="lazy"></iframe>
+      </div>
+      <p class="case-demo-hint">ドラッグで回転 / スクロールでズーム / 右ドラッグで移動</p>
+    </section>
+  )}
+
   <section class="case-body">
     <div class="case-markdown reveal">
       <Content />
