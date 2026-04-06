@@ -60,7 +60,7 @@ canvas{display:block}
   <div class="layer-row" data-layer="terrain">
     <div class="layer-color" style="background:#22d3ee"></div>
     <span class="layer-name">地形</span>
-    <div class="layer-toggle on" id="tog-terrain"></div>
+    <div class="layer-toggle off" id="tog-terrain"></div>
   </div>
   <div class="layer-row" data-layer="roads">
     <div class="layer-color" style="background:#f59e0b"></div>
@@ -84,7 +84,7 @@ canvas{display:block}
   </div>
   <div class="slider-group">
     <label>レイヤー間隔（分離距離）</label>
-    <input type="range" id="separation" min="0" max="30" value="12" step="1">
+    <input type="range" id="separation" min="0" max="30" value="0" step="1">
   </div>
   <div class="slider-group">
     <label>標高の強調倍率</label>
@@ -166,8 +166,8 @@ function inside(lat,lng){let ins=false;const p=coastlineCoords;for(let i=0,j=p.l
 let scene, camera, renderer;
 let terrainGroup, roadsGroup, hubsGroup, coastlineGroup, contoursGroup;
 let raycaster, mouse, hubMeshes = [];
-const layerState = { terrain: true, roads: true, hubs: true, coastline: true, contours: true };
-let sepVal = 12, exagVal = 8, contourInterval = 10;
+const layerState = { terrain: false, roads: true, hubs: true, coastline: true, contours: true };
+let sepVal = 0, exagVal = 8, contourInterval = 10;
 let seaMesh;
 let orbitUpdate = null;
 let vTheta = 0, vPhi = 0;
@@ -936,12 +936,15 @@ function handleKey(key) {
     updateLayers();
   }
   if (key === 'r' || key === 'R') {
-    Object.keys(layerState).forEach(l => { layerState[l] = true; });
-    document.querySelectorAll('.layer-toggle').forEach(t => t.className = 'layer-toggle on');
-    sepVal = 12; exagVal = 8; contourInterval = 10;
+    Object.keys(layerState).forEach(l => { layerState[l] = l !== 'terrain'; });
+    Object.keys(layerState).forEach(l => {
+      const tog = document.getElementById('tog-' + l);
+      if (tog) tog.className = 'layer-toggle ' + (layerState[l] ? 'on' : 'off');
+    });
+    sepVal = 0; exagVal = 8; contourInterval = 10;
     const sepEl = document.getElementById('separation');
     const exgEl = document.getElementById('exaggeration');
-    if (sepEl) sepEl.value = 12;
+    if (sepEl) sepEl.value = 0;
     if (exgEl) exgEl.value = 8;
     document.querySelectorAll('.cbtn').forEach(b => b.classList.toggle('active', b.dataset.v === '10'));
     rebuildAll();
