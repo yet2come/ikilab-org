@@ -1646,11 +1646,15 @@ footer {
 .case-demo-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   border: var(--border);
   border-radius: 4px;
   overflow: hidden;
   background: #0a0e1a;
+}
+
+@media (min-width: 901px) {
+  .case-demo-frame { aspect-ratio: 16 / 9; }
 }
 
 .case-demo-frame iframe {
@@ -1700,6 +1704,7 @@ footer {
   flex-shrink: 0;
   font-size: 12px;
   padding: 6px 14px;
+  border-left: var(--border);
 }
 
 .dt-fullscreen {
