@@ -59,7 +59,7 @@ export const homeData = {
       { num: "8", unit: "", label: "Migrations" },
     ],
     cases: [
-      { tag: "Data / Infrastructure", title: "壱岐島デジタルツイン", body: "OSMと国土地理院のオープンデータから島の地形・道路網・交通拠点を3Dで再現。地域の空間構造を直感的に共有できる情報基盤。", href: "/cases/iki-digital-twin" },
+      { tag: "Education / Community", title: "いきこども選挙", body: "条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践事例。", href: "/cases/iki-kodomo-senkyo" },
       { tag: "Dialogue / Community", title: "サクセンカイギ", body: "新しいアイデアを持ち寄り、対話を通じて磨き、島での実践につなげる場として運営。構想段階のアイデアを前に進める土壌を育てています。" },
       { tag: "Education / Community", title: "しまチャレ2024 協賛", body: "長崎県主催の島しょ地域ビジネスチャレンジにIKILAB特別賞を提供。次の担い手が地域で挑戦しやすい環境づくりを後押ししました。" },
     ],
