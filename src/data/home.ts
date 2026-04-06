@@ -42,7 +42,7 @@ export const homeData = {
     items: [
       { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の分散を解消し、地域内外の人が必要な情報にたどり着ける状態をつくるための情報基盤づくり。", href: "/projects/iki-calendar" },
       { status: "active", title: "離島型モビリティ実証", body: "電動トゥクトゥクやレンタカーを通じて、島内移動の選択肢を増やし、観光と暮らしの両面で回遊性を高める実証。" },
-      { status: "completed", title: "いきこども選挙", body: "こどもが候補者に質問し、聞き、選び、届けるプロセスを通じて、主権者教育を地域の実践として形にした取り組み。", href: "/cases/iki-kodomo-senkyo" },
+      { status: "active", title: "壱岐島デジタルツイン", body: "OSM・国土地理院の実データをもとに島の地形・道路・拠点を3Dで再現。地域の空間情報を可視化し、計画や対話の土台をつくる試み。", href: "/cases/iki-digital-twin" },
       { status: "planned", title: "離島型ジョブマッチング", body: "島内事業者の課題と島外人材のスキルを接続し、単発支援ではなく継続的な関わりを生む仕組みづくり。" },
       { status: "planned", title: "観光DX支援", body: "観光体験の見直しと情報導線の再設計を通じて、持続可能な観光の運用モデルをつくる取り組み。" },
       { status: "active", title: "壱岐オープンダイアログ", body: "多様な立場の人が、事実と主観を持ち寄って対話できる場をつくり、地域で合意形成や相互理解を進める実践。" },
@@ -59,7 +59,7 @@ export const homeData = {
       { num: "8", unit: "", label: "Migrations" },
     ],
     cases: [
-      { tag: "Education / Community", title: "いきこども選挙", body: "条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践を、半年近い準備期間をかけて実装しました。", href: "/cases/iki-kodomo-senkyo" },
+      { tag: "Data / Infrastructure", title: "壱岐島デジタルツイン", body: "OSMと国土地理院のオープンデータから島の地形・道路網・交通拠点を3Dで再現。地域の空間構造を直感的に共有できる情報基盤。", href: "/cases/iki-digital-twin" },
       { tag: "Dialogue / Community", title: "サクセンカイギ", body: "新しいアイデアを持ち寄り、対話を通じて磨き、島での実践につなげる場として運営。構想段階のアイデアを前に進める土壌を育てています。" },
       { tag: "Education / Community", title: "しまチャレ2024 協賛", body: "長崎県主催の島しょ地域ビジネスチャレンジにIKILAB特別賞を提供。次の担い手が地域で挑戦しやすい環境づくりを後押ししました。" },
     ],
