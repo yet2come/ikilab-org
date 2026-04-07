@@ -874,9 +874,7 @@ if (isEmbed) {
 if (isCompact) {
   document.querySelector('.header').style.display = 'none';
   document.querySelector('.info').style.display = 'none';
-  const panel = document.querySelector('.panel');
-  panel.style.top = '16px';
-  panel.classList.add('is-collapsed');
+  document.querySelector('.panel').style.top = '16px';
 }
 
 initThree();
