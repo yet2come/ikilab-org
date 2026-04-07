@@ -48,6 +48,12 @@ canvas{display:block}
   background:rgba(30,41,59,.7);color:#94a3b8;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
 .cbtn:hover{background:rgba(59,130,246,.25);color:#e2e8f0}
 .cbtn.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.panel-header{cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none}
+.panel-arrow{font-size:10px;transition:transform .25s}
+.panel.is-collapsed .panel-arrow{transform:rotate(-90deg)}
+.panel-body{overflow:hidden;max-height:500px;transition:max-height .3s ease,opacity .25s;opacity:1}
+.panel.is-collapsed .panel-body{max-height:0;opacity:0}
+.panel.is-collapsed{padding-bottom:14px}
 </style>
 </head>
 <body>
@@ -55,8 +61,9 @@ canvas{display:block}
   <h1>壱岐島 3D ワイヤーフレーム</h1>
   <span class="sub">OpenStreetMap 実データ ｜ レイヤー分離表示</span>
 </div>
-<div class="panel">
-  <h2>LAYERS</h2>
+<div class="panel" id="panel">
+  <h2 class="panel-header" id="panel-toggle">LAYERS <span class="panel-arrow">▾</span></h2>
+  <div class="panel-body" id="panel-body">
   <div class="layer-row" data-layer="terrain">
     <div class="layer-color" style="background:#22d3ee"></div>
     <span class="layer-name">地形</span>
@@ -93,6 +100,7 @@ canvas{display:block}
       <button class="cbtn active" data-v="10">10</button>
       <button class="cbtn" data-v="20">20</button>
     </div>
+  </div>
   </div>
 </div>
 <div class="info">
@@ -724,6 +732,10 @@ function setupUI() {
     });
   });
 
+  document.getElementById('panel-toggle').addEventListener('click', () => {
+    document.getElementById('panel').classList.toggle('is-collapsed');
+  });
+
   document.getElementById('separation').addEventListener('input', e => {
     sepVal = +e.target.value;
     updateLayers();
@@ -844,6 +856,7 @@ function animate() {
 // Check for embed mode (hide UI) or auto-rotate mode
 const params = new URLSearchParams(location.search);
 const isEmbed = params.has('embed');
+const isCompact = params.has('compact');
 const isAutoRotate = params.has('autorotate');
 
 // Layer preset from query param: ?layers=terrain,coastline
@@ -857,6 +870,13 @@ if (isEmbed) {
   document.querySelector('.header').style.display = 'none';
   document.querySelector('.panel').style.display = 'none';
   document.querySelector('.info').style.display = 'none';
+}
+if (isCompact) {
+  document.querySelector('.header').style.display = 'none';
+  document.querySelector('.info').style.display = 'none';
+  const panel = document.querySelector('.panel');
+  panel.style.top = '16px';
+  panel.classList.add('is-collapsed');
 }
 
 initThree();
