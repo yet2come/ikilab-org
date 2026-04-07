@@ -1700,6 +1700,10 @@ footer {
   letter-spacing: 0.05em;
 }
 
+@media (max-width: 768px) {
+  .case-demo-hint { display: none; }
+}
+
 .case-demo-bar .btn-brutal.case-demo-fs {
   flex-shrink: 0;
   font-size: 12px;
