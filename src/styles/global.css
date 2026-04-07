@@ -1777,6 +1777,8 @@ footer {
 
 @media (max-width: 768px) {
   .dt-keys { display: none; }
+  .dt-fullscreen-bar { flex-direction: column; gap: 0; padding: 0; }
+  .dt-fullscreen-bar .btn-brutal { width: 100%; border-left: none; border-top: var(--border); text-align: center; justify-content: center; }
 }
 
 .case-body {
