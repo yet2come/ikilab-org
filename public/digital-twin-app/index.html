@@ -385,14 +385,15 @@ function buildContours() {
   const levelSegments = {};
 
   // Main island grid
-  const R = 80, latMin = 33.700, latMax = 33.865, LM = 129.638, lngMax = 129.795;
+  const R = 120, latMin = 33.700, latMax = 33.865, LM = 129.638, lngMax = 129.795;
   const elevGrid = [];
   for (let i = 0; i <= R; i++) {
     elevGrid[i] = [];
     for (let j = 0; j <= R; j++) {
       const lat = latMin + (latMax - latMin) * (i / R);
       const lng = LM + (lngMax - LM) * (j / R);
-      elevGrid[i][j] = inside(lat, lng) ? getElev(lat, lng) : 0;
+      const raw = getElev(lat, lng);
+      elevGrid[i][j] = (inside(lat, lng) && raw > 0.5) ? raw : 0;
     }
   }
   marchGrid(elevGrid, R, R, latMin, latMax, LM, lngMax, levelSegments);
