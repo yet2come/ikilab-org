@@ -1771,6 +1771,10 @@ footer {
   color: var(--gray-700);
 }
 
+@media (max-width: 768px) {
+  .dt-keys { display: none; }
+}
+
 .case-body {
   padding-top: clamp(40px, 5vw, 72px);
   padding-bottom: clamp(20px, 3vw, 32px);
