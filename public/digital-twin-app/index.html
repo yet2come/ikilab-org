@@ -48,8 +48,8 @@ canvas{display:block}
   background:rgba(30,41,59,.7);color:#94a3b8;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
 .cbtn:hover{background:rgba(59,130,246,.25);color:#e2e8f0}
 .cbtn.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
-.panel-header{cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none}
-.panel-arrow{font-size:10px;transition:transform .25s}
+.panel-header{cursor:pointer;display:flex;align-items:center;justify-content:flex-start;gap:6px;user-select:none}
+.panel-arrow{font-size:18px;transition:transform .25s;line-height:1}
 .panel.is-collapsed .panel-arrow{transform:rotate(-90deg)}
 .panel-body{overflow:hidden;max-height:500px;transition:max-height .3s ease,opacity .25s;opacity:1}
 .panel.is-collapsed .panel-body{max-height:0;opacity:0}
