@@ -9,8 +9,8 @@ export const homeData = {
       { label: "進行中のテーマ →", href: "/projects", style: "fill" },
       { label: "相談する", href: "/contact", style: "ghost" },
     ],
-    date: "33.7487°N, 129.6918°E  /  IKI ISLAND, NAGASAKI, JAPAN",
-    coord: "IKI LAB EST. 2024",
+    date: "IKI ISLAND, NAGASAKI, JAPAN",
+    coord: "IKI LAB EST. 2024  /  33.7451°N, 129.6911°E",
     imagePlaceholder: "HERO IMAGE\n壱岐島の風景写真\nor 施設の記録写真",
   },
   why: {
