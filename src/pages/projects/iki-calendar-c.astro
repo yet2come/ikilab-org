@@ -1,0 +1,431 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { projects } from '../../data/projects';
+import { siteData } from '../../data/site';
+import '../../styles/global.css';
+
+const entry = projects.find(p => p.slug === 'iki-calendar')!;
+const Content = entry.Content;
+
+const sections = [
+  { id: 'snapshot', label: 'Snapshot' },
+  { id: 'why', label: 'Why' },
+  { id: 'focus', label: 'Focus' },
+  { id: 'progress', label: 'Progress' },
+  { id: 'questions', label: 'Questions' },
+];
+---
+<Base title={`${entry.title} — Design C — IKILAB`} description={entry.description}>
+  <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
+
+  <!-- Compact hero -->
+  <section class="pdc-hero">
+    <span class="pdc-status">{entry.status}</span>
+    <h1>{entry.title}</h1>
+    <div class="pdc-en">{entry.en}</div>
+  </section>
+
+  <!-- Tab bar (mobile) -->
+  <nav class="pdc-tabs">
+    {sections.map((s) => (
+      <a href={`#${s.id}`} class="pdc-tab">{s.label}</a>
+    ))}
+  </nav>
+
+  <!-- Sidebar + main -->
+  <div class="pdc-layout">
+    <aside class="pdc-sidebar">
+      <nav class="pdc-side-nav">
+        {sections.map((s) => (
+          <a href={`#${s.id}`} class="pdc-side-link">{s.label}</a>
+        ))}
+      </nav>
+
+      <div class="pdc-side-snapshot">
+        {entry.snapshot.map((item) => (
+          <div class="pdc-side-snap">
+            <div class="pdc-side-snap-label">{item.label}</div>
+            <div>{item.value}</div>
+          </div>
+        ))}
+      </div>
+
+      {entry.externalHref && (
+        <a href={entry.externalHref} target="_blank" rel="noreferrer" class="pdc-side-ext">{entry.externalLabel} →</a>
+      )}
+
+      <a href="/contact" class="pdc-side-contact">お問い合わせ →</a>
+    </aside>
+
+    <main class="pdc-main">
+      <!-- Snapshot (mobile) -->
+      <section id="snapshot" class="pdc-section">
+        <h2>Snapshot</h2>
+        <div class="pdc-snap-grid">
+          {entry.snapshot.map((item) => (
+            <div class="pdc-snap-card">
+              <div class="pdc-snap-label">{item.label}</div>
+              <p>{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Why -->
+      <section id="why" class="pdc-section">
+        <div class="pdc-markdown">
+          <Content />
+        </div>
+      </section>
+
+      <!-- Focus -->
+      <section id="focus" class="pdc-section">
+        <h2>現在の取り組み</h2>
+        {entry.focus.map((item, i) => (
+          <div class="pdc-focus-row">
+            <span>{String(i + 1).padStart(2, '0')}</span>
+            <p>{item}</p>
+          </div>
+        ))}
+      </section>
+
+      <!-- Progress -->
+      <section id="progress" class="pdc-section">
+        <h2>進行フェーズ</h2>
+        <div class="pdc-stepper">
+          {entry.phases.map((phase, i) => (
+            <div class={`pdc-step ${phase.label === 'Phase 4' ? 'pdc-step--active' : ''}`}>
+              <div class="pdc-step-indicator">
+                <div class="pdc-step-dot"></div>
+                {i < entry.phases.length - 1 && <div class="pdc-step-line"></div>}
+              </div>
+              <div class="pdc-step-content">
+                <div class="pdc-step-label">{phase.label}</div>
+                <h3>{phase.title}</h3>
+                <p>{phase.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Questions -->
+      <section id="questions" class="pdc-section">
+        <h2>未解決の論点</h2>
+        {entry.questions.map((item) => (
+          <div class="pdc-q-row">
+            <span>?</span>
+            <p>{item}</p>
+          </div>
+        ))}
+      </section>
+
+      <!-- CTA -->
+      <section class="pdc-section pdc-section--cta">
+        <h2>{entry.ctaTitle}</h2>
+        <p>{entry.ctaBody}</p>
+        <a href="/contact" class="btn-brutal btn-fill">お問い合わせ →</a>
+      </section>
+    </main>
+  </div>
+
+  <Footer brandFull={siteData.brandFull} brandDesc={siteData.brandDesc} copyright={siteData.copyright} columns={siteData.footerColumns} />
+</Base>
+
+<style is:global>
+  .pdc-hero {
+    margin-top: 56px;
+    padding: 32px clamp(24px, 5vw, 72px) 24px;
+    border-bottom: var(--border);
+  }
+  .pdc-status {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .pdc-hero h1 {
+    font-family: var(--font-jp);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    line-height: 1.3;
+    margin: 6px 0 4px;
+  }
+  .pdc-en {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gray-500);
+  }
+
+  /* Tab bar: mobile only */
+  .pdc-tabs {
+    display: none;
+    overflow-x: auto;
+    border-bottom: var(--border);
+    background: var(--white);
+    position: sticky;
+    top: 56px;
+    z-index: 50;
+  }
+  .pdc-tab {
+    display: inline-block;
+    padding: 12px 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gray-500);
+    white-space: nowrap;
+    border-right: 1px solid var(--gray-100);
+  }
+  .pdc-tab:hover { background: var(--black); color: var(--white); }
+
+  .pdc-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+  }
+
+  /* Sidebar: desktop only */
+  .pdc-sidebar {
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    padding: 24px 20px;
+    border-right: var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+  .pdc-side-nav {
+    margin-bottom: 24px;
+  }
+  .pdc-side-link {
+    display: block;
+    padding: 8px 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gray-500);
+    border-bottom: 1px solid var(--gray-100);
+    transition: color 0.15s;
+  }
+  .pdc-side-link:hover { color: var(--black); }
+
+  .pdc-side-snapshot {
+    flex: 1;
+  }
+  .pdc-side-snap {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .pdc-side-snap-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 3px;
+  }
+  .pdc-side-snap div:last-child {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .pdc-side-ext, .pdc-side-contact {
+    display: block;
+    margin-top: 12px;
+    padding: 10px 14px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .pdc-side-ext {
+    border: 1px solid var(--gray-300);
+    color: var(--black);
+  }
+  .pdc-side-ext:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .pdc-side-contact {
+    background: var(--red);
+    color: var(--white);
+    border: 1px solid var(--red);
+  }
+  .pdc-side-contact:hover { background: var(--black); border-color: var(--black); }
+
+  /* Main */
+  .pdc-main {
+    min-height: calc(100vh - 56px);
+  }
+  .pdc-section {
+    padding: clamp(32px, 4vw, 56px) clamp(24px, 5vw, 56px);
+    border-bottom: 1px solid var(--gray-100);
+    scroll-margin-top: 56px;
+  }
+  .pdc-section h2 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 20px;
+  }
+
+  /* Snapshot cards (shown in main on mobile, hidden on desktop) */
+  .pdc-snap-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .pdc-snap-card {
+    padding: 16px;
+    border: 1px solid var(--gray-100);
+  }
+  .pdc-snap-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 6px;
+  }
+  .pdc-snap-card p { font-size: 13px; font-weight: 500; }
+
+  .pdc-markdown h2 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-top: 28px;
+    margin-bottom: 6px;
+  }
+  .pdc-markdown h3 {
+    font-family: var(--font-jp);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .pdc-markdown p {
+    color: var(--gray-700);
+    margin-bottom: 18px;
+    line-height: 1.9;
+  }
+
+  .pdc-focus-row {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .pdc-focus-row span {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-300);
+    flex-shrink: 0;
+  }
+  .pdc-focus-row p { font-size: 14px; color: var(--gray-700); }
+
+  /* Stepper */
+  .pdc-stepper { padding-left: 4px; }
+  .pdc-step {
+    display: flex;
+    gap: 16px;
+  }
+  .pdc-step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .pdc-step-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gray-300);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 1px var(--gray-300);
+  }
+  .pdc-step--active .pdc-step-dot {
+    background: var(--red);
+    box-shadow: 0 0 0 1px var(--red);
+  }
+  .pdc-step-line {
+    width: 2px;
+    flex: 1;
+    min-height: 32px;
+    background: var(--gray-100);
+  }
+  .pdc-step-content {
+    padding-bottom: 24px;
+  }
+  .pdc-step-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 4px;
+  }
+  .pdc-step-content h3 {
+    font-family: var(--font-jp);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .pdc-step-content p {
+    font-size: 13px;
+    color: var(--gray-500);
+    line-height: 1.6;
+  }
+
+  .pdc-q-row {
+    display: flex;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+    align-items: flex-start;
+  }
+  .pdc-q-row span {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--red);
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+  .pdc-q-row p { font-size: 14px; color: var(--gray-700); }
+
+  .pdc-section--cta {
+    background: var(--paper);
+  }
+  .pdc-section--cta h2 {
+    font-family: var(--font-jp);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .pdc-section--cta p {
+    color: var(--gray-700);
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .pdc-layout { grid-template-columns: 1fr; }
+    .pdc-sidebar { display: none; }
+    .pdc-tabs { display: flex; }
+    .pdc-snap-grid { display: grid; }
+    #snapshot { scroll-margin-top: 100px; }
+    #why, #focus, #progress, #questions { scroll-margin-top: 100px; }
+  }
+</style>
