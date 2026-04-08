@@ -3,15 +3,39 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import IkiCalendarDetailD from '../../components/projects/IkiCalendarDetailD.astro';
+import IkiDigitalTwinDetailD from '../../components/projects/IkiDigitalTwinDetailD.astro';
+import RitoJobMatchingDetailD from '../../components/projects/RitoJobMatchingDetailD.astro';
 import { projects } from '../../data/projects';
 import { siteData } from '../../data/site';
 import '../../styles/global.css';
 
 export function getStaticPaths() {
-  return projects.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  return [
+    ...projects.map((entry) => ({
+      params: { slug: entry.slug },
+      props: { entry },
+    })),
+    {
+      params: { slug: 'iki-digital-twin' },
+      props: {
+        entry: {
+          slug: 'iki-digital-twin',
+          title: '壱岐島デジタルツイン',
+          description: '壱岐島の海岸線、標高、道路網、交通拠点をオープンデータから3Dで再現するプロジェクト。',
+        },
+      },
+    },
+    {
+      params: { slug: 'rito-job-matching' },
+      props: {
+        entry: {
+          slug: 'rito-job-matching',
+          title: '離島型ジョブマッチング',
+          description: '島内事業者の人手不足と、島外人材の関心やスキルを接続し、継続的な関わりを生む仕組みづくり。',
+        },
+      },
+    },
+  ];
 }
 
 const { entry } = Astro.props;
@@ -24,6 +48,10 @@ const pageDescription = entry.description;
 
   {entry.slug === 'iki-calendar' ? (
     <IkiCalendarDetailD />
+  ) : entry.slug === 'iki-digital-twin' ? (
+    <IkiDigitalTwinDetailD />
+  ) : entry.slug === 'rito-job-matching' ? (
+    <RitoJobMatchingDetailD />
   ) : (
     <>
       <section class="project-hero">
