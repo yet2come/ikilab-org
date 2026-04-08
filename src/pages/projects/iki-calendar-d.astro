@@ -88,10 +88,16 @@ const d = {
 
   projectInfo: {
     milestones: [
-      { date: '2023年後半', body: '島内イベント情報の分散状況を調査。集約基盤の必要性を確認。' },
-      { date: '2024年前半', body: 'プロトタイプ開発。カレンダーUI・マップ連携・イベント詳細の基本構造を設計。' },
-      { date: '2024年中盤', body: 'ikical.com として公開。情報収集と掲載を開始。' },
-      { date: '2024年後半〜', body: '掲示板・フィードバック機能を追加。運用フローを改善しながら継続運用中。' },
+      { date: '2024.03', body: 'プロジェクト開始。地元メディアに掲載されたイベントを中心に調査分析。' },
+      { date: '2024.04', body: 'Googleカレンダー / Google Apps によるプロトタイプ作成。' },
+      { date: '2024.05', body: 'Studioへの実装（α版）。' },
+      { date: '2024.07', body: '壱岐なSDGsアクション2024 第1回対話会で構想を発表。', href: 'https://youtu.be/6eWEWOqx2Ww?si=_n7K6KJgVYvWb6PH&t=128' },
+      { date: '2024.08', body: '壱岐カレンダー(β)を一般公開。' },
+      { date: '2024.11', body: '特集記事として「年末年始営業情報」を独自調査して掲載。' },
+      { date: '2024.12', body: 'オンラインチケットシステムとの連携について実証実験。' },
+      { date: '2025.09', body: '壱岐カレンダー(v2)の仕様検討を開始。' },
+      { date: '2026.02', body: '壱岐カレンダー(v2)を一般公開。姉妹サイト「壱岐なう(β)」を公開。' },
+      { date: '2026.04', body: 'スタンプラリー機能を追加。' },
     ],
     team: [
       { name: '（Members Only）', role: '企画・開発' },
@@ -260,7 +266,10 @@ const whoLabels: Record<string, string> = {
       {d.projectInfo.milestones.map(ms => (
         <div class="pdd-milestone">
           <span class="pdd-milestone-date">{ms.date}</span>
-          <p>{ms.body}</p>
+          <div>
+            <p>{ms.body}</p>
+            {ms.href && <a href={ms.href} target="_blank" rel="noreferrer" class="pdd-milestone-link">動画を見る →</a>}
+          </div>
         </div>
       ))}
     </div>
@@ -563,6 +572,14 @@ const whoLabels: Record<string, string> = {
   color: var(--gray-700);
   margin-bottom: 0;
 }
+.pdd-milestone-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--red);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.pdd-milestone-link:hover { text-decoration: underline; }
 
 .pdd-info-grid {
   display: grid;
