@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { cases } from '../data/cases';
+import { homeData } from '../data/home';
 import { siteData } from '../data/site';
 import '../styles/global.css';
 
@@ -14,6 +15,8 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props;
+const activeProjects = homeData.experiments.items.filter((item) => item.status === 'active');
+const plannedProjects = homeData.experiments.items.filter((item) => item.status !== 'active');
 ---
 <Base title={`${page.titleJa} — IKILAB`} description={page.description}>
   <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
@@ -38,6 +41,56 @@ const { page } = Astro.props;
             <p>{entry.lead}</p>
             <span class="case-index-link">詳細を見る →</span>
           </a>
+        ))}
+      </div>
+    </div>
+  ) : page.slug === 'projects' ? (
+    <div class="subpage-content subpage-content--wide">
+      <div class="case-index-head">
+        <h2>Active Projects</h2>
+        <p>IKILABが現在進めているプロジェクトです。詳細ページがあるものは、背景、構想、進捗、次の展開まで含めて見ることができます。</p>
+      </div>
+      <div class="case-index-list">
+        {activeProjects.map((entry) => (
+          entry.href ? (
+            <a href={entry.href} class="case-index-card">
+              <div class="case-index-meta">{entry.status}</div>
+              <h3>{entry.title}</h3>
+              <p>{entry.body}</p>
+              <span class="case-index-link">詳細を見る →</span>
+            </a>
+          ) : (
+            <div class="case-index-card case-index-card--disabled">
+              <div class="case-index-meta">{entry.status}</div>
+              <h3>{entry.title}</h3>
+              <p>{entry.body}</p>
+              <span class="case-index-link">詳細準備中</span>
+            </div>
+          )
+        ))}
+      </div>
+
+      <div class="case-index-head project-index-head-secondary">
+        <h2>Pipeline</h2>
+        <p>構想・設計段階のテーマです。ヒアリングや試作を進めながら、壱岐島に合う形へと具体化していきます。</p>
+      </div>
+      <div class="case-index-list">
+        {plannedProjects.map((entry) => (
+          entry.href ? (
+            <a href={entry.href} class="case-index-card">
+              <div class="case-index-meta">{entry.status}</div>
+              <h3>{entry.title}</h3>
+              <p>{entry.body}</p>
+              <span class="case-index-link">詳細を見る →</span>
+            </a>
+          ) : (
+            <div class="case-index-card case-index-card--disabled">
+              <div class="case-index-meta">{entry.status}</div>
+              <h3>{entry.title}</h3>
+              <p>{entry.body}</p>
+              <span class="case-index-link">構想中</span>
+            </div>
+          )
         ))}
       </div>
     </div>
