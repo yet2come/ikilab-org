@@ -87,10 +87,19 @@ const d = {
   ],
 
   projectInfo: {
-    started: '2024年',
+    milestones: [
+      { date: '2023年後半', body: '島内イベント情報の分散状況を調査。集約基盤の必要性を確認。' },
+      { date: '2024年前半', body: 'プロトタイプ開発。カレンダーUI・マップ連携・イベント詳細の基本構造を設計。' },
+      { date: '2024年中盤', body: 'ikical.com として公開。情報収集と掲載を開始。' },
+      { date: '2024年後半〜', body: '掲示板・フィードバック機能を追加。運用フローを改善しながら継続運用中。' },
+    ],
     team: [
       { name: '（Members Only）', role: '企画・開発' },
       { name: '（Members Only）', role: '情報収集・運用' },
+    ],
+    relatedProjects: [
+      { label: '壱岐なう', href: '#' },
+      { label: '壱岐ロケ', href: '#' },
     ],
     links: [
       { label: '壱岐カレンダー（実サービス）', href: 'https://ikical.com/' },
@@ -245,11 +254,18 @@ const whoLabels: Record<string, string> = {
   <!-- 9. プロジェクト情報 -->
   <div class="pdd-bar pdd-bar--alt"><span>07</span> PROJECT INFO</div>
   <section id="info" class="pdd-section pdd-section--alt">
+    <!-- 経緯 -->
+    <h3>経緯</h3>
+    <div class="pdd-milestones">
+      {d.projectInfo.milestones.map(ms => (
+        <div class="pdd-milestone">
+          <span class="pdd-milestone-date">{ms.date}</span>
+          <p>{ms.body}</p>
+        </div>
+      ))}
+    </div>
+
     <div class="pdd-info-grid">
-      <div>
-        <h4>開始</h4>
-        <p>{d.projectInfo.started}</p>
-      </div>
       <div>
         <h4>体制</h4>
         {d.projectInfo.team.map(member => (
@@ -257,6 +273,12 @@ const whoLabels: Record<string, string> = {
             <span class="pdd-team-role">{member.role}</span>
             <span>{member.name}</span>
           </div>
+        ))}
+      </div>
+      <div>
+        <h4>関連プロジェクト</h4>
+        {d.projectInfo.relatedProjects.map(rp => (
+          <a href={rp.href} class="pdd-info-link">{rp.label} →</a>
         ))}
       </div>
       <div>
@@ -515,6 +537,33 @@ const whoLabels: Record<string, string> = {
 .pdd-mid-cta p { font-weight: 500; margin-bottom: 0; }
 
 /* Project Info */
+/* Milestones */
+.pdd-milestones {
+  margin-bottom: 36px;
+  max-width: 720px;
+}
+.pdd-milestone {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  align-items: baseline;
+}
+.pdd-milestone-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-500);
+  white-space: nowrap;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+.pdd-milestone p {
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-bottom: 0;
+}
+
 .pdd-info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
