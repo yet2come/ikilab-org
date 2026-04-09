@@ -1,0 +1,284 @@
+---
+const d = {
+  title: '壱岐なう',
+  status: 'Beta',
+  en: 'Real-time island status at a glance.',
+  lead: 'フェリー・ジェットフォイル・航空便の運航状況、気象警報、潮汐、日の出日の入りなど、壱岐島の「いま」を一画面で把握できるリアルタイムダッシュボード。壱岐カレンダーの姉妹プロジェクト。',
+  externalLabel: '壱岐なう(β)を見る',
+  externalHref: 'https://now.ikical.com/',
+
+  experiment: {
+    what: '運航会社の公式情報、気象庁API、海上保安庁の潮汐データなど、離島生活に不可欠な複数の情報源を一つのダッシュボードに統合。船舶・航空の運航状況、気象警報・注意報、潮汐、日の出日の入り、月齢、二十四節気までをリアルタイムで一覧表示するWebアプリとして公開。',
+    howDifferent: '従来は運航状況は運航会社のサイトや電話、気象は気象庁、潮汐は海上保安庁と、情報源がばらばらに分散していた。壱岐なうは「島のいま」を横断的に集約する点が異なる。壱岐カレンダーが「予定」を集約するのに対し、壱岐なうは「状況」を集約する。',
+  },
+
+  phases: [
+    { key: 'research', label: '課題整理' },
+    { key: 'design', label: '設計・試作' },
+    { key: 'beta', label: 'β版公開' },
+    { key: 'stable', label: '安定運用' },
+  ],
+  currentPhaseKey: 'beta',
+  currentFocus: [
+    '運航会社の公式情報からの欠航・変更データの自動取得',
+    '気象庁APIからの警報・注意報のリアルタイム反映',
+    '潮汐データの精度検証（郷ノ浦観測点）',
+    'モバイルでの一覧性と視認性の改善',
+    '壱岐カレンダーとのUI統合・相互導線の設計',
+  ],
+
+  findings: {
+    learnings: [
+      '運航・気象・潮汐を一画面に集約することで、毎朝の判断コストが下がるという実感が得られた。',
+      '来島者にとっても「いま島がどういう状態か」が直感的にわかり、滞在中の行動計画がしやすくなった。',
+      '二十四節気や月齢など暦情報の表示が、島の季節感を感じる要素として好評。',
+    ],
+    challenges: [
+      '運航会社のデータ形式が統一されておらず、自動取得の安定性に課題がある。',
+      '欠航判断のタイミングが運航会社によって異なり、リアルタイム性の担保が難しい。',
+      '気象・潮汐データの更新頻度と表示のバランス調整が必要。',
+    ],
+    openQuestions: [
+      '運航会社のデータを安定的に自動取得し続けられるか',
+      '欠航判断のタイミングと利用者への通知をどう設計するか',
+      '壱岐カレンダーとどこまで統合し、どこから分離すべきか',
+      '漁業者や観光事業者など、業種ごとに必要な情報粒度が異なる問題にどう対応するか',
+    ],
+  },
+
+  next: {
+    plans: [
+      'データ自動更新の安定化と障害時のフォールバック設計',
+      '欠航・遅延時のプッシュ通知機能の検討',
+      '壱岐カレンダーとの統合ダッシュボード化',
+      '漁業・観光など業種別のカスタマイズ表示の検討',
+    ],
+    scalability: '離島はどこでも船舶運航・気象・潮汐が生活に直結するため、同じダッシュボード構造を他の離島に展開できる可能性がある。壱岐での運用知見——どの情報が実際に使われるか、更新頻度はどこまで必要か——を蓄積し、横展開の設計材料とする。',
+  },
+
+  involvement: [
+    {
+      who: 'company',
+      label: '交通・気象データの連携パートナー',
+      body: '運航データの提供やAPI連携、気象情報サービスとの統合に関心のある企業の方へ。',
+      examples: ['運航データのAPI提供', 'リアルタイムデータ連携の技術支援', '離島向け気象サービスの共同開発'],
+    },
+    {
+      who: 'supporter',
+      label: '運用フィードバック',
+      body: '壱岐在住で日常的に運航状況を確認している方。実際の使い勝手を教えてください。',
+      examples: ['欠航情報の正確性のフィードバック', '表示してほしい情報の提案', '利用シーンの共有'],
+    },
+    {
+      who: 'researcher',
+      label: '離島の情報インフラ研究',
+      body: '離島における交通・気象情報のアクセシビリティや、情報格差の解消に関心のある研究者の方へ。',
+      examples: ['離島の情報行動調査', '交通データの可視化研究', '他離島との比較分析'],
+    },
+    {
+      who: 'individual',
+      label: '開発・改善への貢献',
+      body: 'フロントエンド開発やデータ可視化のスキルを持つ方。APIデータの取得・表示の改善を一緒に進めたい方。',
+      examples: ['データ取得モジュールの開発', 'ダッシュボードUIの改善', 'PWA対応の強化'],
+    },
+  ],
+
+  projectInfo: {
+    milestones: [
+      { date: '2025年後半', body: '壱岐カレンダーの運用を通じて、運航状況や気象情報の集約ニーズを確認。' },
+      { date: '2026.02', body: '壱岐カレンダー(v2)公開と同時に、姉妹サイト「壱岐なう(β)」を公開。' },
+      { date: '2026.03', body: '運航スケジュール（フェリー・ジェットフォイル・航空便）の表示を実装。' },
+      { date: '2026.04', body: '気象警報・潮汐・暦情報の表示を追加。モバイル対応を改善。' },
+    ],
+    team: [
+      { name: '（Members Only）', role: '企画・開発' },
+    ],
+    relatedProjects: [
+      { label: '壱岐カレンダー', href: '/projects/iki-calendar' },
+      { label: '壱岐ロケ', href: '/projects/iki-loc' },
+    ],
+    links: [
+      { label: '壱岐なう(β)', href: 'https://now.ikical.com/' },
+      { label: '壱岐カレンダー', href: 'https://ikical.com/' },
+    ],
+  },
+};
+
+const sections = [
+  { id: 'background', label: '背景' },
+  { id: 'experiment', label: '実験内容' },
+  { id: 'findings', label: '知見' },
+  { id: 'involvement', label: '関わり方' },
+  { id: 'info', label: 'プロジェクト情報' },
+];
+
+const whoLabels: Record<string, string> = {
+  company: '企業',
+  individual: '個人',
+  researcher: '研究者',
+  supporter: 'サポーター',
+};
+---
+<section class="pdd-hero">
+  <div class="pdd-hero-inner">
+    <span class="pdd-badge">{d.status}</span>
+    <h1>{d.title}</h1>
+    <div class="pdd-en">{d.en}</div>
+    <p>{d.lead}</p>
+    <div class="pdd-hero-actions">
+      <a href="/projects" class="btn-brutal btn-ghost">一覧に戻る</a>
+      {d.externalHref && <a href={d.externalHref} target="_blank" rel="noreferrer" class="btn-brutal btn-fill">{d.externalLabel}</a>}
+    </div>
+  </div>
+</section>
+
+<nav class="pdd-nav">
+  {sections.map(s => <a href={`#${s.id}`} class="pdd-nav-link">{s.label}</a>)}
+</nav>
+
+<div class="pdd-bar"><span>01</span> BACKGROUND</div>
+<section id="background" class="pdd-section">
+  <div class="pdd-col">
+    <h3>どんな問題か</h3>
+    <p>離島では、船が出るかどうかが一日の予定を左右します。フェリーやジェットフォイルの運航状況、天候による欠航判断、波や風の状態、潮の満ち引き——これらは島民にとって毎朝確認する生活インフラです。しかし、運航状況は運航会社のWebサイトや電話、気象は気象庁、潮汐は海上保安庁と、情報源がばらばらに散らばっています。</p>
+  </div>
+  <div class="pdd-col">
+    <h3>なぜ壱岐でやるのか</h3>
+    <p>壱岐島は3つの港と1つの空港を持ち、博多・唐津・対馬・長崎への複数の航路が生活の根幹を支えています。運航状況・気象・潮汐の組み合わせが日常の移動判断に直結する環境で、情報集約の効果を最も実感しやすいフィールドです。</p>
+  </div>
+  <div class="pdd-col">
+    <h3>なぜ今やるのか</h3>
+    <p>壱岐カレンダーで「予定」の集約基盤ができた今、次に必要なのは「状況」の集約です。壱岐カレンダーと壱岐なうの二つが揃って初めて、島の情報基盤として機能する。また、気象庁APIなど公的データのオープン化が進んだことで、技術的にも実現可能なタイミングです。</p>
+  </div>
+</section>
+
+<div class="pdd-bar"><span>02</span> EXPERIMENT</div>
+<section id="experiment" class="pdd-section">
+  <div class="pdd-col">
+    <h3>何をどう試しているか</h3>
+    <p>{d.experiment.what}</p>
+  </div>
+  <div class="pdd-col">
+    <h3>従来と何が違うか</h3>
+    <p>{d.experiment.howDifferent}</p>
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>03</span> STATUS</div>
+<section class="pdd-section pdd-section--alt">
+  <div class="pdd-stepper">
+    {d.phases.map((phase, i) => (
+      <div class={`pdd-step ${phase.key === d.currentPhaseKey ? 'pdd-step--active' : ''}`}>
+        <div class="pdd-step-indicator">
+          <div class="pdd-step-dot"></div>
+          {i < d.phases.length - 1 && <div class="pdd-step-line"></div>}
+        </div>
+        <div class="pdd-step-label">{phase.label}</div>
+      </div>
+    ))}
+  </div>
+  <h3>現在の取り組み</h3>
+  <ul class="pdd-focus-list">
+    {d.currentFocus.map(item => <li>{item}</li>)}
+  </ul>
+</section>
+
+<div class="pdd-bar"><span>04</span> FINDINGS</div>
+<section id="findings" class="pdd-section">
+  <div class="pdd-findings-group">
+    <h3>見えてきたこと</h3>
+    {d.findings.learnings.map(item => (
+      <div class="pdd-finding-row pdd-finding--learning"><span>○</span><p>{item}</p></div>
+    ))}
+  </div>
+  <div class="pdd-findings-group">
+    <h3>課題として残っていること</h3>
+    {d.findings.challenges.map(item => (
+      <div class="pdd-finding-row pdd-finding--challenge"><span>△</span><p>{item}</p></div>
+    ))}
+  </div>
+  <div class="pdd-findings-group">
+    <h3>まだ答えの出ていない問い</h3>
+    {d.findings.openQuestions.map(item => (
+      <div class="pdd-finding-row pdd-finding--question"><span>?</span><p>{item}</p></div>
+    ))}
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>05</span> NEXT</div>
+<section class="pdd-section pdd-section--alt">
+  <h3>次にやること</h3>
+  <ul class="pdd-focus-list">
+    {d.next.plans.map(item => <li>{item}</li>)}
+  </ul>
+  <h3>再現性の見立て</h3>
+  <p class="pdd-scalability">{d.next.scalability}</p>
+</section>
+
+<div class="pdd-bar"><span>06</span> INVOLVEMENT</div>
+<section id="involvement" class="pdd-section">
+  <div class="pdd-involve-grid">
+    {d.involvement.map(inv => (
+      <div class="pdd-involve-card">
+        <div class="pdd-involve-who">{whoLabels[inv.who] || inv.who}</div>
+        <h3>{inv.label}</h3>
+        <p>{inv.body}</p>
+        {inv.examples && inv.examples.length > 0 && (
+          <ul class="pdd-involve-examples">
+            {inv.examples.map(ex => <li>{ex}</li>)}
+          </ul>
+        )}
+      </div>
+    ))}
+  </div>
+  <div class="pdd-mid-cta">
+    <p>壱岐なうに関わりたい方はお気軽にご連絡ください。</p>
+    <a href="/contact" class="btn-brutal btn-fill">お問い合わせ →</a>
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>07</span> PROJECT INFO</div>
+<section id="info" class="pdd-section pdd-section--alt">
+  <h3>タイムライン</h3>
+  <div class="pdd-milestones">
+    {d.projectInfo.milestones.map(ms => (
+      <div class="pdd-milestone">
+        <span class="pdd-milestone-date">{ms.date}</span>
+        <div><p>{ms.body}</p></div>
+      </div>
+    ))}
+  </div>
+
+  <div class="pdd-info-grid">
+    <div>
+      <h4>体制</h4>
+      {d.projectInfo.team.map(member => (
+        <div class="pdd-team-row">
+          <span class="pdd-team-role">{member.role}</span>
+          <span>{member.name}</span>
+        </div>
+      ))}
+    </div>
+    <div>
+      <h4>関連プロジェクト</h4>
+      {d.projectInfo.relatedProjects.map(rp => (
+        <a href={rp.href} class="pdd-info-link">{rp.label} →</a>
+      ))}
+    </div>
+    <div>
+      <h4>関連リンク</h4>
+      {d.projectInfo.links.map(link => (
+        <a href={link.href} target="_blank" rel="noreferrer" class="pdd-info-link">{link.label} →</a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="pdd-final-cta">
+  <div class="pdd-final-cta-inner">
+    <div class="pdd-cta-kicker">Connect</div>
+    <h2>このプロジェクトに関心がある方へ</h2>
+    <p>離島の交通・気象・海洋データの集約と活用、リアルタイムダッシュボードの設計に関心がある方はご連絡ください。</p>
+    <a href="/contact" class="btn-brutal btn-fill" style="background:var(--red);border-color:var(--red);">お問い合わせ →</a>
+  </div>
+</section>

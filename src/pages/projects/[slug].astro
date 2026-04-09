@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import IkiCalendarDetailD from '../../components/projects/IkiCalendarDetailD.astro';
 import IkiDigitalTwinDetailD from '../../components/projects/IkiDigitalTwinDetailD.astro';
 import IkiRokeDetailD from '../../components/projects/IkiRokeDetailD.astro';
+import IkiNowDetailD from '../../components/projects/IkiNowDetailD.astro';
 import RitoJobMatchingDetailD from '../../components/projects/RitoJobMatchingDetailD.astro';
 import { projects } from '../../data/projects';
 import { siteData } from '../../data/site';
@@ -37,6 +38,16 @@ export function getStaticPaths() {
       },
     },
     {
+      params: { slug: 'iki-now' },
+      props: {
+        entry: {
+          slug: 'iki-now',
+          title: '壱岐なう',
+          description: '船舶・航空の運航状況、気象、潮汐など、離島生活に不可欠なリアルタイム情報を一画面に集約するダッシュボード。',
+        },
+      },
+    },
+    {
       params: { slug: 'iki-loc' },
       props: {
         entry: {
@@ -61,6 +72,8 @@ const pageDescription = entry.description;
     <IkiCalendarDetailD />
   ) : entry.slug === 'iki-digital-twin' ? (
     <IkiDigitalTwinDetailD />
+  ) : entry.slug === 'iki-now' ? (
+    <IkiNowDetailD />
   ) : entry.slug === 'iki-loc' ? (
     <IkiRokeDetailD />
   ) : entry.slug === 'rito-job-matching' ? (

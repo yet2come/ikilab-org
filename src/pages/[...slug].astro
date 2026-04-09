@@ -15,8 +15,15 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props;
-const activeProjects = homeData.experiments.items.filter((item) => item.status === 'active');
-const plannedProjects = homeData.experiments.items.filter((item) => item.status !== 'active');
+
+// Projects listed only on /projects/ (not on top page)
+const additionalProjects = [
+  { status: "active", title: "壱岐なう", body: "船舶・航空の運航状況、気象、潮汐など、離島生活に不可欠なリアルタイム情報を一画面に集約するダッシュボード。壱岐カレンダーの姉妹プロジェクト。", href: "/projects/iki-now" },
+];
+
+const allProjects = [...homeData.experiments.items, ...additionalProjects];
+const activeProjects = allProjects.filter((item) => item.status === 'active');
+const plannedProjects = allProjects.filter((item) => item.status !== 'active');
 ---
 <Base title={`${page.titleJa} — IKILAB`} description={page.description}>
   <Header brand={siteData.brand} brandHref="/" navItems={siteData.navItems} contactHref={siteData.contactHref} />
