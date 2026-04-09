@@ -2319,11 +2319,18 @@ footer {
   margin-bottom: 28px;
 }
 .pdd-sim-fig {
+  display: block;
   margin: 0;
   border: 1px solid var(--gray-100);
   border-radius: 4px;
   overflow: hidden;
   background: var(--black);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s;
+}
+.pdd-sim-fig:hover {
+  border-color: var(--black);
 }
 .pdd-sim-fig img {
   display: block;
