@@ -4,7 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import IkiCalendarDetailD from '../../components/projects/IkiCalendarDetailD.astro';
 import IkiDigitalTwinDetailD from '../../components/projects/IkiDigitalTwinDetailD.astro';
-import IkiLocDetailD from '../../components/projects/IkiLocDetailD.astro';
+import IkiRokeDetailD from '../../components/projects/IkiRokeDetailD.astro';
 import RitoJobMatchingDetailD from '../../components/projects/RitoJobMatchingDetailD.astro';
 import { projects } from '../../data/projects';
 import { siteData } from '../../data/site';
@@ -62,7 +62,7 @@ const pageDescription = entry.description;
   ) : entry.slug === 'iki-digital-twin' ? (
     <IkiDigitalTwinDetailD />
   ) : entry.slug === 'iki-loc' ? (
-    <IkiLocDetailD />
+    <IkiRokeDetailD />
   ) : entry.slug === 'rito-job-matching' ? (
     <RitoJobMatchingDetailD />
   ) : (
