@@ -1,0 +1,282 @@
+---
+const d = {
+  title: '壱岐島ロケーションデータベース「壱岐ロケ」',
+  status: 'Planning',
+  en: 'A community-owned location database for Iki Island.',
+  lead: '壱岐島内の「場所（ロケーション）」に関する情報を体系的に整理し、地域主体で活用可能なデータ基盤を構築するプロジェクトです。観光・生活・地域活動に必要な空間情報を整備し、持続的な地域情報インフラを目指します。',
+
+  experiment: {
+    what: '壱岐島内の施設や場所に対して、名称・用途・利用条件・設備などの情報を付与し、地域主体で更新可能なロケーションデータベースを整備します。既存の壱岐カレンダーとの連携も視野に入れ、「いつ・どこで・何が行われているか」を一体的に把握できる環境を構想しています。',
+    howDifferent: 'Googleマップ等の汎用地図サービスでは拾いきれない地域固有の詳細情報を、地域側が主体的に収集・更新する点が特徴です。単なる施設一覧ではなく、観光・生活・事業活動で実際に役立つ粒度の空間情報を蓄積していくことを目指します。',
+  },
+
+  phases: [
+    { key: 'research', label: '課題整理' },
+    { key: 'scope', label: '重点領域設定' },
+    { key: 'design', label: 'データ設計' },
+    { key: 'prototype', label: '試作・運用設計' },
+  ],
+  currentPhaseKey: 'design',
+  currentFocus: [
+    '重点カテゴリーの定義と対象施設の整理',
+    '施設情報の共通フォーマット設計',
+    '地域主体で更新可能な運用体制の検討',
+    '壱岐カレンダーとの時間情報連携の設計',
+    '現地取材・入力支援の進め方の整理',
+  ],
+
+  findings: {
+    learnings: [
+      '地方離島では、基本情報は存在していても、実利用に必要な詳細情報が不足しているケースが多い。',
+      '名称や用途が紐づかない建物・施設が多く、未可視化の地域資源が観光・生活の両面で活用されていない。',
+      '外部プラットフォーム依存の状態では、地域が主体的に情報整備・更新を進めるのが難しい。',
+    ],
+    challenges: [
+      '情報の収集・更新を継続するための地域内の役割分担が必要。',
+      '施設情報は粒度がばらつきやすく、共通フォーマットの設計が重要。',
+      '空間情報だけでなく、時間情報や利用条件との接続まで見据える必要がある。',
+    ],
+    openQuestions: [
+      '初期重点領域の3カテゴリーから、どの順で整備を進めるべきか',
+      '地域内で情報更新を担う主体をどう配置するか',
+      '公共データや予約導線との統合をどこまで視野に入れるか',
+      '観光利用と生活利用の双方にとって有効な情報粒度をどう定義するか',
+    ],
+  },
+
+  next: {
+    plans: [
+      'カフェ・子どもの居場所・イベントスペースの情報整理',
+      '共通入力フォーマットの試作',
+      '現地取材と入力支援の運用設計',
+      '壱岐カレンダーとの連携条件の整理',
+    ],
+    scalability: '地域主体でロケーション情報を整備・更新するモデルは、離島や小規模自治体に共通する課題に応用可能です。重要なのは単なる地図掲載ではなく、地域にとって必要な情報粒度を定義し、それを持続的に更新できる体制をどうつくるかにあります。',
+  },
+
+  involvement: [
+    {
+      who: 'company',
+      label: '施設情報の提供・連携',
+      body: 'カフェ、宿泊、イベントスペースなど、施設情報を提供し地域導線づくりに参加したい事業者の方へ。',
+      examples: ['基本情報の提供', '設備・利用条件の整理', '更新フローの共同検討'],
+    },
+    {
+      who: 'supporter',
+      label: '現地取材・入力支援',
+      body: '地域おこし協力隊や島内外のサポーターとして、現地取材やデータ入力に関わりたい方へ。',
+      examples: ['現地確認', '写真撮影', 'データ入力支援'],
+    },
+    {
+      who: 'researcher',
+      label: '地域データ基盤の研究',
+      body: '空間情報整備、地域情報基盤、観光・生活情報設計に関心のある研究者の方へ。',
+      examples: ['データ設計の分析', '利活用モデルの検証', '他地域との比較研究'],
+    },
+    {
+      who: 'individual',
+      label: '利用者目線のフィードバック',
+      body: '観光客、子育て世帯、地域活動者として、必要な情報項目や使い勝手を提案したい方へ。',
+      examples: ['必要情報の提案', 'ユースケースの共有', '更新ニーズのフィードバック'],
+    },
+  ],
+
+  projectInfo: {
+    milestones: [
+      { date: '2026.04', body: '壱岐島内の場所情報を地域主体で整備する構想を整理。' },
+      { date: '2026.04', body: '初期重点領域をカフェ・子どもの居場所・イベントスペースに設定。' },
+      { date: '2026.05', body: '共通フォーマットと現地取材・更新体制の設計検討を開始予定。' },
+    ],
+    team: [
+      { name: '壱岐ロケ開発・運営チーム', role: '開発・運営' },
+      { name: '（調整中）', role: '地域連携・入力支援' },
+    ],
+    relatedProjects: [
+      { label: '壱岐カレンダー', href: '/projects/iki-calendar' },
+      { label: '壱岐島デジタルツイン', href: '/projects/iki-digital-twin' },
+    ],
+    links: [],
+  },
+};
+
+const sections = [
+  { id: 'background', label: '背景' },
+  { id: 'experiment', label: '構想' },
+  { id: 'findings', label: '知見' },
+  { id: 'involvement', label: '関わり方' },
+  { id: 'info', label: 'プロジェクト情報' },
+];
+
+const whoLabels: Record<string, string> = {
+  company: '企業',
+  individual: '個人',
+  researcher: '研究者',
+  supporter: 'サポーター',
+};
+---
+<section class="pdd-hero">
+  <div class="pdd-hero-inner">
+    <span class="pdd-badge">{d.status}</span>
+    <h1>{d.title}</h1>
+    <div class="pdd-en">地域主体による空間情報整備と利活用の推進</div>
+    <div class="pdd-en">{d.en}</div>
+    <p>{d.lead}</p>
+    <div class="pdd-hero-actions">
+      <a href="/projects" class="btn-brutal btn-ghost">一覧に戻る</a>
+      <a href="/contact" class="btn-brutal btn-fill">相談する</a>
+    </div>
+  </div>
+</section>
+
+<nav class="pdd-nav">
+  {sections.map(s => <a href={`#${s.id}`} class="pdd-nav-link">{s.label}</a>)}
+</nav>
+
+<div class="pdd-bar"><span>01</span> BACKGROUND</div>
+<section id="background" class="pdd-section">
+  <div class="pdd-col">
+    <h3>背景と課題認識</h3>
+    <p>Googleマップ等のデジタル地図サービスは広く普及している一方で、地方離島では「Wi-Fi環境」「子育て設備」「利用条件」など、実際の利用に必要な詳細情報が十分に整備されていません。また、島内の多くの建物・施設がデジタル上では名称や用途が紐づかない状態にあり、観光・生活の観点から活用されていない地域資源が多数存在しています。</p>
+  </div>
+  <div class="pdd-col">
+    <h3>外部サービス依存の限界</h3>
+    <p>地図情報の更新・管理が外部プラットフォームに依存しているため、地域として主体的に情報整備・発信を行いにくい状況があります。必要な情報粒度を地域側で定義し、継続的に更新できる基盤を持つことが重要です。</p>
+  </div>
+  <div class="pdd-col">
+    <h3>このプロジェクトの目的</h3>
+    <p>壱岐島内の「場所（ロケーション）」に関する情報を体系的に整理し、地域主体で活用可能なデータ基盤を構築することを目的とします。空間情報の整備、時間情報との連携、地域主体の情報管理体制の確立を同時に進めます。</p>
+  </div>
+</section>
+
+<div class="pdd-bar"><span>02</span> EXPERIMENT</div>
+<section id="experiment" class="pdd-section">
+  <div class="pdd-col">
+    <h3>何を構想しているか</h3>
+    <p>{d.experiment.what}</p>
+  </div>
+  <div class="pdd-col">
+    <h3>初期対象領域</h3>
+    <p>初期フェーズでは、カフェ、子どもの居場所、イベントスペースの3領域に重点化します。観光振興と地域生活の双方に直結するカテゴリとして優先的に整備を進める想定です。</p>
+  </div>
+  <div class="pdd-col">
+    <h3>従来と何が違うか</h3>
+    <p>{d.experiment.howDifferent}</p>
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>03</span> STATUS</div>
+<section class="pdd-section pdd-section--alt">
+  <div class="pdd-stepper">
+    {d.phases.map((phase, i) => (
+      <div class={`pdd-step ${phase.key === d.currentPhaseKey ? 'pdd-step--active' : ''}`}>
+        <div class="pdd-step-indicator">
+          <div class="pdd-step-dot"></div>
+          {i < d.phases.length - 1 && <div class="pdd-step-line"></div>}
+        </div>
+        <div class="pdd-step-label">{phase.label}</div>
+      </div>
+    ))}
+  </div>
+  <h3>現在の取り組み</h3>
+  <ul class="pdd-focus-list">
+    {d.currentFocus.map(item => <li>{item}</li>)}
+  </ul>
+</section>
+
+<div class="pdd-bar"><span>04</span> FINDINGS</div>
+<section id="findings" class="pdd-section">
+  <div class="pdd-findings-group">
+    <h3>見えてきたこと</h3>
+    {d.findings.learnings.map(item => (
+      <div class="pdd-finding-row pdd-finding--learning"><span>○</span><p>{item}</p></div>
+    ))}
+  </div>
+  <div class="pdd-findings-group">
+    <h3>課題として残っていること</h3>
+    {d.findings.challenges.map(item => (
+      <div class="pdd-finding-row pdd-finding--challenge"><span>△</span><p>{item}</p></div>
+    ))}
+  </div>
+  <div class="pdd-findings-group">
+    <h3>まだ答えの出ていない問い</h3>
+    {d.findings.openQuestions.map(item => (
+      <div class="pdd-finding-row pdd-finding--question"><span>?</span><p>{item}</p></div>
+    ))}
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>05</span> NEXT</div>
+<section class="pdd-section pdd-section--alt">
+  <h3>次にやること</h3>
+  <ul class="pdd-focus-list">
+    {d.next.plans.map(item => <li>{item}</li>)}
+  </ul>
+  <h3>再現性の見立て</h3>
+  <p class="pdd-scalability">{d.next.scalability}</p>
+</section>
+
+<div class="pdd-bar"><span>06</span> INVOLVEMENT</div>
+<section id="involvement" class="pdd-section">
+  <div class="pdd-involve-grid">
+    {d.involvement.map(inv => (
+      <div class="pdd-involve-card">
+        <div class="pdd-involve-who">{whoLabels[inv.who] || inv.who}</div>
+        <h3>{inv.label}</h3>
+        <p>{inv.body}</p>
+        {inv.examples && inv.examples.length > 0 && (
+          <ul class="pdd-involve-examples">
+            {inv.examples.map(ex => <li>{ex}</li>)}
+          </ul>
+        )}
+      </div>
+    ))}
+  </div>
+  <div class="pdd-mid-cta">
+    <p>壱岐ロケに関心がある方はお気軽にご連絡ください。</p>
+    <a href="/contact" class="btn-brutal btn-fill">お問い合わせ →</a>
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>07</span> PROJECT INFO</div>
+<section id="info" class="pdd-section pdd-section--alt">
+  <h3>タイムライン</h3>
+  <div class="pdd-milestones">
+    {d.projectInfo.milestones.map(ms => (
+      <div class="pdd-milestone">
+        <span class="pdd-milestone-date">{ms.date}</span>
+        <div><p>{ms.body}</p></div>
+      </div>
+    ))}
+  </div>
+
+  <div class="pdd-info-grid">
+    <div>
+      <h4>体制</h4>
+      {d.projectInfo.team.map(member => (
+        <div class="pdd-team-row">
+          <span class="pdd-team-role">{member.role}</span>
+          <span>{member.name}</span>
+        </div>
+      ))}
+    </div>
+    <div>
+      <h4>関連プロジェクト</h4>
+      {d.projectInfo.relatedProjects.map(rp => (
+        <a href={rp.href} class="pdd-info-link">{rp.label} →</a>
+      ))}
+    </div>
+    <div>
+      <h4>関連リンク</h4>
+      <p>準備中</p>
+    </div>
+  </div>
+</section>
+
+<section class="pdd-final-cta">
+  <div class="pdd-final-cta-inner">
+    <div class="pdd-cta-kicker">Connect</div>
+    <h2>このプロジェクトに関心がある方へ</h2>
+    <p>地域主体の空間情報整備、ロケーションデータベースの運用、観光・生活・地域活動で使える情報基盤づくりに関心がある方はご連絡ください。</p>
+    <a href="/contact" class="btn-brutal btn-fill" style="background:var(--red);border-color:var(--red);">お問い合わせ →</a>
+  </div>
+</section>

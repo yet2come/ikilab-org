@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import IkiCalendarDetailD from '../../components/projects/IkiCalendarDetailD.astro';
 import IkiDigitalTwinDetailD from '../../components/projects/IkiDigitalTwinDetailD.astro';
+import IkiRokeDetailD from '../../components/projects/IkiRokeDetailD.astro';
 import RitoJobMatchingDetailD from '../../components/projects/RitoJobMatchingDetailD.astro';
 import { projects } from '../../data/projects';
 import { siteData } from '../../data/site';
@@ -35,6 +36,16 @@ export function getStaticPaths() {
         },
       },
     },
+    {
+      params: { slug: 'iki-roke' },
+      props: {
+        entry: {
+          slug: 'iki-roke',
+          title: '壱岐島ロケーションデータベース「壱岐ロケ」',
+          description: '壱岐島内の場所に関する情報を体系的に整理し、地域主体で活用可能なデータ基盤を構築するプロジェクト。',
+        },
+      },
+    },
   ];
 }
 
@@ -50,6 +61,8 @@ const pageDescription = entry.description;
     <IkiCalendarDetailD />
   ) : entry.slug === 'iki-digital-twin' ? (
     <IkiDigitalTwinDetailD />
+  ) : entry.slug === 'iki-roke' ? (
+    <IkiRokeDetailD />
   ) : entry.slug === 'rito-job-matching' ? (
     <RitoJobMatchingDetailD />
   ) : (
