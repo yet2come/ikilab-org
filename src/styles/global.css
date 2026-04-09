@@ -2312,6 +2312,37 @@ footer {
 }
 .pdd-step--active .pdd-step-label { color: var(--black); font-weight: 600; }
 
+.pdd-sim-screens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.pdd-sim-fig {
+  margin: 0;
+  border: 1px solid var(--gray-100);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--black);
+}
+.pdd-sim-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pdd-sim-fig figcaption {
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+  background: var(--white);
+  border-top: 1px solid var(--gray-100);
+}
+@media (max-width: 600px) {
+  .pdd-sim-screens { grid-template-columns: 1fr; }
+}
+
 .pdd-focus-list {
   list-style: none;
   max-width: 720px;
