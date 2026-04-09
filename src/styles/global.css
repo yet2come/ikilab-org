@@ -2345,6 +2345,17 @@ footer {
   color: var(--gray-500);
   background: var(--white);
   border-top: 1px solid var(--gray-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pdd-sim-fig figcaption::after {
+  content: '開く →';
+  color: var(--gray-300);
+  transition: color 0.2s;
+}
+.pdd-sim-fig:hover figcaption::after {
+  color: var(--red);
 }
 @media (max-width: 600px) {
   .pdd-sim-screens { grid-template-columns: 1fr; }
