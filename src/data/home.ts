@@ -45,6 +45,7 @@ export const homeData = {
       { status: "active", title: "壱岐島デジタルツイン", body: "OSM・国土地理院の実データをもとに島の地形・道路・拠点を3Dで再現。地域の空間情報を可視化し、計画や対話の土台をつくる試み。", href: "/projects/iki-digital-twin" },
       { status: "planned", title: "壱岐島ワークデザイン構想", body: "スポット就労から定着就労へつなぐ多層的人材循環モデルを構想し、島内事業者と島外人材の持続的な接点を設計する取り組み。", href: "/projects/rito-job-matching" },
       { status: "planned", title: "壱岐ロケ", body: "地域主体で場所の情報を整備し、観光・生活・地域活動に使えるロケーションデータ基盤をつくる取り組み。", href: "/projects/iki-loc" },
+      { status: "planned", title: "観光DX支援", body: "観光体験の見直しと情報導線の再設計を通じて、持続可能な観光の運用モデルをつくる取り組み。" },
       { status: "active", title: "壱岐オープンダイアログ", body: "多様な立場の人が、事実と主観を持ち寄って対話できる場をつくり、地域で合意形成や相互理解を進める実践。" },
     ],
   },
