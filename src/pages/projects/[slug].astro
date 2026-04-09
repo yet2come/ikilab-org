@@ -6,6 +6,7 @@ import IkiCalendarDetailD from '../../components/projects/IkiCalendarDetailD.ast
 import IkiDigitalTwinDetailD from '../../components/projects/IkiDigitalTwinDetailD.astro';
 import IkiRokeDetailD from '../../components/projects/IkiRokeDetailD.astro';
 import IkiNowDetailD from '../../components/projects/IkiNowDetailD.astro';
+import IkiPopSimDetailD from '../../components/projects/IkiPopSimDetailD.astro';
 import RitoJobMatchingDetailD from '../../components/projects/RitoJobMatchingDetailD.astro';
 import { projects } from '../../data/projects';
 import { siteData } from '../../data/site';
@@ -48,6 +49,16 @@ export function getStaticPaths() {
       },
     },
     {
+      params: { slug: 'iki-pop-sim' },
+      props: {
+        entry: {
+          slug: 'iki-pop-sim',
+          title: '壱岐市 人口シミュレーション',
+          description: '社人研データをベースに壱岐市の将来人口動態をシミュレーション。施策効果の可視化と構造的な分析を通じて人口問題へのアプローチを探る。',
+        },
+      },
+    },
+    {
       params: { slug: 'iki-loc' },
       props: {
         entry: {
@@ -74,6 +85,8 @@ const pageDescription = entry.description;
     <IkiDigitalTwinDetailD />
   ) : entry.slug === 'iki-now' ? (
     <IkiNowDetailD />
+  ) : entry.slug === 'iki-pop-sim' ? (
+    <IkiPopSimDetailD />
   ) : entry.slug === 'iki-loc' ? (
     <IkiRokeDetailD />
   ) : entry.slug === 'rito-job-matching' ? (

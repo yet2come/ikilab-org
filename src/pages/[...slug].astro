@@ -19,6 +19,7 @@ const { page } = Astro.props;
 // Projects listed only on /projects/ (not on top page)
 const additionalProjects = [
   { status: "active", title: "壱岐なう", body: "船舶・航空の運航状況、気象、潮汐など、離島生活に不可欠なリアルタイム情報を一画面に集約するダッシュボード。壱岐カレンダーの姉妹プロジェクト。", href: "/projects/iki-now" },
+  { status: "active", title: "壱岐市 人口シミュレーション", body: "社人研データをベースに壱岐市の将来人口動態をシミュレーション。施策効果の可視化と構造分析を通じて人口問題へのアプローチを探る。", href: "/projects/iki-pop-sim" },
 ];
 
 const allProjects = [...homeData.experiments.items, ...additionalProjects];

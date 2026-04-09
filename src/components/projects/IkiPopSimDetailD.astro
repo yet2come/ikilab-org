@@ -1,0 +1,283 @@
+---
+const d = {
+  title: '壱岐市 人口シミュレーション',
+  status: 'Development',
+  en: 'Population simulation for policy design.',
+  lead: '社人研の推計データをベースに、壱岐市の将来人口動態をシミュレーション。施策効果の可視化、因果ループ分析、感度分析などを通じて、人口問題へのアプローチを構造的に探るプロジェクト。',
+  externalLabel: 'シミュレーターを見る（v1）',
+  externalHref: 'https://sim.ikilab.org/',
+
+  experiment: {
+    what: '国立社会保障・人口問題研究所（社人研）のベースライン推計をもとに、壱岐市の2020年〜2050年の人口推移をシミュレーション。年齢3区分（若年・生産年齢・老年）別の構成変化を可視化し、施策シナリオ（移住促進、出生率改善など）による効果をパラメータで検証できるツールとして構築。v2では未来シナリオシミュレーターとして因果モデルを拡張。',
+    howDifferent: '行政の人口ビジョンは5年ごとの静的な推計が中心。このシミュレーターはパラメータをリアルタイムに操作し、施策の効果を即座に確認できる。「移住が年間50人増えたら2050年にどうなるか」を、数字を動かしながら考えられる点が異なる。',
+  },
+
+  phases: [
+    { key: 'research', label: 'データ整理' },
+    { key: 'v1', label: 'v1（ベースライン）' },
+    { key: 'v2', label: 'v2（シナリオ拡張）' },
+    { key: 'application', label: '活用・対話' },
+  ],
+  currentPhaseKey: 'v2',
+  currentFocus: [
+    'シナリオ別の人口推移比較機能の精度向上',
+    '因果ループ図による構造的な要因分析の整理',
+    '感度分析によるパラメータの影響度の可視化',
+    '対話の場（オープンダイアログ等）での活用方法の検討',
+    'UIの改善と非専門家にも使いやすい操作設計',
+  ],
+
+  findings: {
+    learnings: [
+      '社人研推計によれば壱岐市の人口は2020年の24,948人から2050年に13,199人へ減少（老年比率50%）。数字を可視化するだけで危機感の共有が進んだ。',
+      'パラメータを動かせるインタラクティブなツールにしたことで、「移住が何人増えれば効果があるか」など具体的な議論が可能になった。',
+      '因果ループ図で人口減少の構造（雇用→若年流出→出生率低下→さらなる人口減）を示すことで、単一施策の限界が直感的に伝わる。',
+    ],
+    challenges: [
+      '推計データの粒度が粗く、地区別や産業別の分析が難しい。',
+      '施策効果のパラメータ設定に明確な根拠を持たせることが困難（「移住50人増」の妥当性）。',
+      'シミュレーション結果を実際の政策議論の場にどう接続するかが未解決。',
+    ],
+    openQuestions: [
+      '人口シミュレーションの結果を、どの層（行政、議会、住民、事業者）にどう届けるべきか',
+      '「何人増えれば持続可能か」という問いに対して、シミュレーションはどこまで答えられるか',
+      '他のIKILABプロジェクト（モビリティ、ジョブマッチング）との連動でシナリオをどう具体化するか',
+      '悲観シナリオを示すことが地域に与える心理的影響をどう扱うか',
+    ],
+  },
+
+  next: {
+    plans: [
+      '対話イベント（壱岐オープンダイアログ等）での活用実験',
+      '地区別・年齢コーホート別のより詳細なシミュレーション',
+      '他プロジェクト（ワークデザイン構想、モビリティ実証）のシナリオとの統合',
+      'シミュレーション結果のレポート自動生成機能',
+    ],
+    scalability: '社人研の推計データは全国の自治体で利用可能であり、同じフレームワークを他の過疎地域や離島に展開できる。シミュレーターの構造自体は汎用的で、パラメータとデータを差し替えれば他地域版を構築可能。',
+  },
+
+  involvement: [
+    {
+      who: 'company',
+      label: '人口データ分析・政策シミュレーション',
+      body: '自治体向けのデータ分析や政策立案支援に関心のある企業、シンクタンクの方へ。',
+      examples: ['シミュレーションモデルの精度向上', '政策効果の定量評価手法の共同開発', '他自治体への展開支援'],
+    },
+    {
+      who: 'researcher',
+      label: '人口動態・地域政策の研究',
+      body: '人口減少、地方創生、コーホート分析、システムダイナミクスに関心のある研究者の方へ。',
+      examples: ['因果モデルの学術的検証', 'パラメータ設定の妥当性分析', '施策効果の実証研究'],
+    },
+    {
+      who: 'supporter',
+      label: '地域での対話・活用',
+      body: '壱岐の将来を考える対話の場で、シミュレーション結果を活用したい方。行政・議会・地域団体の方。',
+      examples: ['対話イベントでの活用', '地域計画策定への参考利用', '住民説明会での可視化ツールとして'],
+    },
+    {
+      who: 'individual',
+      label: '開発・データ整備への貢献',
+      body: 'データ可視化、フロントエンド開発、統計分析のスキルを持つ方。',
+      examples: ['シミュレーションUIの改善', 'データパイプラインの構築', 'グラフ・チャートの表現改善'],
+    },
+  ],
+
+  projectInfo: {
+    milestones: [
+      { date: '2026.03', body: '社人研データをもとにベースライン推計シミュレーター（v1）を構築。' },
+      { date: '2026.03', body: 'シナリオ比較、因果ループ図、感度分析機能を実装し sim.ikilab.org として公開。' },
+      { date: '2026.04', body: '未来シナリオシミュレーター（v2）を sim2.ikilab.org として公開。因果モデルを拡張。' },
+    ],
+    team: [
+      { name: '（Members Only）', role: '企画・開発' },
+    ],
+    relatedProjects: [
+      { label: '壱岐島ワークデザイン構想', href: '/projects/rito-job-matching' },
+      { label: '壱岐オープンダイアログ', href: '#' },
+    ],
+    links: [
+      { label: 'シミュレーター v1', href: 'https://sim.ikilab.org/' },
+      { label: 'シミュレーター v2', href: 'https://sim2.ikilab.org/' },
+    ],
+  },
+};
+
+const sections = [
+  { id: 'background', label: '背景' },
+  { id: 'experiment', label: '実験内容' },
+  { id: 'findings', label: '知見' },
+  { id: 'involvement', label: '関わり方' },
+  { id: 'info', label: 'プロジェクト情報' },
+];
+
+const whoLabels: Record<string, string> = {
+  company: '企業',
+  individual: '個人',
+  researcher: '研究者',
+  supporter: 'サポーター',
+};
+---
+<section class="pdd-hero">
+  <div class="pdd-hero-inner">
+    <span class="pdd-badge">{d.status}</span>
+    <h1>{d.title}</h1>
+    <div class="pdd-en">{d.en}</div>
+    <p>{d.lead}</p>
+    <div class="pdd-hero-actions">
+      <a href="/projects" class="btn-brutal btn-ghost">一覧に戻る</a>
+      {d.externalHref && <a href={d.externalHref} target="_blank" rel="noreferrer" class="btn-brutal btn-fill">{d.externalLabel}</a>}
+    </div>
+  </div>
+</section>
+
+<nav class="pdd-nav">
+  {sections.map(s => <a href={`#${s.id}`} class="pdd-nav-link">{s.label}</a>)}
+</nav>
+
+<div class="pdd-bar"><span>01</span> BACKGROUND</div>
+<section id="background" class="pdd-section">
+  <div class="pdd-col">
+    <h3>どんな問題か</h3>
+    <p>壱岐市の人口は2020年時点で24,948人。社人研の推計では2050年に13,199人まで減少し、65歳以上の比率は50%に達します。人口減少は雇用、医療、教育、交通、産業のあらゆる領域に波及しますが、その構造と影響の全体像を直感的に把握する手段が限られています。</p>
+  </div>
+  <div class="pdd-col">
+    <h3>なぜ壱岐でやるのか</h3>
+    <p>離島は人口問題の影響がより先鋭的に現れるフィールドです。若年層の島外流出、Uターンの停滞、出生率の変化——これらが閉じた系の中で連鎖するため、構造がシミュレーションしやすい。壱岐で得た知見は、同規模の過疎地域にも応用可能です。</p>
+  </div>
+  <div class="pdd-col">
+    <h3>なぜ今やるのか</h3>
+    <p>壱岐市の人口減少は加速期に入っています。2020年代後半は施策の効果が「まだ間に合う」最後の窓口とされており、今この段階でシミュレーションに基づく議論を始めることに意味があります。行政の次期人口ビジョン策定にも接続できるタイミングです。</p>
+  </div>
+</section>
+
+<div class="pdd-bar"><span>02</span> EXPERIMENT</div>
+<section id="experiment" class="pdd-section">
+  <div class="pdd-col">
+    <h3>何をどう試しているか</h3>
+    <p>{d.experiment.what}</p>
+  </div>
+  <div class="pdd-col">
+    <h3>従来と何が違うか</h3>
+    <p>{d.experiment.howDifferent}</p>
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>03</span> STATUS</div>
+<section class="pdd-section pdd-section--alt">
+  <div class="pdd-stepper">
+    {d.phases.map((phase, i) => (
+      <div class={`pdd-step ${phase.key === d.currentPhaseKey ? 'pdd-step--active' : ''}`}>
+        <div class="pdd-step-indicator">
+          <div class="pdd-step-dot"></div>
+          {i < d.phases.length - 1 && <div class="pdd-step-line"></div>}
+        </div>
+        <div class="pdd-step-label">{phase.label}</div>
+      </div>
+    ))}
+  </div>
+  <h3>現在の取り組み</h3>
+  <ul class="pdd-focus-list">
+    {d.currentFocus.map(item => <li>{item}</li>)}
+  </ul>
+</section>
+
+<div class="pdd-bar"><span>04</span> FINDINGS</div>
+<section id="findings" class="pdd-section">
+  <div class="pdd-findings-group">
+    <h3>見えてきたこと</h3>
+    {d.findings.learnings.map(item => (
+      <div class="pdd-finding-row pdd-finding--learning"><span>○</span><p>{item}</p></div>
+    ))}
+  </div>
+  <div class="pdd-findings-group">
+    <h3>課題として残っていること</h3>
+    {d.findings.challenges.map(item => (
+      <div class="pdd-finding-row pdd-finding--challenge"><span>△</span><p>{item}</p></div>
+    ))}
+  </div>
+  <div class="pdd-findings-group">
+    <h3>まだ答えの出ていない問い</h3>
+    {d.findings.openQuestions.map(item => (
+      <div class="pdd-finding-row pdd-finding--question"><span>?</span><p>{item}</p></div>
+    ))}
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>05</span> NEXT</div>
+<section class="pdd-section pdd-section--alt">
+  <h3>次にやること</h3>
+  <ul class="pdd-focus-list">
+    {d.next.plans.map(item => <li>{item}</li>)}
+  </ul>
+  <h3>再現性の見立て</h3>
+  <p class="pdd-scalability">{d.next.scalability}</p>
+</section>
+
+<div class="pdd-bar"><span>06</span> INVOLVEMENT</div>
+<section id="involvement" class="pdd-section">
+  <div class="pdd-involve-grid">
+    {d.involvement.map(inv => (
+      <div class="pdd-involve-card">
+        <div class="pdd-involve-who">{whoLabels[inv.who] || inv.who}</div>
+        <h3>{inv.label}</h3>
+        <p>{inv.body}</p>
+        {inv.examples && inv.examples.length > 0 && (
+          <ul class="pdd-involve-examples">
+            {inv.examples.map(ex => <li>{ex}</li>)}
+          </ul>
+        )}
+      </div>
+    ))}
+  </div>
+  <div class="pdd-mid-cta">
+    <p>人口シミュレーションに関わりたい方はお気軽にご連絡ください。</p>
+    <a href="/contact" class="btn-brutal btn-fill">お問い合わせ →</a>
+  </div>
+</section>
+
+<div class="pdd-bar pdd-bar--alt"><span>07</span> PROJECT INFO</div>
+<section id="info" class="pdd-section pdd-section--alt">
+  <h3>タイムライン</h3>
+  <div class="pdd-milestones">
+    {d.projectInfo.milestones.map(ms => (
+      <div class="pdd-milestone">
+        <span class="pdd-milestone-date">{ms.date}</span>
+        <div><p>{ms.body}</p></div>
+      </div>
+    ))}
+  </div>
+
+  <div class="pdd-info-grid">
+    <div>
+      <h4>体制</h4>
+      {d.projectInfo.team.map(member => (
+        <div class="pdd-team-row">
+          <span class="pdd-team-role">{member.role}</span>
+          <span>{member.name}</span>
+        </div>
+      ))}
+    </div>
+    <div>
+      <h4>関連プロジェクト</h4>
+      {d.projectInfo.relatedProjects.map(rp => (
+        <a href={rp.href} class="pdd-info-link">{rp.label} →</a>
+      ))}
+    </div>
+    <div>
+      <h4>関連リンク</h4>
+      {d.projectInfo.links.map(link => (
+        <a href={link.href} target="_blank" rel="noreferrer" class="pdd-info-link">{link.label} →</a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="pdd-final-cta">
+  <div class="pdd-final-cta-inner">
+    <div class="pdd-cta-kicker">Connect</div>
+    <h2>このプロジェクトに関心がある方へ</h2>
+    <p>人口シミュレーション、地域政策のデータ分析、過疎地域の将来設計に関心がある方はご連絡ください。</p>
+    <a href="/contact" class="btn-brutal btn-fill" style="background:var(--red);border-color:var(--red);">お問い合わせ →</a>
+  </div>
+</section>
