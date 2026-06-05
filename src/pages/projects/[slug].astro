@@ -8,6 +8,7 @@ import IkiRokeDetailD from '../../components/projects/IkiRokeDetailD.astro';
 import IkiNowDetailD from '../../components/projects/IkiNowDetailD.astro';
 import IkiPopSimDetailD from '../../components/projects/IkiPopSimDetailD.astro';
 import RitoJobMatchingDetailD from '../../components/projects/RitoJobMatchingDetailD.astro';
+import IkiGikaiDetailD from '../../components/projects/IkiGikaiDetailD.astro';
 import { projects } from '../../data/projects';
 import { siteData } from '../../data/site';
 import '../../styles/global.css';
@@ -68,6 +69,16 @@ export function getStaticPaths() {
         },
       },
     },
+    {
+      params: { slug: 'iki-gikai' },
+      props: {
+        entry: {
+          slug: 'iki-gikai',
+          title: '壱岐市議会みえる化',
+          description: '壱岐市議会の本会議録をAIで構造化し、全文検索・AI要約・議論テーマ抽出で市民が俯瞰できるようにする非公式サービス。',
+        },
+      },
+    },
   ];
 }
 
@@ -91,6 +102,8 @@ const pageDescription = entry.description;
     <IkiRokeDetailD />
   ) : entry.slug === 'rito-job-matching' ? (
     <RitoJobMatchingDetailD />
+  ) : entry.slug === 'iki-gikai' ? (
+    <IkiGikaiDetailD />
   ) : (
     <>
       <section class="project-hero">
