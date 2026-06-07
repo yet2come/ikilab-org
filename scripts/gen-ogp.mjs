@@ -105,7 +105,7 @@ function tree({ bg, fg, sub, accent, border, wm }) {
 }
 
 const VARIANTS = {
-  "ogp.png":      { bg: "#f2f0ec", fg: "#111111", sub: "#555555", accent: "#d42b1e", border: "14px solid #111111",
+  "ogp.png":      { bg: "#f2f0ec", fg: "#111111", sub: "#555555", accent: "#d42b1e", border: "3px solid #111111",
                     wm: { stroke: "#111111", coastOp: 0.20, roadOp: 0.10 } },
   "ogp-dark.png": { bg: "#111111", fg: "#fafafa", sub: "#bbbbbb", accent: "#d42b1e", border: "none",
                     wm: { stroke: "#fafafa", coastOp: 0.27, roadOp: 0.13 } },
