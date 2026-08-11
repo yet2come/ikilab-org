@@ -40,24 +40,35 @@ src/
     ProofSection.astro      # 実績統計＋事例リスト
     ConnectSection.astro    # 接続カード（暗背景）
     InfraSection.astro      # 施設情報
+    projects/               # プロジェクト詳細コンポーネント（*DetailD.astro、7本）
   styles/
     global.css              # CSS変数、リセット、全コンポーネントスタイル
   data/
-    pattern-a.ts            # サイトコンテンツデータ（採用パターンA）
+    home.ts                 # トップページのコンテンツデータ（旧 pattern-a.ts）
+    projects.ts             # プロジェクト定義
+    cases.ts                # 事例定義
+    site.ts                 # サイト共通メタ
+  content/
+    projects/ cases/        # Markdown コンテンツ
   pages/
     index.astro             # トップページ
     [...slug].astro         # 下層ページ（concept, contact 等）
     404.astro               # 404ページ
-    pop2/
-      index.astro           # 人口カウンター比較ページ
+    projects/[slug].astro   # プロジェクト詳細
+    cases/[slug].astro      # 事例詳細
+    digital-twin.astro      # 3Dデジタルツイン
+    population/ pop2/       # 人口シミュレーション／カウンター比較
 docs/
   crossport-top-mockup-C.html  # 元モック（参照用）
+  superpowers/                 # 設計spec・実装plan
+scripts/
+  gen-ogp.mjs                  # OGP画像生成（satori + resvg）
 ```
 
 ## 設計方針
 
 - **コンポーネント駆動**: 全セクションを props ベースのコンポーネントに分離
-- **データ分離**: コンテンツは `src/data/pattern-a.ts` に集約。コンポーネントはデータに依存しない
+- **データ分離**: コンテンツは `src/data/`（home.ts / projects.ts / cases.ts / site.ts）に集約。コンポーネントはデータに依存しない
 - **動的ルーティング**: `[...slug].astro` でサブページ（concept, contact 等）を自動生成
 
 ## デプロイ経緯
@@ -75,7 +86,7 @@ docs/
    - トップページ、404ページ、favicon、sitemap
 
 3. **ビルド確認**
-   - 28ページ生成（3パターン全含む）、エラーなし。現在はパターンA採用後の構成に整理済み（11ページ）
+   - 28ページ生成（3パターン全含む）、エラーなし。現在はパターンA採用後の構成に整理済み（18ページ）
 
 4. **Cloudflare Pages デプロイ**
    - 初回: `@astrojs/cloudflare` アダプターで KV namespace 衝突エラー
@@ -84,6 +95,20 @@ docs/
    - 4回目: `wrangler.jsonc` に `pages_build_output_dir` 追加 → wrangler がプロジェクト名を認識
    - 5回目: deploy command に `--project-name=ikilab-org` 追加 → ログ不足で原因不明
    - **最終解決**: Cloudflare ダッシュボードで Workers ではなく Pages プロジェクトとして作成し直し → デプロイ成功
+
+### 2026-06-07 〜 06-08
+
+1. **プロジェクトページ追加: 壱岐市議会みえる化（iki-gikai）**
+   - `IkiGikaiDetailD.astro` を新規作成、`/projects/iki-gikai` をルート登録
+   - トップの Projects 先頭に配置（オープンダイアログは `/projects` 一覧に残置）
+   - 設計spec・実装planを `docs/superpowers/` に記録
+
+2. **OGP画像の整備**（PR #1 / #2）
+   - `scripts/gen-ogp.mjs`（satori + @resvg/resvg-js）で 1200x630 を生成
+   - 背景は壱岐島ワイヤーフレームの透かし。トップの3Dデジタルツインと同じ海岸線/島嶼/道路データ＋投影を再利用し、島形状を一致させている
+   - 出力: `public/ogp.png`（paper）/ `public/ogp-dark.png`（dark）
+   - `Base.astro` に og:/twitter: メタ一式を追加（`summary_large_image`）
+   - 黒枠を 14px → 3px に調整
 
 ### 最終的なデプロイ設定
 
@@ -110,13 +135,13 @@ docs/
 
 ## 次のステップ
 
-最終更新: 2026-06-07
+最終更新: 2026-08-11
 
 - [x] 3パターンの比較・最終選定 → パターンA採用
 - [x] 選定パターンをルート `/` に昇格
 - [x] 下層ページの実装（concept / projects / connect / contact / cases ＋ プロジェクト詳細7本、計18ページ）
 - [x] 実コンテンツの整備（7プロジェクトの詳細ページ・実説明、事例ページ。ヒーロー=3Dデジタルツイン埋め込み、拠点=Google地図に置換）
 - [x] プロジェクト拡充（2026-06: 「壱岐市議会みえる化」(iki-gikai) を掲載しトップ先頭に配置。論点マップ等の最新内容も反映）
+- [x] OGP 画像の作成（2026-06: `scripts/gen-ogp.mjs` で生成、`Base.astro` に og:/twitter: メタ追加。本番配信済み）
 - [ ] ヒーロー／拠点の実写真の差し替え（現状は3D埋め込み・地図。home.ts に未使用の placeholder 定義が残存）
-- [ ] OGP 画像の作成（専用OGPは未整備。現状はロゴ画像のみ）
 - [ ] レスポンシブの最終調整
