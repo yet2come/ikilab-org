@@ -9,6 +9,7 @@ import IkiNowDetailD from '../../components/projects/IkiNowDetailD.astro';
 import IkiPopSimDetailD from '../../components/projects/IkiPopSimDetailD.astro';
 import RitoJobMatchingDetailD from '../../components/projects/RitoJobMatchingDetailD.astro';
 import IkiGikaiDetailD from '../../components/projects/IkiGikaiDetailD.astro';
+import IkiKeikakuDetailD from '../../components/projects/IkiKeikakuDetailD.astro';
 import { projects } from '../../data/projects';
 import { siteData } from '../../data/site';
 import '../../styles/global.css';
@@ -79,6 +80,16 @@ export function getStaticPaths() {
         },
       },
     },
+    {
+      params: { slug: 'iki-keikaku' },
+      props: {
+        entry: {
+          slug: 'iki-keikaku',
+          title: '行政計画みえる化',
+          description: '壱岐市の行政計画の関係を図にし、計画期間・根拠法・所管課を整理。計画値と実績を突き合わせて検証する非公式の資料集。',
+        },
+      },
+    },
   ];
 }
 
@@ -104,6 +115,8 @@ const pageDescription = entry.description;
     <RitoJobMatchingDetailD />
   ) : entry.slug === 'iki-gikai' ? (
     <IkiGikaiDetailD />
+  ) : entry.slug === 'iki-keikaku' ? (
+    <IkiKeikakuDetailD />
   ) : (
     <>
       <section class="project-hero">
