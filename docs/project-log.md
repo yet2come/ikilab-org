@@ -86,7 +86,7 @@ scripts/
    - トップページ、404ページ、favicon、sitemap
 
 3. **ビルド確認**
-   - 28ページ生成（3パターン全含む）、エラーなし。現在はパターンA採用後の構成に整理済み（18ページ）
+   - 28ページ生成（3パターン全含む）、エラーなし。現在はパターンA採用後の構成に整理済み（19ページ）
 
 4. **Cloudflare Pages デプロイ**
    - 初回: `@astrojs/cloudflare` アダプターで KV namespace 衝突エラー
@@ -109,6 +109,17 @@ scripts/
    - 出力: `public/ogp.png`（paper）/ `public/ogp-dark.png`（dark）
    - `Base.astro` に og:/twitter: メタ一式を追加（`summary_large_image`）
    - 黒枠を 14px → 3px に調整
+
+### 2026-08-11
+
+**プロジェクト追加: 行政計画みえる化（iki-keikaku）**
+
+- keikaku.ikilab.org（実サービス名「壱岐市 計画マップ」）を掲載。`IkiKeikakuDetailD.astro` を新規作成し `/projects/iki-keikaku` をルート登録
+- トップ 02「Projects」の先頭に配置。壱岐島デジタルツインは `additionalProjects` へ移し、トップから外して `/projects` 一覧には残す（壱岐オープンダイアログと同じ扱い）
+- 掲載内容は実サイト・`ikilab-org/iki-plans` の README・各マップページから取得した事実のみで構成。知見・課題の文言は、市への批判と読まれないよう評価語を観察の記述に調整
+- 設計spec・実装planを `docs/superpowers/` に記録
+- 既存 7 本の詳細コンポーネントには手を触れず、8 本目として同じ構造で追加（共通化リファクタは見送り、将来課題）
+- ビルドは 18 → 19 ページ
 
 ### 最終的なデプロイ設定
 
@@ -142,6 +153,8 @@ scripts/
 - [x] 下層ページの実装（concept / projects / connect / contact / cases ＋ プロジェクト詳細7本、計18ページ）
 - [x] 実コンテンツの整備（7プロジェクトの詳細ページ・実説明、事例ページ。ヒーロー=3Dデジタルツイン埋め込み、拠点=Google地図に置換）
 - [x] プロジェクト拡充（2026-06: 「壱岐市議会みえる化」(iki-gikai) を掲載しトップ先頭に配置。論点マップ等の最新内容も反映）
+- [x] プロジェクト拡充（2026-08: 「行政計画みえる化」(iki-keikaku) を掲載しトップ先頭に配置。デジタルツインは /projects 一覧側へ。計19ページ）
+- [ ] プロジェクト詳細ページ8本のアクセシビリティ改善（[#3](https://github.com/yet2come/ikilab-org/issues/3)。見出しレベル・装飾記号・セクションナビ。共通化リファクタと合わせて対応するのが効率的）
 - [x] OGP 画像の作成（2026-06: `scripts/gen-ogp.mjs` で生成、`Base.astro` に og:/twitter: メタ追加。本番配信済み）
 - [ ] ヒーロー／拠点の実写真の差し替え（現状は3D埋め込み・地図。home.ts に未使用の placeholder 定義が残存）
 - [ ] レスポンシブの最終調整
