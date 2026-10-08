@@ -121,6 +121,25 @@ scripts/
 - 既存 7 本の詳細コンポーネントには手を触れず、8 本目として同じ構造で追加（共通化リファクタは見送り、将来課題）
 - ビルドは 18 → 19 ページ
 
+### 2026-10-08
+
+**依存関係の整理（npm audit 21件 → 3件）**
+
+- `@astrojs/cloudflare` を依存から削除。`astro.config.mjs` はアダプタ指定のない `output: 'static'` のみで、コード上どこからも参照されていなかった（2026-03 のデプロイ試行でアダプタを撤去した際、package.json からの削除が漏れていた）
+- `wrangler` も削除。`generate-types` スクリプト専用だったが、出力先の `worker-configuration.d.ts` が存在せず実質機能していなかった。Pages のデプロイは git 連携＋`npm run build` なので npm パッケージとしては不要（`wrangler.jsonc` は別物なので残置）
+- この2つが wrangler/miniflare/workerd/undici/ws/vite-plugin などを引き連れ、audit の件数を水増ししていた。併せて semver 範囲内の推移的依存を `npm audit fix`（`--force` なし）で更新
+- `tsconfig.json` の include から存在しない `./worker-configuration.d.ts` を削除（アダプタ撤去時の残骸）
+- 依存ツリー 388 → 257 packages、audit 21件（low 2 / moderate 1 / high 17 / critical 1）→ 3件（low 1 / high 1 / critical 1）
+- ビルドは 19 ルートで変化なし
+
+**`npm audit fix --force` は使わない**（dry-run で確認済み）
+
+astro を 7 系へメジャー更新し、wrangler を `^4.73.0` → `^4.15.2` にダウングレードしたうえで 8 high が残り、さらに `@astrojs/cloudflare` を 12 系へ降格しようとする（未使用パッケージの制約で堂々巡りになる）。加えて `node_modules` 内の satori / @resvg/resvg-js（`npm i --no-save` 運用）を削除するため `scripts/gen-ogp.mjs` が壊れる。
+
+**残る3件を見送った理由**
+
+astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更新が必要。本番は静的HTML配信でランタイムに node/vite/astro サーバーが存在しないため、Reflected XSS・Host header SSRF・base 剥がしの認可バイパスはいずれも経路がない。critical の「AVIF 画像最適化による RCE」(CVSS 9.8) も `astro:assets` / `<Image>` の利用が src 内に 0 件、`public/` に .avif/.webp も 0 件で、sharp/libvips が画像を処理する経路がそもそもない。実リスクは `astro dev` をローカルで起動している間に限られる。
+
 ### 最終的なデプロイ設定
 
 | 項目 | 値 |
@@ -146,7 +165,7 @@ scripts/
 
 ## 次のステップ
 
-最終更新: 2026-08-11
+最終更新: 2026-10-08
 
 - [x] 3パターンの比較・最終選定 → パターンA採用
 - [x] 選定パターンをルート `/` に昇格
@@ -157,4 +176,6 @@ scripts/
 - [ ] プロジェクト詳細ページ8本のアクセシビリティ改善（[#3](https://github.com/yet2come/ikilab-org/issues/3)。見出しレベル・装飾記号・セクションナビ。共通化リファクタと合わせて対応するのが効率的）
 - [x] OGP 画像の作成（2026-06: `scripts/gen-ogp.mjs` で生成、`Base.astro` に og:/twitter: メタ追加。本番配信済み）
 - [ ] ヒーロー／拠点の実写真の差し替え（現状は3D埋め込み・地図。home.ts に未使用の placeholder 定義が残存）
+- [x] 依存関係の整理（2026-10: 未使用の @astrojs/cloudflare・wrangler を削除。npm audit 21件 → 3件）
 - [ ] レスポンシブの最終調整
+- [ ] astro 7 へのメジャー更新（残る audit 3件の解消。本番露出がないため優先度は低い）
