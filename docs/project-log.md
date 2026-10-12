@@ -8,7 +8,7 @@
 
 | 項目 | 選定 |
 |---|---|
-| Framework | Astro v6（静的サイト生成） |
+| Framework | Astro v7（静的サイト生成） |
 | スタイリング | CSS（モックのCSSをベースに整理、CSS変数活用） |
 | ホスティング | Cloudflare Pages |
 | フォント | Google Fonts（Instrument Serif, JetBrains Mono, Zen Kaku Gothic New, Noto Sans JP） |
@@ -140,6 +140,16 @@ astro を 7 系へメジャー更新し、wrangler を `^4.73.0` → `^4.15.2` �
 
 astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更新が必要。本番は静的HTML配信でランタイムに node/vite/astro サーバーが存在しないため、Reflected XSS・Host header SSRF・base 剥がしの認可バイパスはいずれも経路がない。critical の「AVIF 画像最適化による RCE」(CVSS 9.8) も `astro:assets` / `<Image>` の利用が src 内に 0 件、`public/` に .avif/.webp も 0 件で、sharp/libvips が画像を処理する経路がそもそもない。実リスクは `astro dev` をローカルで起動している間に限られる。
 
+### 2026-10-12
+
+**Astro 7 へのメジャー更新（npm audit 3件 → 0件）**
+
+- `astro` ^6.0.4 → ^7.3.8、`@astrojs/sitemap` ^3.7.1 → ^3.7.4。残っていた astro / esbuild / sharp の3件が解消し audit は 0 件
+- v7 の破壊的変更のうち該当したのは `compressHTML` の既定値変更のみ。新既定の `'jsx'` はインライン要素間の空白を削るため（例: pop2 の「A Countdown」→「ACountdown」）、`astro.config.mjs` に `compressHTML: true` を明示して v6 と同じ HTML 方式を維持
+- その他（Rust コンパイラの厳格化・`src/fetch.ts` の予約・Markdown の Sätteri 化・`astro:transitions` 内部 API 削除）は影響なし。ビルドは警告・エラーなしで 19 ページのまま
+- 検証: v6 / v7 のビルド成果物を比較。全ページで表示テキスト・タグ構造・sitemap・public 資産が一致（差分はスコープ CSS の cid 名のみ）。Vite 8 で CSS ミニファイアが変わり宣言順や色表記が変わるため、ブラウザで 19 ページ × 2 幅（1280 / 390px）の全要素の computed style とレイアウト寸法を突き合わせ、一致を確認（唯一の差は `background: none` 由来の `background-position` 表記で、背景画像がないため見た目に影響なし）
+- 注意: `npm install` で `--no-save` 導入の satori / @resvg/resvg-js が消えるため、OGP 再生成時は `scripts/gen-ogp.mjs` 冒頭の手順で再導入する
+
 ### 最終的なデプロイ設定
 
 | 項目 | 値 |
@@ -165,7 +175,7 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 
 ## 次のステップ
 
-最終更新: 2026-10-08
+最終更新: 2026-10-12
 
 - [x] 3パターンの比較・最終選定 → パターンA採用
 - [x] 選定パターンをルート `/` に昇格
@@ -178,4 +188,4 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - [ ] ヒーロー／拠点の実写真の差し替え（現状は3D埋め込み・地図。home.ts に未使用の placeholder 定義が残存）
 - [x] 依存関係の整理（2026-10: 未使用の @astrojs/cloudflare・wrangler を削除。npm audit 21件 → 3件）
 - [ ] レスポンシブの最終調整
-- [ ] astro 7 へのメジャー更新（残る audit 3件の解消。本番露出がないため優先度は低い）
+- [x] astro 7 へのメジャー更新（2026-10: audit 3件 → 0件。`compressHTML: true` で v6 の空白処理を維持）
