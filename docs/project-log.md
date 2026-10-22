@@ -12,7 +12,8 @@
 | スタイリング | CSS（モックのCSSをベースに整理、CSS変数活用） |
 | ホスティング | Cloudflare Pages |
 | フォント | Google Fonts（Instrument Serif, JetBrains Mono, Zen Kaku Gothic New, Noto Sans JP） |
-| サイトマップ | @astrojs/sitemap |
+| サイトマップ | @astrojs/sitemap（`/sitemap.xml` は index を返す静的エンドポイント） |
+| フィード | `/feed.json`（JSON Feed 1.1、`src/data/catalog.ts` から生成） |
 
 ## 3パターンの比較（完了）
 
@@ -150,6 +151,19 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - 検証: v6 / v7 のビルド成果物を比較。全ページで表示テキスト・タグ構造・sitemap・public 資産が一致（差分はスコープ CSS の cid 名のみ）。Vite 8 で CSS ミニファイアが変わり宣言順や色表記が変わるため、ブラウザで 19 ページ × 2 幅（1280 / 390px）の全要素の computed style とレイアウト寸法を突き合わせ、一致を確認（唯一の差は `background: none` 由来の `background-position` 表記で、背景画像がないため見た目に影響なし）
 - 注意: `npm install` で `--no-save` 導入の satori / @resvg/resvg-js が消えるため、OGP 再生成時は `scripts/gen-ogp.mjs` 冒頭の手順で再導入する
 
+### 2026-10-22（フィード）
+
+**sitemap.xml と一覧フィード（/feed.json）の追加**
+
+クロスポート武生水の Instagram で本の紹介文を下書きする仕組みが、関連する ikilab の活動を取り込めるようにするため。設計は `docs/superpowers/specs/2026-10-22-feeds-design.md`。
+
+- 固定 URL（今後変えない）: `/feed.json`（JSON Feed 1.1。プロジェクト 11 件・事例 3 件）、`/sitemap.xml`（`sitemap-0.xml` を指す index）、`/robots.txt`（`Sitemap:` 行）。各項目の `id`（`https://ikilab.org/items/<kind>/<key>`）も固定
+- 一覧データを `src/data/catalog.ts` に一本化。トップ 02・03 と /projects はここから導出（表示 HTML の差分はカードの `id` 属性のみ）。状態・タグ・最終更新日はここに手で書く
+- `updated` の運用: 一覧の文言か詳細ページの中身を変えたら、同じ項目の `updated` も更新する。マークアップだけの変更では動かさない。sitemap の `<lastmod>` もここから付く
+- プロジェクトの状態に `ended` は使えない（表示側に終了の扱いがないため。必要になったら表示と合わせて設計する）
+- 検査: `npm test`（catalog の検査とフィード・サイトマップの組み立て）、`npm run build && npm run check:feeds`（dist の feed.json・sitemap・robots.txt）。catalog に不備があるとビルドが失敗する
+- デプロイ後に確認すること: https://validator.jsonfeed.org/ に `/feed.json`、`curl -sI` で `/feed.json` と `/sitemap.xml` が 200、`/robots.txt` で Cloudflare の管理 robots.txt との合わさり方と `Sitemap:` 行
+
 ### 最終的なデプロイ設定
 
 | 項目 | 値 |
@@ -175,7 +189,7 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 
 ## 次のステップ
 
-最終更新: 2026-10-12
+最終更新: 2026-10-22
 
 - [x] 3パターンの比較・最終選定 → パターンA採用
 - [x] 選定パターンをルート `/` に昇格
@@ -188,4 +202,6 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - [ ] ヒーロー／拠点の実写真の差し替え（現状は3D埋め込み・地図。home.ts に未使用の placeholder 定義が残存）
 - [x] 依存関係の整理（2026-10: 未使用の @astrojs/cloudflare・wrangler を削除。npm audit 21件 → 3件）
 - [ ] レスポンシブの最終調整
+- [x] sitemap.xml と一覧フィード（2026-10: `/feed.json`・`/sitemap.xml`・`robots.txt`。一覧データを `catalog.ts` に一本化）
+- [ ] 更新情報の Atom フィード（`/feed.xml`。サイトに更新欄を作るときに合わせて）
 - [x] astro 7 へのメジャー更新（2026-10: audit 3件 → 0件。`compressHTML: true` で v6 の空白処理を維持）
