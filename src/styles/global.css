@@ -2244,6 +2244,7 @@ footer {
   border-bottom: var(--border);
   font-family: var(--font-mono);
   font-size: 10px;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gray-500);

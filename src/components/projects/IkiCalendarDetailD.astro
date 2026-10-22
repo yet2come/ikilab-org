@@ -110,7 +110,9 @@ const d = {
 const sections = [
   { id: 'background', label: '背景' },
   { id: 'experiment', label: '実験内容' },
+  { id: 'status', label: '現状' },
   { id: 'findings', label: '知見' },
+  { id: 'next', label: '今後' },
   { id: 'involvement', label: '関わり方' },
   { id: 'info', label: 'プロジェクト情報' },
 ];
@@ -139,7 +141,7 @@ const whoLabels: Record<string, string> = {
   {sections.map(s => <a href={`#${s.id}`} class="pdd-nav-link">{s.label}</a>)}
 </nav>
 
-<div class="pdd-bar"><span>01</span> BACKGROUND</div>
+<h2 class="pdd-bar"><span>01</span> BACKGROUND</h2>
 <section id="background" class="pdd-section">
   <div class="pdd-col">
     <h3>どんな問題か</h3>
@@ -155,7 +157,7 @@ const whoLabels: Record<string, string> = {
   </div>
 </section>
 
-<div class="pdd-bar"><span>02</span> EXPERIMENT</div>
+<h2 class="pdd-bar"><span>02</span> EXPERIMENT</h2>
 <section id="experiment" class="pdd-section">
   <div class="pdd-col">
     <h3>何をどう試しているか</h3>
@@ -167,8 +169,8 @@ const whoLabels: Record<string, string> = {
   </div>
 </section>
 
-<div class="pdd-bar pdd-bar--alt"><span>03</span> STATUS</div>
-<section class="pdd-section pdd-section--alt">
+<h2 class="pdd-bar pdd-bar--alt"><span>03</span> STATUS</h2>
+<section id="status" class="pdd-section pdd-section--alt">
   <div class="pdd-stepper">
     {d.phases.map((phase, i) => (
       <div class={`pdd-step ${phase.key === d.currentPhaseKey ? 'pdd-step--active' : ''}`}>
@@ -186,30 +188,30 @@ const whoLabels: Record<string, string> = {
   </ul>
 </section>
 
-<div class="pdd-bar"><span>04</span> FINDINGS</div>
+<h2 class="pdd-bar"><span>04</span> FINDINGS</h2>
 <section id="findings" class="pdd-section">
   <div class="pdd-findings-group">
     <h3>見えてきたこと</h3>
     {d.findings.learnings.map(item => (
-      <div class="pdd-finding-row pdd-finding--learning"><span>○</span><p>{item}</p></div>
+      <div class="pdd-finding-row pdd-finding--learning"><span aria-hidden="true">○</span><p>{item}</p></div>
     ))}
   </div>
   <div class="pdd-findings-group">
     <h3>課題として残っていること</h3>
     {d.findings.challenges.map(item => (
-      <div class="pdd-finding-row pdd-finding--challenge"><span>△</span><p>{item}</p></div>
+      <div class="pdd-finding-row pdd-finding--challenge"><span aria-hidden="true">△</span><p>{item}</p></div>
     ))}
   </div>
   <div class="pdd-findings-group">
     <h3>まだ答えの出ていない問い</h3>
     {d.findings.openQuestions.map(item => (
-      <div class="pdd-finding-row pdd-finding--question"><span>?</span><p>{item}</p></div>
+      <div class="pdd-finding-row pdd-finding--question"><span aria-hidden="true">?</span><p>{item}</p></div>
     ))}
   </div>
 </section>
 
-<div class="pdd-bar pdd-bar--alt"><span>05</span> NEXT</div>
-<section class="pdd-section pdd-section--alt">
+<h2 class="pdd-bar pdd-bar--alt"><span>05</span> NEXT</h2>
+<section id="next" class="pdd-section pdd-section--alt">
   <h3>次にやること</h3>
   <ul class="pdd-focus-list">
     {d.next.plans.map(item => <li>{item}</li>)}
@@ -218,7 +220,7 @@ const whoLabels: Record<string, string> = {
   <p class="pdd-scalability">{d.next.scalability}</p>
 </section>
 
-<div class="pdd-bar"><span>06</span> INVOLVEMENT</div>
+<h2 class="pdd-bar"><span>06</span> INVOLVEMENT</h2>
 <section id="involvement" class="pdd-section">
   <div class="pdd-involve-grid">
     {d.involvement.map(inv => (
@@ -240,7 +242,7 @@ const whoLabels: Record<string, string> = {
   </div>
 </section>
 
-<div class="pdd-bar pdd-bar--alt"><span>07</span> PROJECT INFO</div>
+<h2 class="pdd-bar pdd-bar--alt"><span>07</span> PROJECT INFO</h2>
 <section id="info" class="pdd-section pdd-section--alt">
   <h3>タイムライン</h3>
   <div class="pdd-milestones">
