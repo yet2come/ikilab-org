@@ -958,6 +958,7 @@ header {
   border-bottom: 1px solid var(--gray-100);
   transition: all 0.2s;
   cursor: pointer;
+  scroll-margin-top: 72px; /* #key で飛んだとき固定ヘッダー（56px）に隠れない */
 }
 
 .case-row-link {
@@ -1480,6 +1481,7 @@ footer {
   text-decoration: none;
   color: inherit;
   transition: all 0.2s;
+  scroll-margin-top: 72px;
 }
 
 .case-index-card:hover {
