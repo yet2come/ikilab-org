@@ -3,9 +3,10 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
-import { SITE as site } from '../src/lib/site.ts';
 
 const dist = 'dist';
+// src/lib/site.ts の SITE と同じ値。Cloudflare Pages の Node は .ts を読めないため、ここでは import しない
+const site = 'https://ikilab.org';
 const errors = [];
 const read = (path) => readFileSync(join(dist, path), 'utf8');
 const locs = (xml) => new Set([...xml.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1]));
