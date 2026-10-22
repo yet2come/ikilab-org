@@ -151,6 +151,16 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - 検証: v6 / v7 のビルド成果物を比較。全ページで表示テキスト・タグ構造・sitemap・public 資産が一致（差分はスコープ CSS の cid 名のみ）。Vite 8 で CSS ミニファイアが変わり宣言順や色表記が変わるため、ブラウザで 19 ページ × 2 幅（1280 / 390px）の全要素の computed style とレイアウト寸法を突き合わせ、一致を確認（唯一の差は `background: none` 由来の `background-position` 表記で、背景画像がないため見た目に影響なし）
 - 注意: `npm install` で `--no-save` 導入の satori / @resvg/resvg-js が消えるため、OGP 再生成時は `scripts/gen-ogp.mjs` 冒頭の手順で再導入する
 
+### 2026-10-22
+
+**プロジェクト詳細ページ8本のアクセシビリティ改善（#3）**
+
+- セクション見出し（`01 BACKGROUND` 〜 `07 PROJECT INFO`）を `<div class="pdd-bar">` から `<h2 class="pdd-bar">` に変更し、h1 → h3 の見出しスキップを解消。h2 の既定の太字を打ち消すため `.pdd-bar` に `font-weight: 400` を追加
+- 知見行の ○ / △ / ? に `aria-hidden="true"` を付与し、本文の前に記号が読み上げられないようにした
+- STATUS / NEXT に `id="status"` / `id="next"` を付け、`pdd-nav` に「現状」「今後」を追加（5 → 7 項目。ナビは横スクロールのため幅は問題なし）
+- 8本とも同一マークアップのため一括置換で対応。詳細コンポーネントの共通化は別途検討
+- 残課題: フッターの列見出しが `<h4>` のため、ページ末尾で h2 → h4 のスキップが残る（サイト共通の箇所のため今回は対象外）
+
 ### 2026-10-22（フィード）
 
 **sitemap.xml と一覧フィード（/feed.json）の追加**
@@ -197,7 +207,7 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - [x] 実コンテンツの整備（7プロジェクトの詳細ページ・実説明、事例ページ。ヒーロー=3Dデジタルツイン埋め込み、拠点=Google地図に置換）
 - [x] プロジェクト拡充（2026-06: 「壱岐市議会みえる化」(iki-gikai) を掲載しトップ先頭に配置。論点マップ等の最新内容も反映）
 - [x] プロジェクト拡充（2026-08: 「行政計画みえる化」(iki-keikaku) を掲載しトップ先頭に配置。デジタルツインは /projects 一覧側へ。計19ページ）
-- [ ] プロジェクト詳細ページ8本のアクセシビリティ改善（[#3](https://github.com/yet2come/ikilab-org/issues/3)。見出しレベル・装飾記号・セクションナビ。共通化リファクタと合わせて対応するのが効率的）
+- [x] プロジェクト詳細ページ8本のアクセシビリティ改善（2026-10: [#3](https://github.com/yet2come/ikilab-org/issues/3)。見出しレベル・装飾記号・セクションナビ。共通化リファクタは未着手）
 - [x] OGP 画像の作成（2026-06: `scripts/gen-ogp.mjs` で生成、`Base.astro` に og:/twitter: メタ追加。本番配信済み）
 - [ ] ヒーロー／拠点の実写真の差し替え（現状は3D埋め込み・地図。home.ts に未使用の placeholder 定義が残存）
 - [x] 依存関係の整理（2026-10: 未使用の @astrojs/cloudflare・wrangler を削除。npm audit 21件 → 3件）
