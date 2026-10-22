@@ -67,3 +67,80 @@ export function validateCatalog(items: CatalogItem[]): void {
 
   if (errors.length > 0) throw new Error(`catalog の検査に失敗:\n${errors.join('\n')}`);
 }
+
+export const STATUS_LABELS: Record<Status, string> = {
+  active: '進行中',
+  planned: '計画中',
+  ended: '終了',
+};
+
+export interface JsonFeedItem {
+  id: string;
+  url: string;
+  title: string;
+  content_text: string;
+  summary: string;
+  date_modified: string;
+  tags: string[];
+  _ikilab: {
+    about: string;
+    kind: Kind;
+    status: Status;
+    status_label: string;
+    has_page: boolean;
+    category?: string;
+  };
+}
+
+export interface JsonFeed {
+  version: string;
+  title: string;
+  home_page_url: string;
+  feed_url: string;
+  description: string;
+  language: string;
+  icon: string;
+  favicon: string;
+  items: JsonFeedItem[];
+}
+
+/** 項目の公開 URL。ページがあれば末尾 / 付き、なければ一覧のカードを指すフラグメント付き URL */
+export function itemUrl(item: CatalogItem, site: string): string {
+  if (item.href) return `${site}${item.href.replace(/\/*$/, '/')}`;
+  return item.kind === 'project' ? `${site}/projects/#${item.key}` : `${site}/#${item.key}`;
+}
+
+/** JSON Feed 1.1 を組み立てる。項目は updated の新しい順、同日は catalog の順 */
+export function buildFeed(items: CatalogItem[], site: string): JsonFeed {
+  validateCatalog(items);
+  const feedUrl = `${site}/feed.json`;
+  const sorted = [...items].sort((a, b) => b.updated.localeCompare(a.updated));
+
+  return {
+    version: 'https://jsonfeed.org/version/1.1',
+    title: 'IKILAB — Projects & Cases',
+    home_page_url: `${site}/`,
+    feed_url: feedUrl,
+    description: '壱岐島を拠点とする IKILAB のプロジェクトと事例の一覧',
+    language: 'ja',
+    icon: `${site}/ikilab_logo_500x500.png`,
+    favicon: `${site}/iki_fav.png`,
+    items: sorted.map((item) => ({
+      id: `${site}/items/${item.kind}/${item.key}`,
+      url: itemUrl(item, site),
+      title: item.title,
+      content_text: item.body,
+      summary: item.body,
+      date_modified: `${item.updated}T00:00:00+09:00`,
+      tags: item.tags,
+      _ikilab: {
+        about: feedUrl,
+        kind: item.kind,
+        status: item.status,
+        status_label: STATUS_LABELS[item.status],
+        has_page: Boolean(item.href),
+        ...(item.category ? { category: item.category } : {}),
+      },
+    })),
+  };
+}
