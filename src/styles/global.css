@@ -1318,6 +1318,12 @@ footer {
   transform: translateY(0);
 }
 
+/* #key で指されたカードを含むブロックは、ずらさずに置く（ずれた位置で止まりヘッダーに潜るのを防ぐ） */
+.reveal:has(:target) {
+  transform: none;
+  transition: opacity 0.5s;
+}
+
 /* ============ HUB PAGE ============ */
 .hub-hero {
   margin-top: 56px;
