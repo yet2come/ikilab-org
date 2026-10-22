@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { catalog } from './src/data/catalog.ts';
 import { isExcludedFromSitemap, lastmodMap } from './src/lib/sitemap.ts';
+import { SITE as site } from './src/lib/site.ts';
 
-const site = 'https://ikilab.org';
 const lastmods = lastmodMap(catalog, site);
 
 // https://astro.build/config

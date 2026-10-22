@@ -1,6 +1,8 @@
 // プロジェクトと事例の一覧データ（src/data/catalog.ts）の型と、フィードの組み立て。
 // node --test から直接読めるよう、Astro には依存しない。
 
+import { FEED_EXTENSION_DOC } from './site.ts';
+
 export type Kind = 'project' | 'case';
 export type Status = 'active' | 'planned' | 'ended';
 
@@ -138,7 +140,7 @@ export function buildFeed(items: CatalogItem[], site: string): JsonFeed {
       date_modified: `${item.updated}T00:00:00+09:00`,
       tags: item.tags,
       _ikilab: {
-        about: feedUrl,
+        about: FEED_EXTENSION_DOC,
         kind: item.kind,
         status: item.status,
         status_label: STATUS_LABELS[item.status],

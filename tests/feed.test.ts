@@ -33,7 +33,7 @@ test('item fields for a page item', () => {
   assert.equal(item.date_modified, '2026-08-11T00:00:00+09:00');
   assert.deepEqual(item.tags, source.tags);
   assert.deepEqual(item._ikilab, {
-    about: 'https://ikilab.org/feed.json',
+    about: 'https://github.com/yet2come/ikilab-org/blob/main/docs/feed.md',
     kind: 'project',
     status: 'active',
     status_label: '進行中',

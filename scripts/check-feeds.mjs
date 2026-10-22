@@ -3,9 +3,9 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
+import { SITE as site } from '../src/lib/site.ts';
 
 const dist = 'dist';
-const site = 'https://ikilab.org';
 const errors = [];
 const read = (path) => readFileSync(join(dist, path), 'utf8');
 const locs = (xml) => new Set([...xml.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1]));
