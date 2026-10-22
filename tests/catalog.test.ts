@@ -111,3 +111,12 @@ test('rejects when top placement is not 6', () => {
   const items = catalog.map((i) => (i.key === 'iki-loc' ? { ...i, placement: 'list' as const } : i));
   assert.throws(() => validateCatalog(items), /placement/);
 });
+
+test('rejects href that does not match kind and key', () => {
+  assert.throws(() => validateCatalog(withItem({ ...validProject, href: '/projects/other' })), /sample-project.*href/);
+  assert.throws(() => validateCatalog(withItem({ ...validCase, href: '/projects/sample-case' })), /sample-case.*href/);
+});
+
+test('accepts href with trailing slash', () => {
+  assert.doesNotThrow(() => validateCatalog(withItem({ ...validProject, href: '/projects/sample-project/' })));
+});

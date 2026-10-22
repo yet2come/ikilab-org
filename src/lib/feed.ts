@@ -60,6 +60,10 @@ export function validateCatalog(items: CatalogItem[]): void {
       if (!item.placement || !PLACEMENTS.includes(item.placement)) fail('placement', 'が project に必要（top / list）');
     }
     if (item.kind === 'case' && !item.category) fail('category', 'が case に必要');
+    if (item.href !== undefined) {
+      const expected = `/${item.kind === 'project' ? 'projects' : 'cases'}/${item.key}`;
+      if (item.href.replace(/\/+$/, '') !== expected) fail('href', `は ${expected} であること（${item.href}）`);
+    }
   }
 
   const topCount = items.filter((i) => i.kind === 'project' && i.placement === 'top').length;

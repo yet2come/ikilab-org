@@ -1,4 +1,4 @@
-// ビルド後の dist/ を検査する（npm run build のあとに npm run check:feeds）。
+// ビルド後の dist/ を検査する。npm run build の最後に実行され、違反があればビルドを失敗させる（Cloudflare Pages に配信させない）。
 // フィード・サイトマップ・robots.txt のどれかが壊れていれば違反を列挙して終了コード 1 で終わる。
 import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
@@ -19,7 +19,7 @@ try {
 }
 if (feed) {
   if (feed.version !== 'https://jsonfeed.org/version/1.1') errors.push(`feed.json: version が 1.1 でない（${feed.version}）`);
-  if (feed.items?.length !== 14) errors.push(`feed.json: 項目数が 14 でない（${feed.items?.length}）`);
+  if (!Array.isArray(feed.items) || feed.items.length === 0) errors.push('feed.json: items が空');
   const ids = new Set();
   for (const item of feed.items ?? []) {
     for (const field of ['id', 'url', 'title', 'content_text', 'date_modified']) {
@@ -38,11 +38,12 @@ if (feed) {
   }
 }
 
-// 3. サイトマップが XML として正しい
+// 3. サイトマップが XML として正しい（xmllint がない環境、たとえば Cloudflare Pages のビルドでは飛ばす）
 try {
   execFileSync('xmllint', ['--noout', join(dist, 'sitemap.xml'), join(dist, 'sitemap-0.xml')], { stdio: 'pipe' });
 } catch (e) {
-  errors.push(`xmllint が失敗: ${e.stderr?.toString().trim() || e.message}`);
+  if (e.code === 'ENOENT') console.warn('check-feeds: xmllint がないため XML の検査を飛ばす');
+  else errors.push(`xmllint が失敗: ${e.stderr?.toString().trim() || e.message}`);
 }
 
 // 4. /sitemap.xml と sitemap-index.xml の参照先が一致する

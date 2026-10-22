@@ -161,7 +161,7 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - 一覧データを `src/data/catalog.ts` に一本化。トップ 02・03 と /projects はここから導出（表示 HTML の差分はカードの `id` 属性のみ）。状態・タグ・最終更新日はここに手で書く
 - `updated` の運用: 一覧の文言か詳細ページの中身を変えたら、同じ項目の `updated` も更新する。マークアップだけの変更では動かさない。sitemap の `<lastmod>` もここから付く
 - プロジェクトの状態に `ended` は使えない（表示側に終了の扱いがないため。必要になったら表示と合わせて設計する）
-- 検査: `npm test`（catalog の検査とフィード・サイトマップの組み立て）、`npm run build && npm run check:feeds`（dist の feed.json・sitemap・robots.txt）。catalog に不備があるとビルドが失敗する
+- 検査: `npm test`（catalog の検査とフィード・サイトマップの組み立て）。`npm run build` は最後に `scripts/check-feeds.mjs` で dist の feed.json・sitemap・robots.txt とページの実在を確かめる（単独では `npm run check:feeds`）。catalog の不備や存在しないページを指す href があるとビルドが失敗し、Cloudflare Pages に配信されない。xmllint がない環境では XML の検査だけ飛ばす
 - デプロイ後に確認すること: https://validator.jsonfeed.org/ に `/feed.json`、`curl -sI` で `/feed.json` と `/sitemap.xml` が 200、`/robots.txt` で Cloudflare の管理 robots.txt との合わさり方と `Sitemap:` 行
 
 ### 最終的なデプロイ設定
