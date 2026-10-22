@@ -1,3 +1,5 @@
+import { catalog } from './catalog';
+
 export const homeData = {
   hero: {
     tag: "IKI ISLAND — 33.7487°N, 129.6918°E",
@@ -39,14 +41,9 @@ export const homeData = {
     num: "02",
     title: "Projects — 進行中のテーマ",
     link: { label: "View All →", href: "/projects" },
-    items: [
-      { status: "active", title: "行政計画みえる化", body: "壱岐市の行政計画どうしの関係を図で整理し、計画期間・根拠法・所管課を一覧化。計画値と実績を突き合わせ、策定後に何が起きたかまで追える資料集。", href: "/projects/iki-keikaku" },
-      { status: "active", title: "壱岐市議会みえる化", body: "壱岐市議会の本会議録をAIで構造化し、全文検索・AI要約・議論テーマ抽出に加え、市民アンケートと議会の議論を重ね合わせる「論点マップ」で市民と議会の関心のズレも可視化する情報基盤。", href: "/projects/iki-gikai" },
-      { status: "active", title: "壱岐カレンダー", body: "島内イベント情報の分散を解消し、地域内外の人が必要な情報にたどり着ける状態をつくるための情報基盤づくり。", href: "/projects/iki-calendar" },
-      { status: "active", title: "人口シミュレーション", body: "2つの異なるアプローチで壱岐市の人口問題の「想定される未来」を動的に可視化。市民が当事者意識を持てる体感型シミュレーションを目指す。", href: "/projects/iki-pop-sim" },
-      { status: "planned", title: "壱岐島ワークデザイン構想", body: "スポット就労から定着就労へつなぐ多層的人材循環モデルを構想し、島内事業者と島外人材の持続的な接点を設計する取り組み。", href: "/projects/rito-job-matching" },
-      { status: "planned", title: "壱岐ロケ", body: "地域主体で場所の情報を整備し、観光・生活・地域活動に使えるロケーションデータ基盤をつくる取り組み。", href: "/projects/iki-loc" },
-    ],
+    items: catalog
+      .filter((item) => item.kind === 'project' && item.placement === 'top')
+      .map(({ status, title, body, href }) => ({ status, title, body, href })),
   },
   proof: {
     num: "03",
@@ -58,11 +55,9 @@ export const homeData = {
       { num: "24", unit: "", label: "Projects" },
       { num: "8", unit: "", label: "Migrations" },
     ],
-    cases: [
-      { tag: "Education / Community", title: "いきこども選挙", body: "条例に明記された子どものまちづくり参加の権利を、壱岐市長選と接続した模擬選挙として具体化。教育と地域参加をつなぐ実践事例。", href: "/cases/iki-kodomo-senkyo" },
-      { tag: "Dialogue / Community", title: "サクセンカイギ", body: "新しいアイデアを持ち寄り、対話を通じて磨き、島での実践につなげる場として運営。構想段階のアイデアを前に進める土壌を育てています。" },
-      { tag: "Education / Community", title: "しまチャレ2024 協賛", body: "長崎県主催の島しょ地域ビジネスチャレンジにIKILAB特別賞を提供。次の担い手が地域で挑戦しやすい環境づくりを後押ししました。" },
-    ],
+    cases: catalog
+      .filter((item) => item.kind === 'case')
+      .map(({ key, category, title, body, href }) => ({ tag: category ?? '', title, body, href, id: key })),
   },
   connect: {
     num: "04",

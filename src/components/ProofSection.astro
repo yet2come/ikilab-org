@@ -10,6 +10,7 @@ interface Case {
   title: string;
   body: string;
   href?: string;
+  id?: string;
 }
 
 interface Props {
@@ -32,7 +33,7 @@ const { stats, cases } = Astro.props;
 <div class="proof-cases reveal">
   {cases.map(c => (
     c.href ? (
-      <a href={c.href} class="case-row case-row-link">
+      <a href={c.href} id={c.id} class="case-row case-row-link">
         <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
         <div class="case-content">
           <div class="case-tag">{c.tag}</div>
@@ -42,7 +43,7 @@ const { stats, cases } = Astro.props;
         <div class="case-arrow">→</div>
       </a>
     ) : (
-      <div class="case-row">
+      <div id={c.id} class="case-row">
         <div class="case-img"><span class="case-img-ph">PHOTO</span></div>
         <div class="case-content">
           <div class="case-tag">{c.tag}</div>
