@@ -174,6 +174,19 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - 検査: `npm test`（catalog の検査とフィード・サイトマップの組み立て）。`npm run build` は最後に `scripts/check-feeds.mjs` で dist の feed.json・sitemap・robots.txt とページの実在を確かめる（単独では `npm run check:feeds`）。catalog の不備や存在しないページを指す href があるとビルドが失敗し、Cloudflare Pages に配信されない。xmllint がない環境では XML の検査だけ飛ばす
 - デプロイ後に確認すること: https://validator.jsonfeed.org/ に `/feed.json`、`curl -sI` で `/feed.json` と `/sitemap.xml` が 200、`/robots.txt` で Cloudflare の管理 robots.txt との合わさり方と `Sitemap:` 行
 
+### 2026-10-29
+
+**undici の脆弱性解消（PR #7）と CI でのテスト実行（PR #8）**
+
+- `astro` ^7.3.8 → ^7.4.2。`unifont` → `undici ^8.0.0` 経由でロックが 8.11.2 に固定されており、10月公開の advisory 8件（DoS・TLS 証明書検証バイパス・キャッシュ汚染ほか。影響範囲 `8.0.0 - 8.12.1`）に該当していた。astro を宣言範囲内で上げると undici 8.12.3 まで追従し audit は 0 件に戻る
+- 露出自体は無かった。`astro:fonts` / `experimental.fonts` を使っておらず、フォントは `Base.astro` から Google Fonts を `<link>` で読むため `unifont` はビルド時にも実行されない。追従コストが無いため取り込んだ
+- `engines.node` を >=22.12.0 → >=22.23.4 に引き上げ。astro 7.4.2 が10月の Node セキュリティリリースを取り込むため同じ下限を宣言しており、自リポジトリ側の宣言が依存の要求より緩い状態だった。Cloudflare Pages v3 ビルドイメージの既定 Node も 22.23.4 で一致する
+- 検証: ビルド exit 0・19 ルート、テスト 28 件、audit 0 件。dist の成果物は更新前と全ファイルがバイト単位で一致したため、2026-10-12 のような computed style の突き合わせは不要と判断
+- `.github/workflows/test.yml` を追加し、`main` への push と `main` 向け PR で `npm test` を実行。それまでチェックは Cloudflare Pages のビルド1件だけで、テスト 28 件は手元でしか走っていなかった（`check-feeds` はビルドコマンドに含まれるため CI で走っていた）
+- CI の Node は 22.23.4 に固定。`engines.node` と Pages ビルドイメージの既定に揃え、宣言した下限そのもので検証する。ビルドと `check-feeds` は Pages 側で走るため CI では重複させず `npm test` のみに絞った
+- **`tests/` が Node に要求する版**: `node --test tests/*.test.ts` は node が `.ts` を直接実行するため型剥がしが必要で、既定で有効になったのは Node 22.18.0 以降（22.17 以下は `--experimental-strip-types` が要る）。2026-10-22 に `scripts/check-feeds.mjs` から `.ts` の import を外したのは、当時の Pages の Node が 22.18.0 未満だったためと見られる。現在の Pages は 22.23.4 なので import に戻せる可能性があるが未検証
+- 残課題: ワークフローの `runs-on` は `ubuntu-latest`。GitHub が 2026-10-19 から Ubuntu 26 への移行を進めているとの注意喚起が出ているため、固定したい場合は `ubuntu-24.04` 等に変更する
+
 ### 最終的なデプロイ設定
 
 | 項目 | 値 |
@@ -199,7 +212,7 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 
 ## 次のステップ
 
-最終更新: 2026-10-22
+最終更新: 2026-10-29
 
 - [x] 3パターンの比較・最終選定 → パターンA採用
 - [x] 選定パターンをルート `/` に昇格
@@ -213,5 +226,6 @@ astro / esbuild / sharp の3件で、修正には astro 7 へのメジャー更�
 - [x] 依存関係の整理（2026-10: 未使用の @astrojs/cloudflare・wrangler を削除。npm audit 21件 → 3件）
 - [ ] レスポンシブの最終調整
 - [x] sitemap.xml と一覧フィード（2026-10: `/feed.json`・`/sitemap.xml`・`robots.txt`。一覧データを `catalog.ts` に一本化）
+- [x] テストの CI 実行（2026-10: GitHub Actions で `npm test`。Node 22.23.4 固定。それまでチェックは Pages のビルドのみ）
 - [ ] 更新情報の Atom フィード（`/feed.xml`。サイトに更新欄を作るときに合わせて）
 - [x] astro 7 へのメジャー更新（2026-10: audit 3件 → 0件。`compressHTML: true` で v6 の空白処理を維持）
